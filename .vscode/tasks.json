@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "type": "shell",
+    "tasks": [
+        {
+            "label": "linuxbuild",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "scons",
+            "args": [
+                "platform=linux",
+                {
+                    "value": "-j$(nproc)",
+                    "quoting": "escape"
+                }
+            ],
+        },
+        {
+            "label": "linuxbuildwithtests",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "scons",
+            "args": [
+                "platform=linux",
+                {
+                    "value": "-j$(nproc)",
+                    "quoting": "escape"
+                },
+                "include_testrunner=yes"
+            ],
+        },
+        {
+            "label": "generate-coverage-report-html",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "genhtml",
+            "args": [
+                "-o",
+                "code_coverage_report",
+                "app.info"
+            ],
+        }
+    ]
+}
