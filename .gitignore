@@ -1,0 +1,57 @@
+# Godot-specific ignores
+.import/
+export.cfg
+.godot/
+
+# Mono-specific ignores
+.mono/
+
+# System/tool-specific ignores
+.directory
+*~
+
+build/
+/vendor/
+/blender/
+/\!dev
+/packages/
+obj/
+*.xml
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
+
+# we only want to commit godot native formats like tscn, we dont want the raw model files in the repo
+*.dae
+*.blend
+
+#Paket dependency manager
+.paket/**
+!.paket/paket.bootstrapper.exe
+paket-files/
+*.blob
+
+
+lib/godot-cpp/
+lib/godot-cpp/godot_headers/
+lib/godot-cpp/**/*.import
+lib/googletest/**
+/demo/**
+/bin/**
+/code_coverage_report/**
+!**/\.gitkeep
+
+*.dblite
+*.os
+*.gcda
+*.gcno
+*.info
