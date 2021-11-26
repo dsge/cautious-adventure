@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Uneasy-balance"
+run/main_scene="res://scenes/Startup.tscn"
 config/icon="res://icon.png"
 
 [rendering]
