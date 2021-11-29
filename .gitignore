@@ -55,3 +55,5 @@ lib/googletest/**
 *.gcda
 *.gcno
 *.info
+
+api.json
