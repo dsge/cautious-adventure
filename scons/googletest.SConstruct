@@ -23,7 +23,7 @@ Default(libraryBasePath)
 
 ret = env.StaticLibrary(target= libraryBasePath + '/googletest/build/gtest', source=[libraryBasePath + '/googletest/src/gtest-all.cc'])
 ret = {
-    'builds': [ret], 
+    'builds': [ret[0]], 
     'headerfileIncludePaths': headerfileIncludePaths
 }
 Return('ret')
