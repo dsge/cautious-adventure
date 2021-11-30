@@ -152,7 +152,7 @@ for sconsFilePath in additionalSconsFilePaths:
     if res:
         if "builds" in res:
             for builtLibrary in res["builds"]:
-                libraryPath = os.path.dirname(builtLibrary.abspath)
+                libraryPath = os.path.dirname(builtLibrary.path)
                 libraryName = os.path.splitext(os.path.basename(builtLibrary.abspath))[0]
                 if libraryName.startswith('lib'):
                     libraryName = libraryName[len('lib'):]
@@ -163,7 +163,7 @@ for sconsFilePath in additionalSconsFilePaths:
                 # runtimeRelativeLibPaths.append(os.path.join('\\$$ORIGIN', os.pardir, os.pardir, runtimeRelativeLibPath))
         if "headerfileIncludePaths" in res:
             for path in res["headerfileIncludePaths"]:
-                additionalCppHeaderIncludePaths.append(path)
+                additionalCppHeaderIncludePaths.append(path.path)
 
 def printList(list):
     ret = ''
@@ -181,19 +181,20 @@ print('----')
 
 
 
-
+cppHeaderIncludePaths = []
+cppHeaderIncludePaths += additionalCppHeaderIncludePaths
+cppHeaderIncludePaths += [".", "./src"]
 
 # make sure our binding library is properly includes
-env.Append(CPPPATH=[".", "./src"])
-env.Append(LIBPATH=[])
-env.Append(LIBS=[])
+env.Append(CPPPATH=cppHeaderIncludePaths)
+env.Append(LIBPATH=additionalLibraryPaths)
+env.Append(LIBS=additionalLibraryNames)
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/"])
 sources = Glob("src/*.cpp")
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], arch_suffix)
-print(target_name)
+# print(target_name)
 library = env.SharedLibrary(target=env["target_path"] + target_name, source=sources)
 
 Default(library)
