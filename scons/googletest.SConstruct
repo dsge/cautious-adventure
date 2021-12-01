@@ -19,6 +19,8 @@ headerfileIncludePaths = [
 env.Append(CPPPATH=headerfileIncludePaths)
 # env.VariantDir('../lib/googletest/build', '../lib/googletest', duplicate=0)
 
+Decider("content-timestamp")
+
 Default(libraryBasePath)
 
 ret = env.StaticLibrary(target= libraryBasePath + '/googletest/build/gtest', source=[libraryBasePath + '/googletest/src/gtest-all.cc'])

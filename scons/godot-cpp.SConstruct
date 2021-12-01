@@ -16,6 +16,8 @@ libraryBasePath = '../lib/godot-cpp'
 
 Default(libraryBasePath)
 
+Decider("content-timestamp")
+
 SConscript(libraryBasePath + '/SConstruct')
 
 
