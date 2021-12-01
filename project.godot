@@ -6,14 +6,21 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 [application]
 
 config/name="Uneasy-balance"
 run/main_scene="res://scenes/Startup.tscn"
 config/icon="res://icon.png"
+config/features=PackedStringArray("4.0")
+
+[physics]
+
+2d/run_on_thread=true
+3d/run_on_thread=true
 
 [rendering]
 
+driver/threads/thread_model=2
 environment/defaults/default_environment="res://default_env.tres"
