@@ -73,11 +73,6 @@ ret = {
         env.File(builtFileName)
     ], 
     'headerfileIncludePaths': [
-        # env.Dir(libraryBasePath + '/godot_headers/'),
-        # env.Dir(libraryBasePath + '/'),
-        # env.Dir(libraryBasePath + '/include/'),
-        # env.Dir(libraryBasePath + '/include/core/'),
-        # env.Dir(libraryBasePath + '/include/gen'),
         env.Dir(libraryBasePath + '/godot-headers/'),
         env.Dir(libraryBasePath + '/include/'),
         env.Dir(libraryBasePath + '/include/godot_cpp/'),

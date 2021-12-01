@@ -7,7 +7,7 @@
 
 #include <godot.hpp>
 #include <node.hpp>
-#include <godot_cpp/variant/utility_functions.hpp>
+#include <utility_functions.hpp>
 
 using namespace godot;
 
