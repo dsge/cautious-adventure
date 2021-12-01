@@ -79,10 +79,12 @@ ret = {
         # env.Dir(libraryBasePath + '/include/core/'),
         # env.Dir(libraryBasePath + '/include/gen'),
         env.Dir(libraryBasePath + '/godot-headers/'),
+        env.Dir(libraryBasePath + '/include/'),
         env.Dir(libraryBasePath + '/include/godot_cpp/'),
         env.Dir(libraryBasePath + '/include/godot_cpp/classes'),
         env.Dir(libraryBasePath + '/include/godot_cpp/core'),
         env.Dir(libraryBasePath + '/include/godot_cpp/variant'),
+        env.Dir(libraryBasePath + '/gen/include/'),
         env.Dir(libraryBasePath + '/gen/include/godot_cpp/classes'),
         env.Dir(libraryBasePath + '/gen/include/godot_cpp/variant'),
     ]
