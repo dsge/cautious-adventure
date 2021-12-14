@@ -141,6 +141,7 @@ elif env["platform"] == "windows":
 additionalSconsFilePaths = [
     'scons/godot-cpp.SConstruct',
     'scons/googletest.SConstruct',
+    'scons/hypodermic.SConstruct',
 ]
 
 additionalCppHeaderIncludePaths = [] # where to look for #included files during build time

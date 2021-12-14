@@ -8,6 +8,7 @@
 #include <godot.hpp>
 #include <node.hpp>
 #include <utility_functions.hpp>
+#include <Hypodermic/Hypodermic.h>
 
 using namespace godot;
 

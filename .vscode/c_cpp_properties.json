@@ -12,6 +12,7 @@
             "${workspaceFolder}/lib/godot-cpp/gen/include/",
             "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/classes",
             "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/variant",
+            "${workspaceFolder}/lib/hypodermic",
         ]
     },
     "configurations": [
