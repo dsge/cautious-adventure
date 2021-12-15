@@ -4,14 +4,14 @@
         "appIncludePaths": ["${workspaceFolder}/src"],
         "godotCppIncludePaths": [
             "${workspaceFolder}/lib/godot-cpp/godot-headers/",
+            "${workspaceFolder}/lib/godot-cpp/gen/include/",
+            "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/classes",
+            "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/variant",
             "${workspaceFolder}/lib/godot-cpp/include/",
             "${workspaceFolder}/lib/godot-cpp/include/godot_cpp/",
             "${workspaceFolder}/lib/godot-cpp/include/godot_cpp/classes",
             "${workspaceFolder}/lib/godot-cpp/include/godot_cpp/core",
             "${workspaceFolder}/lib/godot-cpp/include/godot_cpp/variant",
-            "${workspaceFolder}/lib/godot-cpp/gen/include/",
-            "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/classes",
-            "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/variant",
             "${workspaceFolder}/lib/hypodermic",
         ]
     },
@@ -21,7 +21,13 @@
         "includePath": [
             "${appIncludePaths}", 
             "${godotCppIncludePaths}"
-        ]
+        ],
+        "browse": {
+          "path": [
+            "${workspaceFolder}/src/*",
+          ],
+          "limitSymbolsToIncludedHeaders": true,
+        }
       }
     ],
     "version": 4
