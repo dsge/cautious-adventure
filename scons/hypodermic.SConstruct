@@ -1,4 +1,6 @@
 import os
+import sys
+import utils
 
 env = Environment()
 
@@ -27,6 +29,8 @@ for boostSubLibraryPath in Glob(boostLibsBasePath + '/libs/*'):
 Decider("content-timestamp")
 
 Default(libraryBasePath)
+
+utils.override_build_output_messages(sys, env) 
 
 # ret = env.StaticLibrary(target= libraryBasePath + '/googletest/build/gtest', source=[libraryBasePath + '/googletest/src/gtest-all.cc'])
 ret = {

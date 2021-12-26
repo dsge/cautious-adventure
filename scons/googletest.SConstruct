@@ -1,4 +1,7 @@
 
+import sys
+import utils
+
 env = Environment()
 
 # env.Append(CPPPATH = buildtimeIncludePaths) # where to look for #included files
@@ -22,6 +25,8 @@ env.Append(CPPPATH=headerfileIncludePaths)
 Decider("content-timestamp")
 
 Default(libraryBasePath)
+
+utils.override_build_output_messages(sys, env) 
 
 ret = env.StaticLibrary(target= libraryBasePath + '/googletest/build/gtest', source=[libraryBasePath + '/googletest/src/gtest-all.cc'])
 ret = {

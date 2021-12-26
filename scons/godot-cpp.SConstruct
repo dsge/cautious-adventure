@@ -1,6 +1,8 @@
 import os
 import sys
 
+import utils
+
 args = ARGUMENTS
 if not "generate_bindings" in args:
     # args["generate_bindings"] = "yes"
@@ -15,10 +17,6 @@ Export(ARGUMENTS = args)
 libraryBasePath = '../lib/godot-cpp'
 
 Default(libraryBasePath)
-
-Decider("content-timestamp")
-
-SConscript(libraryBasePath + '/SConstruct')
 
 
 
@@ -63,6 +61,12 @@ opts.Add(EnumVariable("target", "Compilation target", "debug", allowed_values=("
 env = Environment()
 opts.Update(env)
 Help(opts.GenerateHelpText(env))
+
+opts = utils.get_build_output_messages(sys) 
+
+Decider("content-timestamp")
+
+SConscript(libraryBasePath + '/SConstruct', exports=opts)
 
 
 builtFileName = libraryBasePath + "/bin/" + "libgodot-cpp.{}.{}.{}{}".format(env["platform"], env["target"], '64', '.a')

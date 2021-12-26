@@ -2,6 +2,8 @@
 import os
 import sys
 
+from scons import utils
+
 # default values, adapt them to your setup
 default_library_name = "libapp"
 default_target_path = "bin/"
@@ -190,6 +192,10 @@ cppHeaderIncludePaths += [".", "./src"]
 env.Append(CPPPATH=cppHeaderIncludePaths)
 env.Append(LIBPATH=additionalLibraryPaths)
 env.Append(LIBS=additionalLibraryNames)
+
+
+utils.override_build_output_messages(sys, env) 
+
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 sources = Glob("src/*.cpp")
