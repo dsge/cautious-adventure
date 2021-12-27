@@ -5,8 +5,8 @@
     #include <gtest/gtest.h>
 #endif
 
-#include <godot.hpp>
 #include <node.hpp>
+#include <godot.hpp>
 #include <utility_functions.hpp>
 #include <Hypodermic/Hypodermic.h>
 
@@ -14,7 +14,7 @@ using namespace godot;
 
 namespace app {
 
-class Startup : public Node {
+class Startup : public godot::Node {
     GDCLASS(Startup, Node);
 
 protected:

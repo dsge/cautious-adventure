@@ -69,7 +69,9 @@
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
         "**/node_modules/*/**": true,
-        "${workspaceFolder}/.godot/*/**": true,
-        "${workspaceFolder}/lib/*/**": true,
-      }
+        "**/.godot/*/**": true,
+        "**/lib/*/**": true,
+        "**/bin/*/**": true,
+    },
+    "C_Cpp.intelliSenseEngine": "Tag Parser"
 }
