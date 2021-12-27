@@ -45,6 +45,8 @@ opts.Add(EnumVariable("macos_arch", "Target macOS architecture", "universal", ["
 opts.Add(PathVariable("target_path", "The path where the lib is installed.", default_target_path, PathVariable.PathAccept))
 opts.Add(PathVariable("target_name", "The library name.", default_library_name, PathVariable.PathAccept))
 
+opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
+
 # only support 64 at this time..
 bits = 64
 
@@ -176,8 +178,13 @@ def printList(list):
             ret += ' - ' + str(item) + '\n'
     return ret
 
+includePathsDisplayString = '\n   (Rerun with `show_include_paths=yes` to display the list)\n'
+if env["show_include_paths"]:
+    includePathsDisplayString = printList(additionalCppHeaderIncludePaths)
+    
+
 print('----')
-print('Building using the following header include paths: ', printList(additionalCppHeaderIncludePaths))
+print('Building using the following header include paths: ', includePathsDisplayString)
 print('Using built libraries: ', printList(additionalLibraryNames))
 print('Looking for built libraries in: ', printList(additionalLibraryPaths))
 print('----')
