@@ -170,25 +170,30 @@ for sconsFilePath in additionalSconsFilePaths:
             for path in res["headerfileIncludePaths"]:
                 additionalCppHeaderIncludePaths.append(path.path)
 
-def printList(list):
-    ret = ''
-    if (len(list) > 0):
-        ret += '\n'
-        for item in list:
-            ret += ' - ' + str(item) + '\n'
-    return ret
+
 
 includePathsDisplayString = '\n   (Rerun with `show_include_paths=yes` to display the list)\n'
 if env["show_include_paths"]:
-    includePathsDisplayString = printList(additionalCppHeaderIncludePaths)
+    includePathsDisplayString = utils.printList(additionalCppHeaderIncludePaths)
     
 
 print('----')
 print('Building using the following header include paths: ', includePathsDisplayString)
-print('Using built libraries: ', printList(additionalLibraryNames))
-print('Looking for built libraries in: ', printList(additionalLibraryPaths))
-print('----')
+print('Using built libraries: ', utils.printList(additionalLibraryNames))
+print('Looking for built libraries in: ', utils.printList(additionalLibraryPaths))
 
+
+print('Unused but cached local godot binary path: ')
+try:
+    print(' - ', utils.getCachedGodotBinaryAbsolutePath())
+except (FileNotFoundError, ValueError) as e:
+    # config file not found at all, or
+    # cached godot binary path not found in configfile
+    print(' - (not found)')
+
+# utils.setCachedGodotBinaryAbsolutePath('/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64')
+
+print('----')
 
 
 cppHeaderIncludePaths = []

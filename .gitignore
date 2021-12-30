@@ -60,3 +60,7 @@ lib/googletest/**
 api.json
 
 **/__pycache__/**
+
+# ignore all appconfig files except for the example file
+appconfig.*
+!appconfig.example.json

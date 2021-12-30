@@ -1,3 +1,5 @@
+import json
+
 def override_build_output_messages(sys, env):
 
     colors = {}
@@ -115,3 +117,48 @@ def get_build_output_messages(sys):
         'JARCOMSTR': [java_library_message],
         'JAVACCOMSTR': [java_compile_source_message],
     }
+
+def getConfigFileRelativePath():
+    return 'appconfig.local.json'
+
+def getConfigFileGodotBinaryFieldName():
+    return 'godotBinaryAbsolutePath'
+
+def getAppConfig():
+    try:
+        f = open(getConfigFileRelativePath())
+    except FileNotFoundError as e:
+        raise e
+    config = json.load(f)
+    f.close()
+    return config
+
+
+def getCachedGodotBinaryAbsolutePath():
+    try:
+        config = getAppConfig()
+    except FileNotFoundError as e:
+        raise e
+    fieldName = getConfigFileGodotBinaryFieldName()
+    if fieldName in config:
+        return config[fieldName]
+    else:
+        raise ValueError("'" + fieldName + "' field not found in '" + getConfigFileRelativePath() + "'")
+   
+def setCachedGodotBinaryAbsolutePath(godotBinaryAbsolutePath):
+    try:
+        config = getAppConfig()
+    except:
+        config = {}
+    config[getConfigFileGodotBinaryFieldName()] = godotBinaryAbsolutePath
+    json_object = json.dumps(config, indent = 4)
+    with open(getConfigFileRelativePath(), "w") as outfile:
+        outfile.write(json_object)
+
+def printList(list):
+    ret = ''
+    if (len(list) > 0):
+        ret += '\n'
+        for item in list:
+            ret += ' - ' + str(item) + '\n'
+    return ret
