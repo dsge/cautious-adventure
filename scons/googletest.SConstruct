@@ -10,6 +10,9 @@ env = Environment()
 
 # env.Append( LINKFLAGS = Split('-z origin') )
 
+env.Append(CCFLAGS=["-fPIC"])
+env.Append(CXXFLAGS=["-std=c++17"])
+
 libraryBasePath = '../lib/googletest'
 
 headerfileIncludePaths = [

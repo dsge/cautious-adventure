@@ -45,6 +45,7 @@ opts.Add(EnumVariable("macos_arch", "Target macOS architecture", "universal", ["
 opts.Add(PathVariable("target_path", "The path where the lib is installed.", default_target_path, PathVariable.PathAccept))
 opts.Add(PathVariable("target_name", "The library name.", default_library_name, PathVariable.PathAccept))
 
+opts.Add(BoolVariable('include_testrunner', "include testrunner", 'no'))
 opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
 
 # only support 64 at this time..
@@ -85,6 +86,10 @@ if env["platform"] == "":
 
 if env["target"] == "debug":
     env.Append(CPPDEFINES=["DEBUG_ENABLED", "DEBUG_METHODS_ENABLED"])
+    if env['include_testrunner']:
+        env.Append(CPPDEFINES=['INCLUDE_TESTRUNNER'])
+        env.Append(CCFLAGS=['-fprofile-arcs', '-ftest-coverage'])
+        env.Append(LIBS=['gcov'])
 
 # Check our platform specifics
 if env["platform"] == "osx":
@@ -210,7 +215,7 @@ utils.override_build_output_messages(sys, env)
 
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-sources = Glob("src/*.cpp")
+sources = Glob(pattern = 'src/*.cpp', exclude=None if env['include_testrunner'] else 'src/*.test.cpp')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], arch_suffix)
 # print(target_name)

@@ -63,7 +63,8 @@
         "regex": "cpp",
         "mutex": "cpp",
         "shared_mutex": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "*.ipp": "cpp"
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,
