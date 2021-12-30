@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Uneasy-balance"
 run/main_scene="res://scenes/Startup.tscn"
-config/icon="res://icon.png"
+config/icon="res://resources/icon.png"
 config/features=PackedStringArray("4.0")
 
 [physics]
@@ -23,4 +23,4 @@ config/features=PackedStringArray("4.0")
 [rendering]
 
 driver/threads/thread_model=2
-environment/defaults/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://resources/default_env.tres"
