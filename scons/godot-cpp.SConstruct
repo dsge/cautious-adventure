@@ -1,5 +1,7 @@
 import os
 import sys
+import io
+from contextlib import redirect_stdout
 
 import utils
 
@@ -66,7 +68,11 @@ opts = utils.get_build_output_messages(sys)
 
 Decider("content-timestamp")
 
-SConscript(libraryBasePath + '/SConstruct', exports=opts)
+with redirect_stdout(io.StringIO()) as f:
+    # redirect_stdout is used to capture the stdout, so that the
+    # "WARNING: Unknown SCons variables were passed and will be ignored:" messages
+    # wouldn't be displayed for someone who uses the app's main sconstruct file
+    SConscript(libraryBasePath + '/SConstruct', exports=opts)
 
 
 builtFileName = libraryBasePath + "/bin/" + "libgodot-cpp.{}.{}.{}{}".format(env["platform"], env["target"], '64', '.a')
