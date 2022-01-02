@@ -191,10 +191,12 @@ print('Looking for built libraries in: ', utils.printList(additionalLibraryPaths
 print('Unused but cached local godot binary path: ')
 try:
     print(' - ', utils.getCachedGodotBinaryAbsolutePath())
-except (FileNotFoundError, ValueError) as e:
+except FileNotFoundError as e:
     # config file not found at all, or
+    print(' - (config file found)')
+except ValueError as e:
     # cached godot binary path not found in configfile
-    print(' - (not found)')
+    print(' - (`godotBinaryAbsolutePath` not found in configfile)')
 
 # utils.setCachedGodotBinaryAbsolutePath('/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64')
 
