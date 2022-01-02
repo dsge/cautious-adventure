@@ -127,7 +127,7 @@ print('----')
 
 cppHeaderIncludePaths = []
 cppHeaderIncludePaths += env['app_additionalCppHeaderIncludePaths']
-cppHeaderIncludePaths += [".", "./src"]
+cppHeaderIncludePaths += ["./src"]
 
 # make sure our binding library is properly includes
 env.Append(CPPPATH=cppHeaderIncludePaths)
