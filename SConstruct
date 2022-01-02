@@ -37,9 +37,6 @@ opts.Add(PathVariable("target_name", "The library name.", default_library_name, 
 opts.Add(BoolVariable('include_testrunner', "include testrunner", 'no'))
 opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
 
-# only support 64 at this time..
-bits = 64
-
 # Updates the environment with the option variables.
 opts.Update(env)
 # Generates help for the -h scons option.
@@ -66,14 +63,6 @@ if env["use_llvm"]:
 if env["platform"] == "":
     print("No valid target platform selected.")
     quit()
-
-# For the reference:
-# - CCFLAGS are compilation flags shared between C and C++
-# - CFLAGS are for C-specific compilation flags
-# - CXXFLAGS are for C++-specific compilation flags
-# - CPPFLAGS are for pre-processor flags
-# - CPPDEFINES are for pre-processor defines
-# - LINKFLAGS are for linking flags
 
 if env["target"] == "debug":
     env.Append(CPPDEFINES=["DEBUG_ENABLED", "DEBUG_METHODS_ENABLED"])
@@ -153,7 +142,6 @@ utils.override_build_output_messages(sys, env)
 sources = Glob(pattern = 'src/*.cpp', exclude=None if env['include_testrunner'] else 'src/*.test.cpp')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], env['app_arch_suffix'])
-# print(target_name)
 library = env.SharedLibrary(target=env["target_path"] + target_name, source=sources)
 
 Default(library)

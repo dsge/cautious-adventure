@@ -177,6 +177,14 @@ def autoDetectHostPlatform(sys):
     else:
         raise ValueError("Could not detect platform automatically, please specify with " "platform=<platform>")
     return ret
+
+# For the reference:
+# - CCFLAGS are compilation flags shared between C and C++
+# - CFLAGS are for C-specific compilation flags
+# - CXXFLAGS are for C++-specific compilation flags
+# - CPPFLAGS are for pre-processor flags
+# - CPPDEFINES are for pre-processor defines
+# - LINKFLAGS are for linking flags
     
 def setOsxEnv(env):
     env["target_path"] += "osx/"
