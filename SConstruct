@@ -127,16 +127,14 @@ print('----')
 
 cppHeaderIncludePaths = []
 cppHeaderIncludePaths += env['app_additionalCppHeaderIncludePaths']
-cppHeaderIncludePaths += ["./src"]
+# cppHeaderIncludePaths += ["./src"]
 
 # make sure our binding library is properly includes
 env.Append(CPPPATH=cppHeaderIncludePaths)
 env.Append(LIBPATH=env['app_additionalLibraryPaths'])
 env.Append(LIBS=env['app_additionalLibraryNames'])
 
-
 utils.override_build_output_messages(sys, env) 
-
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 sources = Glob(pattern = 'src/*.cpp', exclude=None if env['include_testrunner'] else 'src/*.test.cpp')
