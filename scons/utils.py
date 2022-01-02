@@ -162,3 +162,89 @@ def printList(list):
         for item in list:
             ret += ' - ' + str(item) + '\n'
     return ret
+
+def autoDetectHostPlatform(sys):
+    # Try to detect the host platform automatically.
+    # This is used if no `platform` argument is passed
+    if sys.platform.startswith("linux"):
+        ret = "linux"
+    elif sys.platform.startswith("freebsd"):
+        ret = "freebsd"
+    elif sys.platform == "darwin":
+        ret = "osx"
+    elif sys.platform == "win32" or sys.platform == "msys":
+        ret = "windows"
+    else:
+        raise ValueError("Could not detect platform automatically, please specify with " "platform=<platform>")
+    return ret
+    
+def setOsxEnv(env):
+    env["target_path"] += "osx/"
+    # cpp_library += ".osx"
+
+    if env["bits"] == "32":
+        raise ValueError("Only 64-bit builds are supported for the macOS target.")
+
+    if env["macos_arch"] == "universal":
+        env.Append(LINKFLAGS=["-arch", "x86_64", "-arch", "arm64"])
+        env.Append(CCFLAGS=["-arch", "x86_64", "-arch", "arm64"])
+    else:
+        env.Append(LINKFLAGS=["-arch", env["macos_arch"]])
+        env.Append(CCFLAGS=["-arch", env["macos_arch"]])
+
+    env.Append(CXXFLAGS=["-std=c++17"])
+    if env["target"] == "debug":
+        env.Append(CCFLAGS=["-g", "-O2"])
+    else:
+        env.Append(CCFLAGS=["-g", "-O3"])
+
+    env['app_arch_suffix'] = env["macos_arch"]
+
+def setLinuxEnv(env):
+    # cpp_library += ".linux"
+    env.Append(CCFLAGS=["-fPIC"])
+    env.Append(CXXFLAGS=["-std=c++17"])
+    if env["target"] == "debug":
+        env.Append(CCFLAGS=["-g3", "-Og"])
+    else:
+        env.Append(CCFLAGS=["-g", "-O3"])
+
+    env['app_arch_suffix'] = str(env['bits'])
+
+def setWindowsEnv(env, os):
+    # cpp_library += ".windows"
+    # This makes sure to keep the session environment variables on windows,
+    # that way you can run scons in a vs 2017 prompt and it will find all the required tools
+    env.Append(ENV=os.environ)
+
+    env.Append(CPPDEFINES=["WIN32", "_WIN32", "_WINDOWS", "_CRT_SECURE_NO_WARNINGS"])
+    env.Append(CCFLAGS=["-W3", "-GR"])
+    env.Append(CXXFLAGS=["-std:c++17"])
+    if env["target"] == "debug":
+        env.Append(CPPDEFINES=["_DEBUG"])
+        env.Append(CCFLAGS=["-EHsc", "-MDd", "-ZI", "-FS"])
+        env.Append(LINKFLAGS=["-DEBUG"])
+    else:
+        env.Append(CPPDEFINES=["NDEBUG"])
+        env.Append(CCFLAGS=["-O2", "-EHsc", "-MD"])
+
+    if not(env["use_llvm"]):
+        env.Append(CPPDEFINES=["TYPED_METHOD_BIND"])
+
+    env['app_arch_suffix'] = str(env['bits'])
+
+def parseChildSconstructBuildResults(res, env, os):
+    if "builds" in res:
+        for builtLibrary in res["builds"]:
+            libraryPath = os.path.dirname(builtLibrary.path)
+            libraryName = os.path.splitext(os.path.basename(builtLibrary.abspath))[0]
+            if libraryName.startswith('lib'):
+                libraryName = libraryName[len('lib'):]
+            runtimeRelativeLibPath = os.path.basename(libraryPath)
+
+            env['app_additionalLibraryPaths'].append(libraryPath)
+            env['app_additionalLibraryNames'].append(libraryName)
+            # runtimeRelativeLibPaths.append(os.path.join('\\$$ORIGIN', os.pardir, os.pardir, runtimeRelativeLibPath))
+        if "headerfileIncludePaths" in res:
+            for path in res["headerfileIncludePaths"]:
+                env['app_additionalCppHeaderIncludePaths'].append(path.path)
