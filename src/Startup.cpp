@@ -11,7 +11,7 @@ void Startup::_bind_methods() {
 }
 
 Startup::Startup() {
-    godot::UtilityFunctions::print("Startup constrt");
+    godot::UtilityFunctions::print("Startup constructor");
 }
 
 void Startup::_init() {
@@ -47,5 +47,5 @@ void Startup::_process(float delta) {
 }
 
 Startup::~Startup() {
-    
+    godot::UtilityFunctions::print("Startup destructor");
 }

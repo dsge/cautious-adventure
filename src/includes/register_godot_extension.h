@@ -3,9 +3,9 @@
 
 #include <godot/gdnative_interface.h>
 
-#include <class_db.hpp>
-#include <defs.hpp>
-#include <godot.hpp>
+#include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/core/defs.hpp>
+#include <godot_cpp/godot.hpp>
 
 void register_godot_extension();
 void unregister_godot_extension();
