@@ -157,6 +157,27 @@ def setCachedGodotBinaryAbsolutePath(godotBinaryAbsolutePath):
     with open(getConfigFileRelativePath(), "w") as outfile:
         outfile.write(json_object)
 
+def setVsCodeLaunchJsonGodotBinaryAbsolutePaths(godotBinaryAbsolutePath):
+    if not godotBinaryAbsolutePath or not os.path.isfile(godotBinaryAbsolutePath):
+        print('Invalid filepath: ', godotBinaryAbsolutePath)
+        return False
+    filePath = '.vscode/launch.json'
+    try:
+        f = open(filePath)
+    except FileNotFoundError as e:
+        return False
+    launchJsonContents = json.load(f)
+    f.close()
+
+    if launchJsonContents and "configurations" in launchJsonContents:
+        for config in launchJsonContents["configurations"]:
+            if config and "program" in config:
+                config["program"] = godotBinaryAbsolutePath
+    json_object = json.dumps(launchJsonContents, indent = 4)
+    with open(filePath, "w") as outfile:
+        outfile.write(json_object)
+        return True
+
 def printList(list):
     ret = ''
     if (len(list) > 0):

@@ -37,11 +37,22 @@ opts.Add(PathVariable("target_name", "The library name.", default_library_name, 
 opts.Add(BoolVariable('include_testrunner', "include testrunner", 'no'))
 opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
 opts.Add(BoolVariable('verbose', "Show more build time information", 'no'))
+opts.Add(PathVariable('override_vscode_godot_absolute_path', "Set VSCode launch.json's Godot absolute paths to this, and then exit without building anything.", '', PathVariable.PathAccept))
 
 # Updates the environment with the option variables.
 opts.Update(env)
 # Generates help for the -h scons option.
 Help(opts.GenerateHelpText(env))
+
+if env['override_vscode_godot_absolute_path']:
+    path = env['override_vscode_godot_absolute_path']
+    if utils.setVsCodeLaunchJsonGodotBinaryAbsolutePaths(path):
+        print('\nLaunch.json Godot Absolute Filepath successfully updated to:')
+        print(' -', path)
+    else:
+        print('\nFailed to update Launch.json Godot Absolute Filepath to', path)
+        print('No changes were made.')
+    sys.exit()
 
 env["app_arch_suffix"] = ''
 
