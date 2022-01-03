@@ -36,6 +36,7 @@ opts.Add(PathVariable("target_name", "The library name.", default_library_name, 
 
 opts.Add(BoolVariable('include_testrunner', "include testrunner", 'no'))
 opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
+opts.Add(BoolVariable('verbose', "Show more build time information", 'no'))
 
 # Updates the environment with the option variables.
 opts.Update(env)
@@ -97,29 +98,8 @@ for sconsFilePath in additionalSconsFilePaths:
     if res:
         utils.parseChildSconstructBuildResults(res, env, os)
 
-
-
-includePathsDisplayString = '\n   (Rerun with `show_include_paths=yes` to display the list)\n'
-if env["show_include_paths"]:
-    includePathsDisplayString = utils.printList(env['app_additionalCppHeaderIncludePaths'])
-    
 vsCodeConfigFilesCreated = utils.createVsCodeConfigFilesIfNeeded()
-
-
-print('----')
-if vsCodeConfigFilesCreated:
-    print('The following files were created (you were missing them locally). Make sure to review their contents to match your system:')
-    for originalFile, newFile in vsCodeConfigFilesCreated.items():
-        print(originalFile, ' --> ', newFile)
-    print('\n')
-print('Building using the following header include paths: ', includePathsDisplayString)
-print('Using built libraries: ', utils.printList(env['app_additionalLibraryNames']))
-print('Looking for built libraries in: ', utils.printList(env['app_additionalLibraryPaths']))
-
-
-# utils.setCachedGodotBinaryAbsolutePath('/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64')
-
-print('----')
+utils.printVerboseMessagesIfNeeded(env, vsCodeConfigFilesCreated)
 
 
 cppHeaderIncludePaths = []

@@ -277,3 +277,25 @@ def createVsCodeConfigFilesIfNeeded():
         return actuallyCopiedTargets
     else:
         return False
+
+def printVerboseMessagesIfNeeded(env, vsCodeConfigFilesCreated):
+    includePathsDisplayString = '\n   (Rerun with `show_include_paths=yes` to display the list)\n'
+    if env["show_include_paths"]:
+        includePathsDisplayString = printList(env['app_additionalCppHeaderIncludePaths'])
+
+    if (env['verbose'] or vsCodeConfigFilesCreated):
+        print('----')
+
+    if vsCodeConfigFilesCreated:
+        print('The following config files were created (you were missing them locally). Make sure to review their contents to match your system:')
+        for originalFile, newFile in vsCodeConfigFilesCreated.items():
+            print(' - ', originalFile, ' --> ', newFile, sep='')
+        print('\n')
+
+    if (env['verbose']):
+        print('Building using the following header include paths: ', includePathsDisplayString)
+        print('Using built libraries: ', printList(env['app_additionalLibraryNames']))
+        print('Looking for built libraries in: ', printList(env['app_additionalLibraryPaths']))
+
+    if (env['verbose'] or vsCodeConfigFilesCreated):
+        print('----')
