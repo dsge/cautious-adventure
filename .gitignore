@@ -2,6 +2,8 @@
 .import/
 export.cfg
 .godot/
+!.gdignore
+!/bin/.gdignore
 
 # Mono-specific ignores
 .mono/
