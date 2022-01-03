@@ -26,7 +26,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "linuxbuild"
+            "preLaunchTask": "linuxbuild",
         },
         {
             "name": "Open project in Godot Editor",
@@ -75,5 +75,5 @@
             ],
             "preLaunchTask": "linuxbuildwithtests"
         }
-    ]
+    ],
 }

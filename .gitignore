@@ -22,7 +22,9 @@ obj/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
-!.vscode/launch.json
+!.vscode/launch.json.example
+.vscode/launch.json
+!.vscode/launch.json.example
 !.vscode/extensions.json
 !.vscode/c_cpp_properties.json
 
@@ -61,6 +63,5 @@ api.json
 
 **/__pycache__/**
 
-# ignore all appconfig files except for the example file
-appconfig.*
-!appconfig.example.json
+.env
+

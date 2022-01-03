@@ -1,4 +1,6 @@
 import json
+import os.path
+from shutil import copyfile
 
 def override_build_output_messages(sys, env):
 
@@ -256,3 +258,22 @@ def parseChildSconstructBuildResults(res, env, os):
         if "headerfileIncludePaths" in res:
             for path in res["headerfileIncludePaths"]:
                 env['app_additionalCppHeaderIncludePaths'].append(path.path)
+
+
+# If `.vscode/launch.json` does NOT exist, then create it based on `.vscode/launch.json.example`
+def createVsCodeConfigFilesIfNeeded():
+
+    targets = {
+        '.vscode/launch.json.example': '.vscode/launch.json'
+    }
+    actuallyCopiedTargets = {}
+    copiedAtLeastOne = False
+    for originalFile, localFile in targets.items():
+        if not os.path.isfile(localFile) and os.path.isfile(originalFile):
+            copyfile(originalFile, localFile)
+            actuallyCopiedTargets[originalFile] = localFile
+            copiedAtLeastOne = True
+    if copiedAtLeastOne:
+        return actuallyCopiedTargets
+    else:
+        return False

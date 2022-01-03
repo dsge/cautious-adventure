@@ -103,22 +103,19 @@ includePathsDisplayString = '\n   (Rerun with `show_include_paths=yes` to displa
 if env["show_include_paths"]:
     includePathsDisplayString = utils.printList(env['app_additionalCppHeaderIncludePaths'])
     
+vsCodeConfigFilesCreated = utils.createVsCodeConfigFilesIfNeeded()
+
 
 print('----')
+if vsCodeConfigFilesCreated:
+    print('The following files were created (you were missing them locally). Make sure to review their contents to match your system:')
+    for originalFile, newFile in vsCodeConfigFilesCreated.items():
+        print(originalFile, ' --> ', newFile)
+    print('\n')
 print('Building using the following header include paths: ', includePathsDisplayString)
 print('Using built libraries: ', utils.printList(env['app_additionalLibraryNames']))
 print('Looking for built libraries in: ', utils.printList(env['app_additionalLibraryPaths']))
 
-
-print('Unused but cached local godot binary path: ')
-try:
-    print(' - ', utils.getCachedGodotBinaryAbsolutePath())
-except FileNotFoundError as e:
-    # config file not found at all, or
-    print(' - (config file found)')
-except ValueError as e:
-    # cached godot binary path not found in configfile
-    print(' - (`godotBinaryAbsolutePath` not found in configfile)')
 
 # utils.setCachedGodotBinaryAbsolutePath('/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64')
 
