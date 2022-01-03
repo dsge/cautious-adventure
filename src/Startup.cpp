@@ -1,10 +1,9 @@
 #include "includes/Startup.h"
 
-using namespace godot;
 using namespace app;
 
 void Startup::_bind_methods() {
-    UtilityFunctions::print("Startup bind methods");
+    godot::UtilityFunctions::print("Startup bind methods");
     ClassDB::bind_method(D_METHOD("init"), &Startup::_init);
     ClassDB::bind_method(D_METHOD("ready"), &Startup::_ready);
     ClassDB::bind_method(D_METHOD("process"), &Startup::_process);
@@ -12,19 +11,19 @@ void Startup::_bind_methods() {
 }
 
 Startup::Startup() {
-    UtilityFunctions::print("Startup constrt");
+    godot::UtilityFunctions::print("Startup constrt");
 }
 
 void Startup::_init() {
-    UtilityFunctions::print("Startup init");
+    godot::UtilityFunctions::print("Startup init");
 }
 
 void Startup::_enter_tree() {
-    UtilityFunctions::print("Startup enter tree");
+    godot::UtilityFunctions::print("Startup enter tree");
 }
 
 void Startup::_ready() {
-    UtilityFunctions::print("Startup ready");
+    godot::UtilityFunctions::print("Startup ready");
     #ifdef INCLUDE_TESTRUNNER
         this->runTestsAndExit();
     #else

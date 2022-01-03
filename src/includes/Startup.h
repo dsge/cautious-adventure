@@ -14,7 +14,7 @@ using namespace godot;
 
 namespace app {
 
-class Startup : public godot::Node {
+class Startup : public Node {
     GDCLASS(Startup, Node);
 
 protected:

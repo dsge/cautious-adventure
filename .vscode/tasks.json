@@ -27,7 +27,7 @@
             },
             "command": "scons",
             "args": [
-                // "platform=linux",
+                "platform=linux",
                 {
                     "value": "-j$(nproc)",
                     "quoting": "escape"
