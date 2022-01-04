@@ -6,9 +6,18 @@
 
 TEST(StartupTest, ThisShouldPass) {
 
-    auto instance = app::Startup::_new();
+    app::Startup* instance = memnew(app::Startup);
 
-    auto node = godot::Node::_new();
+    godot::Node* node = memnew(godot::Node);
 
     EXPECT_NE(instance, node);
+}
+
+TEST(StartupTest, ThisShouldFail) {
+
+    app::Startup* instance = memnew(app::Startup);
+
+    godot::Node* node = memnew(godot::Node);
+
+    EXPECT_EQ(instance, node);
 }

@@ -14,6 +14,10 @@ if not "custom_api_file" in args:
 #if not "headers_dir" in args:
 #    args["headers_dir"] = ["include"]
 
+# "You must compile with target=debug for your plugin to work in the editor."
+# Source: https://godotengine.org/article/introducing-gd-extensions
+args["target"] = "debug"
+
 Export(ARGUMENTS = args)
 
 libraryBasePath = '../lib/godot-cpp'

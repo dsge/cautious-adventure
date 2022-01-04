@@ -14,7 +14,7 @@ using namespace godot;
 
 namespace app {
 
-class Startup : public godot::Node {
+class Startup : public Node {
     GDCLASS(Startup, Node);
 
 protected:
@@ -27,9 +27,10 @@ public:
     ~Startup();
 
     void _init(); // our initializer called by Godot
-    void _enter_tree();
+    void _enter_tree() override;
+    // virtual void _notification(int64_t what) override;
 
-    void _ready();
+    void _ready() override;
 
     void _process(float delta);
 

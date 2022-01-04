@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://cmqhde3tdtq4f"]
 
-[node name="Startup" type="Node"]
+[node name="Startup" type="Startup"]
+script = null
