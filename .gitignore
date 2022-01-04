@@ -52,6 +52,7 @@ lib/godot-cpp/**/*.import
 lib/googletest/**
 /demo/**
 /bin/**
+/code_coverage_report
 /code_coverage_report/**
 !**/\.gitkeep
 

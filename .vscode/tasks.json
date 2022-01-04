@@ -36,7 +36,7 @@
             ],
         },
         {
-            "label": "generate-coverage-report-html",
+            "label": "export-coverage-report-html",
             "problemMatcher": [],
             "group": {
                 "kind": "test",
@@ -44,10 +44,41 @@
             },
             "command": "genhtml",
             "args": [
+                "-c",
+                "${workspaceFolder}/static/civts-dark-lcov-theme.css",
                 "-o",
-                "code_coverage_report",
-                "app.info"
+                "${workspaceFolder}/code_coverage_report",
+                "${workspaceFolder}/code_coverage_report.info"
             ],
+        },
+        {
+            "label": "generate-coverage-report",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "lcov",
+            "args": [
+                "--capture",
+                "--directory", "${workspaceFolder}/src",
+                "--output-file", "${workspaceFolder}/code_coverage_report.info",
+                "--no-external"
+            ]
+        },
+        {
+            "label": "(use this) Generate HTML Coverage report",
+            "dependsOn": [
+                "generate-coverage-report",
+                "export-coverage-report-html"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
+
     ]
 }

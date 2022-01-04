@@ -3,7 +3,7 @@
 using namespace app;
 
 void Startup::_bind_methods() {
-    std::cout << "Startup bind methods cccccc" << std::endl;
+    // std::cout << "Startup bind methods cccccc" << std::endl;
     // godot::UtilityFunctions::print("Startup bind methods sss");
     // ClassDB::bind_method(D_METHOD("init"), &Startup::_init);
     // ClassDB::bind_method(D_METHOD("_init"), &Startup::_init);
@@ -14,16 +14,16 @@ void Startup::_bind_methods() {
 
 Startup::Startup() {
     // godot::UtilityFunctions::print("Startup constructor");
-    std::cout << "Startup constructor" << std::endl;
+    // std::cout << "Startup constructor" << std::endl;
 }
 
 void Startup::_init() {
-    std::cout << "Startup init" << std::endl;
+    // std::cout << "Startup init" << std::endl;
     // godot::UtilityFunctions::print("Startup init");
 }
 
 void Startup::_enter_tree() {
-    std::cout << "Startup enter tree" << std::endl;
+    // std::cout << "Startup enter tree" << std::endl;
     // godot::UtilityFunctions::print("Startup enter tree");
 }
 
@@ -32,7 +32,7 @@ void Startup::_enter_tree() {
 } */
 
 void Startup::_ready() {
-    std::cout << "Startup ready" << std::endl;
+    // std::cout << "Startup ready" << std::endl;
     // godot::UtilityFunctions::print("Startup ready");
     #ifdef INCLUDE_TESTRUNNER
         this->runTestsAndExit();
@@ -43,14 +43,14 @@ void Startup::_ready() {
 
 void Startup::runTestsAndExit() {
     #ifdef INCLUDE_TESTRUNNER
-    std::cout << "Startup::runTestsAndExit()" << std::endl;
+    // std::cout << "Startup::runTestsAndExit()" << std::endl;
     ::testing::InitGoogleTest();
     ::exit(RUN_ALL_TESTS());
     #endif
 }
 
 void Startup::initGameNormally() {
-    std::cout << "Startup::initGameNormally()" << std::endl;
+    // std::cout << "Startup::initGameNormally()" << std::endl;
 }
 
 void Startup::_process(float delta) {
@@ -58,5 +58,5 @@ void Startup::_process(float delta) {
 }
 
 Startup::~Startup() {
-    godot::UtilityFunctions::print("Startup destructor");
+    // godot::UtilityFunctions::print("Startup destructor");
 }
