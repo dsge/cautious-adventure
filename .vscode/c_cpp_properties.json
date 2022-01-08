@@ -164,6 +164,9 @@
           "${workspaceFolder}/lib/googletest/googletest/include/gtest",
           "${workspaceFolder}/lib/googletest/googletest",
           "${workspaceFolder}/lib/googletest/googletest/src"
+        ],
+        "spdlogIncludePaths": [
+          "${workspaceFolder}/lib/spdlog/include", 
         ]
     },
     "configurations": [
@@ -174,7 +177,8 @@
             "${godotCppIncludePaths}",
             "${hypodermicIncludePaths}",
             "${boostIncludePaths}",
-            "${googleTestIncludePaths}"
+            "${googleTestIncludePaths}",
+            "${spdlogIncludePaths}"
         ],
         "browse": {
           "path": [
@@ -182,7 +186,8 @@
             "${godotCppIncludePaths}",
             "${hypodermicIncludePaths}",
             "${boostIncludePaths}",
-            "${googleTestIncludePaths}"
+            "${googleTestIncludePaths}",
+            "${spdlogIncludePaths}"
           ],
           "limitSymbolsToIncludedHeaders": true
         }

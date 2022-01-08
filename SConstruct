@@ -98,6 +98,7 @@ additionalSconsFilePaths = [
     'scons/godot-cpp.SConstruct',
     'scons/googletest.SConstruct',
     'scons/hypodermic.SConstruct',
+    'scons/spdlog.SConstruct',
 ]
 
 env['app_additionalCppHeaderIncludePaths'] = [] # where to look for #included files during build time
