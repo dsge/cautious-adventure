@@ -6,6 +6,9 @@
 #include <utility_functions.hpp>
 #include <Hypodermic/Hypodermic.h>
 
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_sinks.h>
+
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>
 #endif

@@ -5,6 +5,10 @@ using namespace app;
 void Startup::_bind_methods() {
     // std::cout << "Startup bind methods cccccc" << std::endl;
     // godot::UtilityFunctions::print("Startup bind methods sss");
+    auto console = spdlog::stdout_logger_mt("console");
+    spdlog::set_default_logger(console);
+    spdlog::set_level(spdlog::level::debug); // Set global log level to debug
+    spdlog::info("Startup bind methods cccccc");
     // ClassDB::bind_method(D_METHOD("init"), &Startup::_init);
     // ClassDB::bind_method(D_METHOD("_init"), &Startup::_init);
     ClassDB::bind_method(D_METHOD("ready"), &Startup::_ready);
