@@ -19,6 +19,7 @@ void Startup::_bind_methods() {
 Startup::Startup() {
     // godot::UtilityFunctions::print("Startup constructor");
     // std::cout << "Startup constructor" << std::endl;
+
 }
 
 void Startup::_init() {
@@ -27,6 +28,21 @@ void Startup::_init() {
 }
 
 void Startup::_enter_tree() {
+    spdlog::info("Startup enter tree");
+
+    godot::Node3D* sceneContainer = memnew(godot::Node3D);
+    this->add_child(sceneContainer);
+
+    Hypodermic::ContainerBuilder builder;
+    builder
+        .registerType< SceneSwitcher >()
+        .onActivated([sceneContainer](Hypodermic::ComponentContext&, const std::shared_ptr< SceneSwitcher >& instance) {
+            instance->setSceneContainer(sceneContainer);
+        })
+        .singleInstance();
+    this->container = builder.build();
+
+
     // std::cout << "Startup enter tree" << std::endl;
     // godot::UtilityFunctions::print("Startup enter tree");
 }
@@ -55,6 +71,10 @@ void Startup::runTestsAndExit() {
 
 void Startup::initGameNormally() {
     // std::cout << "Startup::initGameNormally()" << std::endl;
+
+
+    auto sceneSwitcher = container->resolve< SceneSwitcher >();
+    sceneSwitcher->switchLevel("res://scenes/Experiments.tscn");
 }
 
 void Startup::_process(float delta) {

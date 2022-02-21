@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfu8llvq28eth"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
+albedo_color = Color(0, 0.376471, 0.0470588, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x60xe"]
+size = Vector2(10, 10)
+subdivide_width = 10
+subdivide_depth = 10
+
+[node name="Experiments" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource( "StandardMaterial3D_savjp" )
+mesh = SubResource( "PlaneMesh_x60xe" )
+surface_material_override/0 = null
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 6)
+fov = 90.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.931018, -0.0372378, -0.36307, 0.364974, 0.0949905, 0.926159, 0, -0.994781, 0.102029, 0, 4.95164, 0)

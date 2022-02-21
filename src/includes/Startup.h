@@ -2,12 +2,15 @@
 #define APP_STARTUP_H
 
 #include <node.hpp>
+#include <node3d.hpp>
 #include <godot.hpp>
 #include <utility_functions.hpp>
 #include <Hypodermic/Hypodermic.h>
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_sinks.h>
+
+#include "./SceneSwitcher.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>
@@ -22,6 +25,7 @@ class Startup : public Node {
 
 protected:
     static void _bind_methods();
+    std::shared_ptr< Hypodermic::Container > container;
 
 public:
     
