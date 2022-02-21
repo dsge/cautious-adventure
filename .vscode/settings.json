@@ -87,5 +87,16 @@
         "**/lib/*/**": true,
         "**/bin/*/**": true,
     },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "src/**/*.gcda": true,
+        "src/**/*.gcno": true,
+        "src/**/*.os": true,
+    },
     "C_Cpp.intelliSenseEngine": "Tag Parser"
 }
