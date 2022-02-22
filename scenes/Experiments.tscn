@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfu8llvq28eth"]
+[gd_scene load_steps=4 format=3 uid="uid://dfu8llvq28eth"]
+
+[ext_resource type="Texture2D" uid="uid://bnujfrgxkl0r6" path="res://static/kenney_prototypetextures/PNG/Dark/texture_07.png" id="1_rrrxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
-albedo_color = Color(0, 0.376471, 0.0470588, 1)
+albedo_texture = ExtResource( "1_rrrxn" )
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x60xe"]
 size = Vector2(10, 10)
@@ -13,7 +16,6 @@ subdivide_depth = 10
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource( "StandardMaterial3D_savjp" )
 mesh = SubResource( "PlaneMesh_x60xe" )
-surface_material_override/0 = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 6)
