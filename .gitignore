@@ -2,8 +2,6 @@
 .import/
 export.cfg
 .godot/
-!.gdignore
-!/bin/.gdignore
 
 # Mono-specific ignores
 .mono/
@@ -15,7 +13,8 @@ export.cfg
 build/
 /vendor/
 /blender/
-/\!dev
+/\!dev/**/*
+!/\!dev/.gdignore
 /packages/
 obj/
 *.xml
@@ -54,7 +53,7 @@ lib/googletest/**
 /bin/**
 /code_coverage_report
 /code_coverage_report/**
-!**/\.gitkeep
+
 
 *.dblite
 *.os
@@ -68,3 +67,7 @@ api.json
 
 .env
 
+
+!.gdignore
+!/**/.gdignore
+!**/\.gitkeep
