@@ -15,12 +15,17 @@ run/main_scene="res://scenes/Startup.tscn"
 config/icon="res://resources/icon.png"
 config/features=PackedStringArray("4.0")
 
+[editor]
+
+scene/scene_naming=1
+
 [native_extensions]
 
 paths=["res://src/app.gdextension"]
 
 [physics]
 
+3d/run_on_separate_thread=true
 2d/run_on_thread=true
 3d/run_on_thread=true
 
