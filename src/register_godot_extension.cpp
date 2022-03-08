@@ -1,12 +1,14 @@
 #include "includes/register_godot_extension.h"
 
 #include "includes/Startup.h"
+#include "includes/FooExperiment.h"
 
 using namespace godot;
 using namespace app;
 
 void register_godot_extension() {
 	ClassDB::register_class<Startup>();
+    ClassDB::register_class<FooExperiment>();
 }
 
 void unregister_godot_extension() {}
