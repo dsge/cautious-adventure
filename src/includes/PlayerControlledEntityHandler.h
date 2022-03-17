@@ -1,11 +1,7 @@
 #ifndef APP_PLAYERCONTROLLEDENTITYHANDLER_H
 #define APP_PLAYERCONTROLLEDENTITYHANDLER_H
 
-#include <node.hpp>
-#include <node3d.hpp>
-#include <godot.hpp>
-#include <utility_functions.hpp>
-
+#include "vendor/Godot.h"
 #include <spdlog/spdlog.h>
 
 using namespace godot;

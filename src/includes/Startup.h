@@ -1,10 +1,7 @@
 #ifndef APP_STARTUP_H
 #define APP_STARTUP_H
 
-#include <node.hpp>
-#include <node3d.hpp>
-#include <godot.hpp>
-#include <utility_functions.hpp>
+#include "vendor/Godot.h"
 #include <Hypodermic/Hypodermic.h>
 
 #include <spdlog/spdlog.h>

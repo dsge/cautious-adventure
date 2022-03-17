@@ -1,11 +1,8 @@
 #ifndef APP_SCENESWITCHER_H
 #define APP_SCENESWITCHER_H
 
-#include <godot.hpp>
-#include <node.hpp>
-#include <ref.hpp>
-#include <resource_loader.hpp>
-#include <packed_scene.hpp>
+#include "vendor/Godot.h"
+
 #include <spdlog/spdlog.h>
 
 using namespace godot;
