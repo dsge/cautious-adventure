@@ -31,6 +31,7 @@ void Startup::_enter_tree() {
     spdlog::info("Startup enter tree");
 
     godot::Node3D* sceneContainer = memnew(godot::Node3D);
+    sceneContainer->set_name("sceneContainer");
     this->add_child(sceneContainer);
 
     Hypodermic::ContainerBuilder builder;
@@ -40,7 +41,15 @@ void Startup::_enter_tree() {
             instance->setSceneContainer(sceneContainer);
         })
         .singleInstance();
+    builder
+        .registerType< PlayerControlledEntityHandler >()
+        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< PlayerControlledEntityHandler >& instance) {
+            instance->set_name("PlayerControlledEntityHandler");
+        })
+        .singleInstance();
     this->container = builder.build();
+
+    
 
 
     // std::cout << "Startup enter tree" << std::endl;
@@ -52,6 +61,8 @@ void Startup::_enter_tree() {
 } */
 
 void Startup::_ready() {
+    spdlog::info("Startup::_ready");
+    this->add_child(this->container->resolve< PlayerControlledEntityHandler >().get());
     // std::cout << "Startup ready" << std::endl;
     // godot::UtilityFunctions::print("Startup ready");
     #ifdef INCLUDE_TESTRUNNER

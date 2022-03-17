@@ -2,6 +2,7 @@
 
 #include "includes/Startup.h"
 #include "includes/FooExperiment.h"
+#include "includes/PlayerControlledEntityHandler.h"
 
 using namespace godot;
 using namespace app;
@@ -9,6 +10,7 @@ using namespace app;
 void register_godot_extension() {
 	ClassDB::register_class<Startup>();
     ClassDB::register_class<FooExperiment>();
+    ClassDB::register_class<PlayerControlledEntityHandler>();
 }
 
 void unregister_godot_extension() {}

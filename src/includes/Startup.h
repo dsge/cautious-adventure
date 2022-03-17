@@ -11,6 +11,7 @@
 #include <spdlog/sinks/stdout_sinks.h>
 
 #include "./SceneSwitcher.h"
+#include "./PlayerControlledEntityHandler.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>
