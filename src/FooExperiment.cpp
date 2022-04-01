@@ -3,9 +3,9 @@
 using namespace app;
 
 void FooExperiment::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("ready"), &FooExperiment::_ready);
-    ClassDB::bind_method(D_METHOD("process"), &FooExperiment::_process);
-    ClassDB::bind_method(D_METHOD("enter_tree"), &FooExperiment::_enter_tree);
+    godot::ClassDB::bind_method(godot::D_METHOD("ready"), &FooExperiment::_ready);
+    godot::ClassDB::bind_method(godot::D_METHOD("process"), &FooExperiment::_process);
+    godot::ClassDB::bind_method(godot::D_METHOD("enter_tree"), &FooExperiment::_enter_tree);
 }
 
 FooExperiment::FooExperiment() {

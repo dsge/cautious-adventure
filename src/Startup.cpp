@@ -11,9 +11,9 @@ void Startup::_bind_methods() {
     spdlog::info("Startup bind methods cccccc");
     // ClassDB::bind_method(D_METHOD("init"), &Startup::_init);
     // ClassDB::bind_method(D_METHOD("_init"), &Startup::_init);
-    ClassDB::bind_method(D_METHOD("ready"), &Startup::_ready);
-    ClassDB::bind_method(D_METHOD("process"), &Startup::_process);
-    ClassDB::bind_method(D_METHOD("enter_tree"), &Startup::_enter_tree);
+    godot::ClassDB::bind_method(godot::D_METHOD("ready"), &Startup::_ready);
+    godot::ClassDB::bind_method(godot::D_METHOD("process"), &Startup::_process);
+    godot::ClassDB::bind_method(godot::D_METHOD("enter_tree"), &Startup::_enter_tree);
 }
 
 Startup::Startup() {

@@ -15,12 +15,10 @@
     #include <gtest/gtest.h>
 #endif
 
-using namespace godot;
-
 namespace app {
 
-class Startup : public Node {
-    GDCLASS(Startup, Node);
+class Startup : public godot::Node {
+    GDCLASS(Startup, godot::Node);
 
 protected:
     static void _bind_methods();

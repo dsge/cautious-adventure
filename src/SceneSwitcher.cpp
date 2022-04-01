@@ -1,12 +1,11 @@
 #include "includes/SceneSwitcher.h"
 
 
-using namespace godot;
 using namespace app;
 
 
 SceneSwitcher::SceneSwitcher() {
-    this->resourceLoader = ResourceLoader::get_singleton();
+    this->resourceLoader = godot::ResourceLoader::get_singleton();
     // this->playerControls = PlayerControls::_new();
 }
 
@@ -34,12 +33,12 @@ void SceneSwitcher::switchLevel(godot::String levelName) {
 
     
 
-    Ref<PackedScene> levelPrototype = this->resourceLoader->load(levelName, "PackedScene");
+    godot::Ref<godot::PackedScene> levelPrototype = this->resourceLoader->load(levelName, "PackedScene");
 	if (!levelPrototype.is_valid()) {
         spdlog::info("SceneSwitcher switchLevel unable to load requested level");
         return;
     }
-    Node *level = levelPrototype->instantiate();
+    godot::Node *level = levelPrototype->instantiate();
 	if (!level) {
         spdlog::info("SceneSwitcher switchLevel unable to instantiate level");
 		return;
@@ -54,19 +53,19 @@ void SceneSwitcher::switchLevel(godot::String levelName) {
     // this->sceneContainer->get_tree().
 }
 
-void SceneSwitcher::setSceneContainer(Node* value) {
+void SceneSwitcher::setSceneContainer(godot::Node* value) {
     this->sceneContainer = value;
     // this->sceneContainer->add_child(this->playerControls);
 }
 
-Node* SceneSwitcher::getSceneContainer() {
+godot::Node* SceneSwitcher::getSceneContainer() {
     return this->sceneContainer;
 }
 
-void SceneSwitcher::setResourceLoader(ResourceLoader* value) {
+void SceneSwitcher::setResourceLoader(godot::ResourceLoader* value) {
     this->resourceLoader = value;
 }
 
-ResourceLoader* SceneSwitcher::getResourceLoader() {
+godot::ResourceLoader* SceneSwitcher::getResourceLoader() {
     return this->resourceLoader;
 }

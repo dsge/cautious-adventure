@@ -3,8 +3,8 @@
 using namespace app;
 
 void PlayerControlledEntityHandler::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("ready"), &PlayerControlledEntityHandler::_ready);
-    ClassDB::bind_method(D_METHOD("process"), &PlayerControlledEntityHandler::_process);
+    godot::ClassDB::bind_method(godot::D_METHOD("ready"), &PlayerControlledEntityHandler::_ready);
+    godot::ClassDB::bind_method(godot::D_METHOD("process"), &PlayerControlledEntityHandler::_process);
 }
 
 PlayerControlledEntityHandler::PlayerControlledEntityHandler() {

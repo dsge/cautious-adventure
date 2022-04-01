@@ -4,13 +4,12 @@
 #include "includes/FooExperiment.h"
 #include "includes/PlayerControlledEntityHandler.h"
 
-using namespace godot;
 using namespace app;
 
 void register_godot_extension() {
-	ClassDB::register_class<Startup>();
-    ClassDB::register_class<PlayerControlledEntityHandler>();
-    ClassDB::register_class<FooExperiment>();
+	godot::ClassDB::register_class<Startup>();
+    godot::ClassDB::register_class<PlayerControlledEntityHandler>();
+    godot::ClassDB::register_class<FooExperiment>();
     
 }
 

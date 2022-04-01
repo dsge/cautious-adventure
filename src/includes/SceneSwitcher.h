@@ -5,24 +5,22 @@
 
 #include <spdlog/spdlog.h>
 
-using namespace godot;
-
 namespace app {
 
 class SceneSwitcher {
 
 protected:
-    Node* sceneContainer;
-    ResourceLoader* resourceLoader;
+    godot::Node* sceneContainer;
+    godot::ResourceLoader* resourceLoader;
 
 public:
     SceneSwitcher();
     ~SceneSwitcher();
 
-    void setSceneContainer(Node*);
-    Node* getSceneContainer();
-    void setResourceLoader(ResourceLoader*);
-    ResourceLoader* getResourceLoader();
+    void setSceneContainer(godot::Node*);
+    godot::Node* getSceneContainer();
+    void setResourceLoader(godot::ResourceLoader*);
+    godot::ResourceLoader* getResourceLoader();
 
     void switchLevel(godot::String);
 };

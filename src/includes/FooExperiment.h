@@ -4,12 +4,11 @@
 #include "vendor/Godot.h"
 
 #include <spdlog/spdlog.h>
-using namespace godot;
 
 namespace app {
 
-class FooExperiment : public Node3D {
-    GDCLASS(FooExperiment, Node3D);
+class FooExperiment : public godot::Node3D {
+    GDCLASS(FooExperiment, godot::Node3D);
 
 protected:
     static void _bind_methods();
