@@ -17,7 +17,7 @@ void PlayerControlledEntityHandler::_ready() {
 }
 
 void PlayerControlledEntityHandler::_process(float delta) {
-      spdlog::info("PlayerControlledEntityHandler::_process");
+    // spdlog::info("PlayerControlledEntityHandler::_process");
 }
 
 PlayerControlledEntityHandler::~PlayerControlledEntityHandler() {

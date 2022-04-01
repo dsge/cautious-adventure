@@ -9,6 +9,7 @@
 
 #include "./SceneSwitcher.h"
 #include "./PlayerControlledEntityHandler.h"
+#include "./PlayerControlledEntityHandlerWrapper.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>

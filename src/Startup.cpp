@@ -42,9 +42,11 @@ void Startup::_enter_tree() {
         })
         .singleInstance();
     builder
-        .registerType< PlayerControlledEntityHandler >()
-        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< PlayerControlledEntityHandler >& instance) {
-            instance->set_name("PlayerControlledEntityHandler");
+        .registerType< PlayerControlledEntityHandlerWrapper >()
+        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< PlayerControlledEntityHandlerWrapper >& instance) {
+            auto handler = memnew(PlayerControlledEntityHandler);
+            handler->set_name("PlayerControlledEntityHandler");
+            instance->node = handler;
         })
         .singleInstance();
     this->container = builder.build();
@@ -62,7 +64,8 @@ void Startup::_enter_tree() {
 
 void Startup::_ready() {
     spdlog::info("Startup::_ready");
-    this->add_child(this->container->resolve< PlayerControlledEntityHandler >().get());
+    this->add_child((this->container->resolve< PlayerControlledEntityHandlerWrapper >())->node);
+    // this->add_child(memnew(PlayerControlledEntityHandler));
     // std::cout << "Startup ready" << std::endl;
     // godot::UtilityFunctions::print("Startup ready");
     #ifdef INCLUDE_TESTRUNNER
