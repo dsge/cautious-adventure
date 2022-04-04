@@ -19,3 +19,11 @@
 #include <ref.hpp>
 #include <resource_loader.hpp>
 #include <packed_scene.hpp>
+
+#include <object.hpp>
+#include <input_event.hpp>
+#include <input.hpp>
+#include <input_event_key.hpp>
+
+#include <rigid_dynamic_body3d.hpp>
+#include <camera3d.hpp>

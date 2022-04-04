@@ -3,6 +3,7 @@
 #include "includes/Startup.h"
 #include "includes/FooExperiment.h"
 #include "includes/PlayerControlledEntityHandler.h"
+#include "includes/Simpleship.h"
 
 using namespace app;
 
@@ -10,6 +11,7 @@ void register_godot_extension() {
 	godot::ClassDB::register_class<Startup>();
     godot::ClassDB::register_class<PlayerControlledEntityHandler>();
     godot::ClassDB::register_class<FooExperiment>();
+    godot::ClassDB::register_class<Simpleship>();
     
 }
 

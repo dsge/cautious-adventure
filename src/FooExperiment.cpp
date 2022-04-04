@@ -13,7 +13,7 @@ FooExperiment::FooExperiment() {
 }
 
 void FooExperiment::_enter_tree() {
-    spdlog::info("FooExperiment enter tree");
+    // spdlog::info("FooExperiment enter tree");
 
 
 }
