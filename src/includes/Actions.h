@@ -6,6 +6,9 @@ namespace app {
         static constexpr char UI_BACKWARDS[] = "ui_backwards";
         static constexpr char UI_LEFT[] = "ui_left";
         static constexpr char UI_RIGHT[] = "ui_right";
+
+        static constexpr char UI_ASCEND[] = "ui_ascend";
+        static constexpr char UI_DESCEND[] = "ui_descend";
     };
 }
 #endif
