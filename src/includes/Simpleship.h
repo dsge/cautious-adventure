@@ -3,13 +3,15 @@
 
 #include "vendor/Godot.h"
 
+#include "interfaces/PlayerControlledEntityInterface.h"
+
 #include <spdlog/spdlog.h>
 
 namespace app {
 
 class SimpleshipControls;
 
-class Simpleship : public godot::RigidDynamicBody3D {
+class Simpleship : public godot::RigidDynamicBody3D, public PlayerControlledEntityInterface {
     GDCLASS(Simpleship, godot::RigidDynamicBody3D);
 
 protected:
@@ -32,7 +34,7 @@ public:
 	void _unhandled_input(const godot::Ref<godot::InputEvent> &event) override;*/
 	void _unhandled_key_input(const godot::Ref<godot::InputEvent> &event) override;
 
-    godot::Camera3D* getThirdPersonCamera();
+    godot::Camera3D* getThirdPersonCamera() override;
 };
 
 }

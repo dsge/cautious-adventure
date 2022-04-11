@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://b2ysxynvk74hm" path="res://resources/blender/Material.tres" id="1_rm4f7"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m26dq"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xi7i"]
 absorbent = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_n50si"]
@@ -40,7 +40,7 @@ points = PackedVector3Array(-2.50944, -1.30369, -5.66769, -2.50944, -1.30369, -5
 
 [node name="simpleship_2" type="Simpleship"]
 mass = 20.0
-physics_material_override = SubResource( "PhysicsMaterial_m26dq" )
+physics_material_override = SubResource( "PhysicsMaterial_0xi7i" )
 continuous_cd = true
 
 [node name="Cube" type="MeshInstance3D" parent="."]
@@ -56,3 +56,9 @@ shape = SubResource( "ConvexPolygonShape3D_q6oc1" )
 [node name="ThirdPartyCamera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -4.37114e-08, 1.63133e-07, -4.37114e-08, 0.866025, 0.5, -1.63133e-07, -0.5, 0.866025, 0, 7, 17)
 current = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.37114e-08, 1.63133e-07, -1.54581e-07, 0.152175, 0.988354, -6.8027e-08, -0.988354, 0.152175, 0, 6.6482, 2.92652)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.37114e-08, 1.63133e-07, 1.67393e-07, 0.128294, -0.991736, 2.24211e-08, 0.991736, 0.128294, 0, -12.1499, 2.92652)

@@ -51,7 +51,7 @@ void Startup::_enter_tree() {
         .singleInstance();
     this->container = builder.build();
 
-    
+
 
 
     // std::cout << "Startup enter tree" << std::endl;
@@ -92,7 +92,11 @@ void Startup::initGameNormally() {
 }
 
 void Startup::_process(float delta) {
-    
+
+}
+
+std::shared_ptr< Hypodermic::Container > Startup::getContainer() {
+    return this->container;
 }
 
 Startup::~Startup() {

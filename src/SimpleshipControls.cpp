@@ -21,9 +21,9 @@ void SimpleshipControls::model_ready() {
 
     auto model = this->model;
 
-    godot::Camera3D* camera = model->getThirdPersonCamera();
+    /*godot::Camera3D* camera = model->getThirdPersonCamera();
 
-    camera->make_current();
+    camera->make_current();*/
 }
 
 void SimpleshipControls::model_process(float delta) {

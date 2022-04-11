@@ -5,6 +5,11 @@
 
 #include <spdlog/spdlog.h>
 
+#include "./Startup.h"
+#include "./SceneSwitcher.h"
+#include "./Simpleship.h"
+#include "./PlayerControlledEntityHandlerWrapper.h"
+
 namespace app {
 
 class FooExperiment : public godot::Node3D {
@@ -14,7 +19,7 @@ protected:
     static void _bind_methods();
 
 public:
-    
+
 
     FooExperiment();
     ~FooExperiment();

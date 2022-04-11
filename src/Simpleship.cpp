@@ -58,7 +58,8 @@ void Simpleship::_unhandled_key_input(const godot::Ref<godot::InputEvent> &event
 }
 
 godot::Camera3D* Simpleship::getThirdPersonCamera() {
-    return this->get_node<godot::Camera3D>("ThirdPartyCamera3D");
+    return this->get_node<godot::Camera3D>("Camera3D");
+    // return this->get_node<godot::Camera3D>("ThirdPartyCamera3D");
 }
 
 Simpleship::~Simpleship() {

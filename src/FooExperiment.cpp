@@ -19,7 +19,7 @@ void FooExperiment::_enter_tree() {
 }
 
 void FooExperiment::_ready() {
-    godot::Array arr;
+    /*godot::Array arr;
     arr.resize(godot::Mesh::ArrayType::ARRAY_MAX);
 
     godot::PackedVector3Array verts;
@@ -42,7 +42,7 @@ void FooExperiment::_ready() {
     // arr[godot::Mesh::ArrayType::ARRAY_NORMAL] = normals;
     arr[godot::Mesh::ArrayType::ARRAY_TEX_UV] = uvs;
     arr[godot::Mesh::ArrayType::ARRAY_VERTEX] = verts;
-    
+
 
     godot::Ref<godot::ArrayMesh> mesh;
     mesh.instantiate();
@@ -50,14 +50,33 @@ void FooExperiment::_ready() {
 
     auto meshInstance = memnew(godot::MeshInstance3D);
     meshInstance->set_mesh(mesh);
-    this->add_child(meshInstance);
+    this->add_child(meshInstance);*/
+
+    auto container = this->get_node<Startup>("/root/Startup")->getContainer();
+
+    auto sceneSwitcher = container->resolve< SceneSwitcher >();
+    // auto initialControlledEntityCandidates = sceneSwitcher->getSceneContainer()->find_nodes("", "Simpleship", true, false);
+    auto initialControlledEntityCandidates = this->get_node<godot::Node>("/root/Startup/sceneContainer/Experiments")->find_nodes("*", "Simpleship", true, false);
+    if (initialControlledEntityCandidates.is_empty()) {
+        spdlog::info("initialControlledEntityCandidates empty ???");
+
+
+        auto foo = this->get_node<Simpleship>("/root/Startup/sceneContainer/Experiments/SimpleShip/simpleship_2");
+        if (foo) {
+            spdlog::info("--12345--");
+        }
+        spdlog::info("--67890--");
+
+    } else {
+        container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(static_cast<Simpleship *>(initialControlledEntityCandidates[0].operator Object *()));
+    }
 
 }
 
 void FooExperiment::_process(float delta) {
-    
+
 }
 
 FooExperiment::~FooExperiment() {
-    
+
 }

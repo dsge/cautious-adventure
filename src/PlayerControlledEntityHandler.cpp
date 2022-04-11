@@ -20,6 +20,23 @@ void PlayerControlledEntityHandler::_process(float delta) {
     // spdlog::info("PlayerControlledEntityHandler::_process");
 }
 
+void PlayerControlledEntityHandler::setModel(godot::Node3D* value) {
+
+    this->model = value;
+
+    Simpleship *model = godot::Object::cast_to<Simpleship>(value);
+    if (model) {
+        godot::Camera3D* camera = model->getThirdPersonCamera();
+        camera->make_current();
+    }
+
+
+}
+
+godot::Node3D* PlayerControlledEntityHandler::getModel() {
+    return this->model;
+}
+
 PlayerControlledEntityHandler::~PlayerControlledEntityHandler() {
     spdlog::info("PlayerControlledEntityHandler::destructor");
 }

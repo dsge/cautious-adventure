@@ -10,6 +10,7 @@
 #include "./SceneSwitcher.h"
 #include "./PlayerControlledEntityHandler.h"
 #include "./PlayerControlledEntityHandlerWrapper.h"
+#include "./Simpleship.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>
@@ -25,7 +26,7 @@ protected:
     std::shared_ptr< Hypodermic::Container > container;
 
 public:
-    
+
 
     Startup();
     ~Startup();
@@ -40,6 +41,8 @@ public:
 
     void runTestsAndExit();
     void initGameNormally();
+
+    std::shared_ptr< Hypodermic::Container > getContainer();
 };
 
 }
