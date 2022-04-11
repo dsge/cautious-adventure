@@ -1,5 +1,5 @@
 {
-    
+
     "env": {
         "appIncludePaths": ["${workspaceFolder}/src"],
         "godotCppIncludePaths": [
@@ -160,35 +160,36 @@
           "${workspaceFolder}/lib/boost/libs/yap/include"
         ],
         "googleTestIncludePaths": [
-          "${workspaceFolder}/lib/googletest/googletest/include", 
+          "${workspaceFolder}/lib/googletest/googletest/include",
           "${workspaceFolder}/lib/googletest/googletest/include/gtest",
           "${workspaceFolder}/lib/googletest/googletest",
           "${workspaceFolder}/lib/googletest/googletest/src"
         ],
         "spdlogIncludePaths": [
-          "${workspaceFolder}/lib/spdlog/include", 
+          "${workspaceFolder}/lib/spdlog/include",
         ]
     },
     "configurations": [
       {
         "name": "Linux",
         "includePath": [
-            "${appIncludePaths}", 
+            "${appIncludePaths}",
             "${godotCppIncludePaths}",
             "${hypodermicIncludePaths}",
             "${boostIncludePaths}",
             "${googleTestIncludePaths}",
             "${spdlogIncludePaths}"
         ],
+        "cppStandard": "c++17",
         "browse": {
-          "path": [
-            "${appIncludePaths}", 
+          /*"path": [
+            "${appIncludePaths}",
             "${godotCppIncludePaths}",
             "${hypodermicIncludePaths}",
             "${boostIncludePaths}",
             "${googleTestIncludePaths}",
             "${spdlogIncludePaths}"
-          ],
+          ],*/
           "limitSymbolsToIncludedHeaders": true
         }
       }
