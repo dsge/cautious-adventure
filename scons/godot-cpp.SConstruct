@@ -6,11 +6,12 @@ from contextlib import redirect_stdout
 import utils
 
 args = ARGUMENTS
-if not "generate_bindings" in args:
+# if not "generate_bindings" in args:
     # args["generate_bindings"] = "yes"
-    args["generate_bindings"] = "auto"
-if not "custom_api_file" in args:
-    args["custom_api_file"] = "/home/geri/workspace/godot/bin/extension_api.json"
+    # args["generate_bindings"] = "auto"
+    # pass
+# if not "custom_api_file" in args:
+    # args["custom_api_file"] = "/home/geri/workspace/godot/bin/extension_api.json"
 #if not "headers_dir" in args:
 #    args["headers_dir"] = ["include"]
 
@@ -22,7 +23,7 @@ Export(ARGUMENTS = args)
 
 libraryBasePath = '../lib/godot-cpp'
 
-Default(libraryBasePath)
+# Default(libraryBasePath)
 
 
 
@@ -72,12 +73,13 @@ opts = utils.get_build_output_messages(sys)
 
 Decider("content-timestamp")
 
-with redirect_stdout(io.StringIO()) as f:
+# with redirect_stdout(io.StringIO()) as f:
     # redirect_stdout is used to capture the stdout, so that the
     # "WARNING: Unknown SCons variables were passed and will be ignored:" messages
     # wouldn't be displayed for someone who uses the app's main sconstruct file
-    SConscript(libraryBasePath + '/SConstruct', exports=opts)
+    # SConscript(libraryBasePath + '/SConstruct', exports=opts)
 
+SConscript(libraryBasePath + '/SConstruct', exports=opts)
 
 builtFileName = libraryBasePath + "/bin/" + "libgodot-cpp.{}.{}.{}{}".format(env["platform"], env["target"], '64', '.a')
 
