@@ -20,7 +20,7 @@ protected:
 public:
 
     SimpleshipControls* controls;
-    
+
 
     Simpleship();
     ~Simpleship();
@@ -35,6 +35,8 @@ public:
 	void _unhandled_key_input(const godot::Ref<godot::InputEvent> &event) override;
 
     godot::Camera3D* getThirdPersonCamera() override;
+    godot::Camera3D* getFirstPersonCamera() override;
+    bool useFirstPersonCameraByDefault() override;
 };
 
 }

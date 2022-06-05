@@ -52,24 +52,22 @@ void FooExperiment::_ready() {
     meshInstance->set_mesh(mesh);
     this->add_child(meshInstance);*/
 
-    auto container = this->get_node<Startup>("/root/Startup")->getContainer();
+    auto startup = app::call_get_node<Startup>(this, "/root/Startup");
+    if (startup) {
+        auto container = startup->getContainer();
 
-    auto sceneSwitcher = container->resolve< SceneSwitcher >();
-    // auto initialControlledEntityCandidates = sceneSwitcher->getSceneContainer()->find_nodes("", "Simpleship", true, false);
-    auto initialControlledEntityCandidates = this->get_node<godot::Node>("/root/Startup/sceneContainer/Experiments")->find_nodes("*", "Simpleship", true, false);
-    if (initialControlledEntityCandidates.is_empty()) {
-        spdlog::info("initialControlledEntityCandidates empty ???");
+        // auto initialControlledEntityCandidates = sceneSwitcher->getSceneContainer()->find_nodes("", "Simpleship", true, false);
+        // static_cast<Simpleship *>(initialControlledEntityCandidates[0].operator Object *())
 
+        auto sceneSwitcher = container->resolve< SceneSwitcher >();
 
-        auto foo = this->get_node<Simpleship>("/root/Startup/sceneContainer/Experiments/SimpleShip/simpleship_2");
-        if (foo) {
-            spdlog::info("--12345--");
+        Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
+        if (ship) {
+            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
         }
-        spdlog::info("--67890--");
 
-    } else {
-        container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(static_cast<Simpleship *>(initialControlledEntityCandidates[0].operator Object *()));
     }
+
 
 }
 

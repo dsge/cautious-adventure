@@ -8,6 +8,8 @@ class PlayerControlledEntityInterface
     public:
         virtual ~PlayerControlledEntityInterface() {}
         virtual godot::Camera3D* getThirdPersonCamera() = 0;
+        virtual godot::Camera3D* getFirstPersonCamera() = 0;
+        virtual bool useFirstPersonCameraByDefault() = 0;
 };
 
 }

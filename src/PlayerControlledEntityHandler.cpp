@@ -26,7 +26,12 @@ void PlayerControlledEntityHandler::setModel(godot::Node3D* value) {
 
     Simpleship *model = godot::Object::cast_to<Simpleship>(value);
     if (model) {
-        godot::Camera3D* camera = model->getThirdPersonCamera();
+        godot::Camera3D* camera;
+        if (model->useFirstPersonCameraByDefault()) {
+            camera = model->getFirstPersonCamera();
+        } else {
+            camera = model->getThirdPersonCamera();
+        }
         camera->make_current();
     }
 

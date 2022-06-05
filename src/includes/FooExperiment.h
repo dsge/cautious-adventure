@@ -9,6 +9,7 @@
 #include "./SceneSwitcher.h"
 #include "./Simpleship.h"
 #include "./PlayerControlledEntityHandlerWrapper.h"
+#include "./helper-functions.h"
 
 namespace app {
 
