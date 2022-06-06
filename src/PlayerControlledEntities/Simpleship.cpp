@@ -1,4 +1,4 @@
-#include "includes/Simpleship.h"
+#include "../includes/PlayerControlledEntities/Simpleship.h"
 
 using namespace app;
 

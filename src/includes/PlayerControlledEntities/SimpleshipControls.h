@@ -1,9 +1,9 @@
 #ifndef APP_SIMPLESHIPCONTROLS_H
 #define APP_SIMPLESHIPCONTROLS_H
 
-#include "vendor/Godot.h"
+#include "../vendor/Godot.h"
 
-#include "./Actions.h"
+#include "../Actions.h"
 #include "./Simpleship.h"
 
 #include <spdlog/spdlog.h>
@@ -13,7 +13,7 @@ namespace app {
 class SimpleshipControls {
 
 public:
-    
+
     Simpleship* model = NULL;
 
     SimpleshipControls();

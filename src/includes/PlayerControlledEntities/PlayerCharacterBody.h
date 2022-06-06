@@ -1,29 +1,24 @@
-#ifndef APP_SIMPLESHIP_H
-#define APP_SIMPLESHIP_H
+#ifndef APP_PLAYERCHARACTERBODY_H
+#define APP_PLAYERCHARACTERBODY_H
 
-#include "vendor/Godot.h"
+#include "../vendor/Godot.h"
 
-#include "interfaces/PlayerControlledEntityInterface.h"
+#include "../interfaces/PlayerControlledEntityInterface.h"
 
 #include <spdlog/spdlog.h>
 
 namespace app {
 
-class SimpleshipControls;
-
-class Simpleship : public godot::RigidDynamicBody3D, public PlayerControlledEntityInterface {
-    GDCLASS(Simpleship, godot::RigidDynamicBody3D);
+class PlayerCharacterBody : public godot::CharacterBody3D, public PlayerControlledEntityInterface {
+    GDCLASS(PlayerCharacterBody, godot::CharacterBody3D);
 
 protected:
     static void _bind_methods();
 
 public:
 
-    SimpleshipControls* controls;
-
-
-    Simpleship();
-    ~Simpleship();
+    PlayerCharacterBody();
+    ~PlayerCharacterBody();
     void _enter_tree() override;
     // virtual void _notification(int64_t what) override;
 
@@ -40,7 +35,5 @@ public:
 };
 
 }
-
-#include "./SimpleshipControls.h"
 
 #endif

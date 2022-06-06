@@ -1,11 +1,11 @@
 #ifndef APP_PLAYERCONTROLLEDENTITYHANDLER_H
 #define APP_PLAYERCONTROLLEDENTITYHANDLER_H
 
-#include "vendor/Godot.h"
+#include "../vendor/Godot.h"
 #include <spdlog/spdlog.h>
 
 #include "./Simpleship.h"
-#include "interfaces/PlayerControlledEntityInterface.h"
+#include "../interfaces/PlayerControlledEntityInterface.h"
 
 
 namespace app {
@@ -22,7 +22,7 @@ protected:
 
 public:
 
-    
+
 
     PlayerControlledEntityHandler();
     ~PlayerControlledEntityHandler();
@@ -30,7 +30,7 @@ public:
     void _ready() override;
 
     void _process(float delta);
-    
+
     void setModel(godot::Node3D* value);
     godot::Node3D* getModel();
 };

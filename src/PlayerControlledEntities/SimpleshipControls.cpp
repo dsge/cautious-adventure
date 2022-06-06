@@ -1,4 +1,4 @@
-#include "includes/SimpleshipControls.h"
+#include "../includes/PlayerControlledEntities/SimpleshipControls.h"
 
 using namespace app;
 
@@ -27,7 +27,7 @@ void SimpleshipControls::model_ready() {
 }
 
 void SimpleshipControls::model_process(float delta) {
-    
+
 }
 
 
@@ -93,5 +93,5 @@ void SimpleshipControls::model_unhandled_key_input(const godot::Ref<godot::Input
 }
 
 SimpleshipControls::~SimpleshipControls() {
-    
+
 }

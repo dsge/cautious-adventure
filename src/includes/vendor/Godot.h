@@ -26,5 +26,6 @@
 #include <input_event_key.hpp>
 
 #include <rigid_dynamic_body3d.hpp>
+#include <character_body3d.hpp>
 #include <camera3d.hpp>
 #include <physics_material.hpp>

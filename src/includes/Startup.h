@@ -8,9 +8,9 @@
 #include <spdlog/sinks/stdout_sinks.h>
 
 #include "./SceneSwitcher.h"
-#include "./PlayerControlledEntityHandler.h"
-#include "./PlayerControlledEntityHandlerWrapper.h"
-#include "./Simpleship.h"
+#include "./PlayerControlledEntities/PlayerControlledEntityHandler.h"
+#include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
+#include "./PlayerControlledEntities/Simpleship.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>

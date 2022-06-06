@@ -2,8 +2,8 @@
 
 #include "includes/Startup.h"
 #include "includes/FooExperiment.h"
-#include "includes/PlayerControlledEntityHandler.h"
-#include "includes/Simpleship.h"
+#include "includes/PlayerControlledEntities/PlayerControlledEntityHandler.h"
+#include "includes/PlayerControlledEntities/Simpleship.h"
 
 using namespace app;
 

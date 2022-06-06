@@ -126,7 +126,12 @@ env.Append(LIBS=env['app_additionalLibraryNames'])
 utils.override_build_output_messages(sys, env) 
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-sources = Glob(pattern = 'src/*.cpp', exclude=None if env['include_testrunner'] else 'src/*.test.cpp')
+
+def globFolder(folderPath):
+    return Glob(pattern = folderPath + '/*.cpp', exclude=None if env['include_testrunner'] else folderPath + '/*.test.cpp')
+
+sources = globFolder('src')
+sources += globFolder('src/PlayerControlledEntities')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], env['app_arch_suffix'])
 library = env.SharedLibrary(target=env["target_path"] + target_name, source=sources)

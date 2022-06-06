@@ -7,8 +7,8 @@
 
 #include "./Startup.h"
 #include "./SceneSwitcher.h"
-#include "./Simpleship.h"
-#include "./PlayerControlledEntityHandlerWrapper.h"
+#include "./PlayerControlledEntities/Simpleship.h"
+#include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
 #include "./helper-functions.h"
 
 namespace app {
