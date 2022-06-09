@@ -19,7 +19,7 @@ protected:
 
 public:
 
-    SimpleshipControls* controls;
+    SimpleshipControls* controls = nullptr;
 
 
     Simpleship();
@@ -37,6 +37,9 @@ public:
     godot::Camera3D* getThirdPersonCamera() override;
     godot::Camera3D* getFirstPersonCamera() override;
     bool useFirstPersonCameraByDefault() override;
+    void enableControls() override;
+    void disableControls() override;
+    bool getControlsEnabled() override;
 };
 
 }

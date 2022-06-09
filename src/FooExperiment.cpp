@@ -61,9 +61,13 @@ void FooExperiment::_ready() {
 
         auto sceneSwitcher = container->resolve< SceneSwitcher >();
 
-        Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
+        /*Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
         if (ship) {
             container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
+        }*/
+        PlayerCharacterBody* player = app::call_get_node<PlayerCharacterBody>(sceneSwitcher->getSceneContainer(), "Experiments/PlayerCharacterBody");
+        if (player) {
+            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(player);
         }
 
     }

@@ -20,12 +20,11 @@ void PlayerControlledEntityHandler::_process(float delta) {
     // spdlog::info("PlayerControlledEntityHandler::_process");
 }
 
-void PlayerControlledEntityHandler::setModel(godot::Node3D* value) {
+void PlayerControlledEntityHandler::setModel(PlayerControlledEntityInterface* value) {
 
     this->model = value;
 
-    Simpleship *model = godot::Object::cast_to<Simpleship>(value);
-    if (model) {
+    if (value) {
         godot::Camera3D* camera;
         if (model->useFirstPersonCameraByDefault()) {
             camera = model->getFirstPersonCamera();
@@ -33,12 +32,14 @@ void PlayerControlledEntityHandler::setModel(godot::Node3D* value) {
             camera = model->getThirdPersonCamera();
         }
         camera->make_current();
+
+        value->enableControls();
     }
 
 
 }
 
-godot::Node3D* PlayerControlledEntityHandler::getModel() {
+PlayerControlledEntityInterface* PlayerControlledEntityHandler::getModel() {
     return this->model;
 }
 

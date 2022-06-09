@@ -18,7 +18,7 @@ protected:
     /**
      * The currently controlled model
      */
-    godot::Node3D* model;
+    PlayerControlledEntityInterface* model;
 
 public:
 
@@ -31,8 +31,8 @@ public:
 
     void _process(float delta);
 
-    void setModel(godot::Node3D* value);
-    godot::Node3D* getModel();
+    void setModel(PlayerControlledEntityInterface* value);
+    PlayerControlledEntityInterface* getModel();
 };
 
 }

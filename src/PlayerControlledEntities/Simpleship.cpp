@@ -13,8 +13,7 @@ void Simpleship::_bind_methods() {
 }
 
 Simpleship::Simpleship() {
-    this->controls = new SimpleshipControls();
-    this->controls->model = this;
+
 
 }
 
@@ -69,8 +68,24 @@ bool Simpleship::useFirstPersonCameraByDefault() {
     return false;
 }
 
-Simpleship::~Simpleship() {
+void Simpleship::enableControls() {
+    if (!this->controls) {
+        this->controls = new SimpleshipControls();
+        this->controls->model = this;
+    }
+}
+
+void Simpleship::disableControls() {
     if (this->controls) {
         delete this->controls;
+        this->controls = nullptr;
     }
+}
+
+bool Simpleship::getControlsEnabled() {
+    return !!this->controls;
+}
+
+Simpleship::~Simpleship() {
+    this->disableControls();
 }

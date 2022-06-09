@@ -13,23 +13,30 @@ void PlayerCharacterBody::_bind_methods() {
 }
 
 PlayerCharacterBody::PlayerCharacterBody() {
-
 }
 
 void PlayerCharacterBody::_enter_tree() {
-
+    if (this->controls) {
+        this->controls->model_enter_tree();
+    }
 }
 
 void PlayerCharacterBody::_ready() {
-
+    if (this->controls) {
+        this->controls->model_ready();
+    }
 }
 
 void PlayerCharacterBody::_process(double delta) {
-
+    if (this->controls) {
+        this->controls->model_process(delta);
+    }
 }
 
 void PlayerCharacterBody::_physics_process(double delta) {
-
+    if (this->controls) {
+        // this->controls->model_physics_process(delta);
+    }
 }
 /*void PlayerCharacterBody::_input(const godot::Ref<godot::InputEvent> &event) {
     if (this->controls) {
@@ -42,7 +49,9 @@ void PlayerCharacterBody::_unhandled_input(const godot::Ref<godot::InputEvent> &
     }
 }*/
 void PlayerCharacterBody::_unhandled_key_input(const godot::Ref<godot::InputEvent> &event) {
-
+    if (this->controls) {
+        this->controls->model_unhandled_key_input(event);
+    }
 }
 
 godot::Camera3D* PlayerCharacterBody::getThirdPersonCamera() {
@@ -54,9 +63,27 @@ godot::Camera3D* PlayerCharacterBody::getFirstPersonCamera() {
 }
 
 bool PlayerCharacterBody::useFirstPersonCameraByDefault() {
-    return false;
+    return true;
+}
+
+void PlayerCharacterBody::enableControls() {
+    if (!this->controls) {
+        this->controls = new PlayerCharacterBodyControls();
+        this->controls->model = this;
+    }
+}
+
+void PlayerCharacterBody::disableControls() {
+    if (this->controls) {
+        delete this->controls;
+        this->controls = nullptr;
+    }
+}
+
+bool PlayerCharacterBody::getControlsEnabled() {
+    return !!this->controls;
 }
 
 PlayerCharacterBody::~PlayerCharacterBody() {
-
+    this->disableControls();
 }

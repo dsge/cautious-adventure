@@ -9,6 +9,8 @@
 
 namespace app {
 
+class PlayerCharacterBodyControls;
+
 class PlayerCharacterBody : public godot::CharacterBody3D, public PlayerControlledEntityInterface {
     GDCLASS(PlayerCharacterBody, godot::CharacterBody3D);
 
@@ -16,6 +18,8 @@ protected:
     static void _bind_methods();
 
 public:
+
+    PlayerCharacterBodyControls* controls = nullptr;
 
     PlayerCharacterBody();
     ~PlayerCharacterBody();
@@ -32,8 +36,14 @@ public:
     godot::Camera3D* getThirdPersonCamera() override;
     godot::Camera3D* getFirstPersonCamera() override;
     bool useFirstPersonCameraByDefault() override;
+
+    void enableControls() override;
+    void disableControls() override;
+    bool getControlsEnabled() override;
 };
 
 }
+
+#include "./PlayerCharacterBodyControls.h"
 
 #endif

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfu8llvq28eth"]
+[gd_scene load_steps=15 format=3 uid="uid://dfu8llvq28eth"]
 
 [ext_resource type="Texture2D" uid="uid://bnujfrgxkl0r6" path="res://static/kenney_prototypetextures/PNG/Dark/texture_07.png" id="1_rrrxn"]
 [ext_resource type="PackedScene" uid="uid://b1a5khw3kbqrc" path="res://resources/blender/Simpleship2.tscn" id="2_5yax2"]
 [ext_resource type="PackedScene" uid="uid://cqr6w50vrit58" path="res://resources/SimpleDebugOverlay.tscn" id="3_6pgfo"]
+[ext_resource type="PackedScene" uid="uid://cmrfb0imm1o1m" path="res://models/PlayerCharacterBody.tscn" id="4_d4jvb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
 albedo_texture = ExtResource( "1_rrrxn" )
@@ -38,7 +39,7 @@ subdivide_depth = 4
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nhb01"]
 points = PackedVector3Array(5, 5, 5, 5, 5, -5, -5, 5, 5, 5, -5, 5, 5, -5, -5, -5, 5, -5, -5, -5, 5, -5, -5, -5)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w6bu7"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iraek"]
 absorbent = true
 
 [node name="Experiments" type="FooExperiment"]
@@ -88,6 +89,9 @@ shadow_enabled = true
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2.15201, -1.11114)
 
 [node name="simpleship_2" parent="SimpleShip" instance=ExtResource( "2_5yax2" )]
-physics_material_override = SubResource( "PhysicsMaterial_w6bu7" )
+physics_material_override = SubResource( "PhysicsMaterial_iraek" )
 
 [node name="SimpleDebugOverlay" parent="." instance=ExtResource( "3_6pgfo" )]
+
+[node name="PlayerCharacterBody" parent="." instance=ExtResource( "4_d4jvb" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
