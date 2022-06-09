@@ -3,7 +3,7 @@
 using namespace app;
 
 PlayerCharacterBodyControls::PlayerCharacterBodyControls() {
-
+    this->input = godot::Input::get_singleton();
 }
 
 void PlayerCharacterBodyControls::model_enter_tree() {
@@ -29,13 +29,16 @@ void PlayerCharacterBodyControls::model_process(float delta) {
 
 
 void PlayerCharacterBodyControls::model_physics_process(float delta) {
-
+    this->model->move_and_slide();
 }
 void PlayerCharacterBodyControls::model_input(const godot::Ref<godot::InputEvent> &event) {
 
 }
 void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::InputEvent> &event) {
+    godot::Ref<godot::InputEventMouseMotion> k = event;
+    /*if (k.is_valid() && this->input && this->input->get_mouse_mode() == godot::Input::MOUSE_MODE_CAPTURED) {
 
+    }*/
 }
 void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<godot::InputEvent> &event) {
 
@@ -46,6 +49,14 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
 	if (k.is_valid() && k->get_unicode() && k->is_pressed()) {
         // spdlog::info(k->get_unicode());
     }*/
+
+    if (event->is_action_pressed(Actions::UI_TOGGLE_MOUSE_CAPTURE) && this->input) {
+        if (this->input->get_mouse_mode() != godot::Input::MOUSE_MODE_CAPTURED) {
+            this->input->set_mouse_mode(godot::Input::MOUSE_MODE_CAPTURED);
+        } else {
+            this->input->set_mouse_mode(godot::Input::MOUSE_MODE_VISIBLE);
+        }
+    }
 
     const int mass = 20;
 
@@ -65,6 +76,7 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
 
     if (event->is_action_pressed(Actions::UI_FORWARD)) {
         // this->model->add_constant_central_force(this->model->get_global_transform().basis.get_axis(2).normalized() * -speed);
+        this->model->set_velocity(godot::Vector3(1.0f, 0.0, 0.0f));
     } else if (event->is_action_released(Actions::UI_FORWARD)) {
         // this->model->set_constant_force(godot::Vector3(0, 0, 0));
     }

@@ -13,7 +13,7 @@ namespace app {
 class PlayerCharacterBodyControls {
 
 public:
-
+    godot::Input* input = NULL;
     PlayerCharacterBody* model = NULL;
 
     PlayerCharacterBodyControls();

@@ -35,19 +35,19 @@ void PlayerCharacterBody::_process(double delta) {
 
 void PlayerCharacterBody::_physics_process(double delta) {
     if (this->controls) {
-        // this->controls->model_physics_process(delta);
+        this->controls->model_physics_process(delta);
     }
 }
 /*void PlayerCharacterBody::_input(const godot::Ref<godot::InputEvent> &event) {
     if (this->controls) {
         // this->controls->model_input(event);
     }
-}
+}*/
 void PlayerCharacterBody::_unhandled_input(const godot::Ref<godot::InputEvent> &event) {
     if (this->controls) {
-        // this->controls->model_unhandled_input(event);
+        this->controls->model_unhandled_input(event);
     }
-}*/
+}
 void PlayerCharacterBody::_unhandled_key_input(const godot::Ref<godot::InputEvent> &event) {
     if (this->controls) {
         this->controls->model_unhandled_key_input(event);

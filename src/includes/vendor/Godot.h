@@ -24,6 +24,7 @@
 #include <input_event.hpp>
 #include <input.hpp>
 #include <input_event_key.hpp>
+#include <input_event_mouse_motion.hpp>
 
 #include <rigid_dynamic_body3d.hpp>
 #include <character_body3d.hpp>

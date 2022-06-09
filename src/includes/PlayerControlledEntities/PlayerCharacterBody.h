@@ -29,8 +29,8 @@ public:
     void _ready() override;
     void _process(double delta) override;
     void _physics_process(double delta) override;
-	/*void _input(const godot::Ref<godot::InputEvent> &event) override;
-	void _unhandled_input(const godot::Ref<godot::InputEvent> &event) override;*/
+	/*void _input(const godot::Ref<godot::InputEvent> &event) override;*/
+	void _unhandled_input(const godot::Ref<godot::InputEvent> &event) override;
 	void _unhandled_key_input(const godot::Ref<godot::InputEvent> &event) override;
 
     godot::Camera3D* getThirdPersonCamera() override;
