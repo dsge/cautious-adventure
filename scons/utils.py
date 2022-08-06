@@ -233,12 +233,14 @@ def setOsxEnv(env):
 
 def setLinuxEnv(env):
     # cpp_library += ".linux"
-    env.Append(CCFLAGS=["-fPIC"])
+    env.Append(CCFLAGS=["-fPIC", "-Wwrite-strings"])
     env.Append(CXXFLAGS=["-std=c++17"])
+    env.Append(LINKFLAGS=["-Wl,-R,'$$ORIGIN'"])
+    
     if env["target"] == "debug":
-        env.Append(CCFLAGS=["-g3", "-Og"])
+        env.Append(CCFLAGS=["-g", "-Og"])
     else:
-        env.Append(CCFLAGS=["-g", "-O3"])
+        env.Append(CCFLAGS=["-O3"])
 
     env['app_arch_suffix'] = str(env['bits'])
 

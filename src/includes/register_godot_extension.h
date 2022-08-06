@@ -3,7 +3,7 @@
 
 #include "vendor/Godot.h"
 
-void register_godot_extension();
-void unregister_godot_extension();
+void register_godot_extension(godot::ModuleInitializationLevel p_level);
+void unregister_godot_extension(godot::ModuleInitializationLevel p_level);
 
 #endif

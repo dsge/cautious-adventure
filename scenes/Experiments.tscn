@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmrfb0imm1o1m" path="res://models/PlayerCharacterBody.tscn" id="4_d4jvb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
-albedo_texture = ExtResource( "1_rrrxn" )
+albedo_texture = ExtResource("1_rrrxn")
 uv1_scale = Vector3(1000, 1000, 1000)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x60xe"]
@@ -21,7 +21,7 @@ data = PackedVector3Array(500, 0, 500, 409.091, 0, 500, 500, 0, 409.091, 409.091
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sortk"]
-material = SubResource( "StandardMaterial3D_ixpr8" )
+material = SubResource("StandardMaterial3D_ixpr8")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v7neh"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
@@ -30,7 +30,7 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_45km0"]
-material = SubResource( "StandardMaterial3D_wwr06" )
+material = SubResource("StandardMaterial3D_wwr06")
 size = Vector3(10, 10, 10)
 subdivide_width = 4
 subdivide_height = 4
@@ -47,35 +47,35 @@ absorbent = true
 [node name="MapElements" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements"]
-material_override = SubResource( "StandardMaterial3D_savjp" )
-mesh = SubResource( "PlaneMesh_x60xe" )
+material_override = SubResource("StandardMaterial3D_savjp")
+mesh = SubResource("PlaneMesh_x60xe")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MapElements/MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MeshInstance3D/StaticBody3D"]
-shape = SubResource( "ConcavePolygonShape3D_pxvgn" )
+shape = SubResource("ConcavePolygonShape3D_pxvgn")
 
 [node name="Node3D" type="RigidDynamicBody3D" parent="MapElements"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 1)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MapElements/Node3D"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.503825, 3)
-mesh = SubResource( "BoxMesh_sortk" )
+mesh = SubResource("BoxMesh_sortk")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Node3D"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.503825, 3)
-shape = SubResource( "ConvexPolygonShape3D_v7neh" )
+shape = SubResource("ConvexPolygonShape3D_v7neh")
 
 [node name="Node3D2" type="RigidDynamicBody3D" parent="MapElements"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, -50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Node3D2"]
-mesh = SubResource( "BoxMesh_45km0" )
+mesh = SubResource("BoxMesh_45km0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Node3D2"]
-shape = SubResource( "ConvexPolygonShape3D_nhb01" )
+shape = SubResource("ConvexPolygonShape3D_nhb01")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 6)
@@ -88,10 +88,10 @@ shadow_enabled = true
 [node name="SimpleShip" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2.15201, -1.11114)
 
-[node name="simpleship_2" parent="SimpleShip" instance=ExtResource( "2_5yax2" )]
-physics_material_override = SubResource( "PhysicsMaterial_iraek" )
+[node name="simpleship_2" parent="SimpleShip" instance=ExtResource("2_5yax2")]
+physics_material_override = SubResource("PhysicsMaterial_iraek")
 
-[node name="SimpleDebugOverlay" parent="." instance=ExtResource( "3_6pgfo" )]
+[node name="SimpleDebugOverlay" parent="." instance=ExtResource("3_6pgfo")]
 
-[node name="PlayerCharacterBody" parent="." instance=ExtResource( "4_d4jvb" )]
+[node name="PlayerCharacterBody" parent="." instance=ExtResource("4_d4jvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)

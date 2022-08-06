@@ -4,7 +4,7 @@ entry_symbol = "on_app_godot_library_init"
 
 [libraries]
 
-linux.64.debug = "../bin/libapp.linux.debug.64.so"
-linux.64.release = "../bin/libapp.linux.release.64.so"
-windows.64.debug = "../bin/libapp.windows.debug.64.dll"
-windows.64.release = "../bin/libapp.windows.release.64.dll"
+linux.debug.x86_64 = "../bin/libapp.linux.debug.64.so"
+linux.release.x86_64 = "../bin/libapp.linux.release.64.so"
+windows.debug.x86_64 = "../bin/libapp.windows.debug.64.dll"
+windows.release.x86_64 = "../bin/libapp.windows.release.64.dll"
