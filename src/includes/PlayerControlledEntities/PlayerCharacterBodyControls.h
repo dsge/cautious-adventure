@@ -15,6 +15,10 @@ class PlayerCharacterBodyControls {
 public:
     godot::Input* input = NULL;
     PlayerCharacterBody* model = NULL;
+    /**
+     * until `this->input->get_mouse_mode() != godot::Input::MOUSE_MODE_CAPTURED` actually works
+     */
+    bool mouseCaptured = false;
 
     PlayerCharacterBodyControls();
     ~PlayerCharacterBodyControls();

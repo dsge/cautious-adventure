@@ -30,3 +30,5 @@
 #include <character_body3d.hpp>
 #include <camera3d.hpp>
 #include <physics_material.hpp>
+
+#include <math.hpp>
