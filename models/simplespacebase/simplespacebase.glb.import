@@ -1,0 +1,53 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cgfasnsbcwo4v"
+path="res://.godot/imported/simplespacebase.glb-c2045f7906f532ec839a162a021f0eb5.scn"
+
+[deps]
+
+source_file="res://models/simplespacebase/simplespacebase.glb"
+dest_files=["res://.godot/imported/simplespacebase.glb-c2045f7906f532ec839a162a021f0eb5.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Cube": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Cube001": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Cube002": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Cube004": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:Cylinder": {
+"import/skip_import": true
+},
+"PATH:Cylinder001": {
+"import/skip_import": true
+}
+}
+}

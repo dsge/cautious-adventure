@@ -23,3 +23,8 @@ shape = SubResource("ConvexPolygonShape3D_je3ur")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head"]
+spot_range = 51.027
+spot_attenuation = 0.108819
+spot_angle = 29.7996

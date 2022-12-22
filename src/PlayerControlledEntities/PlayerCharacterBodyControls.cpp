@@ -67,7 +67,7 @@ void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::
 
     const int mass = 1;
 
-    const int speed = 4 * mass;
+    const int speed = 6 * mass;
 
     auto direction = godot::Vector3();
 
@@ -98,7 +98,10 @@ void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::
         }
     }
 
-    this->model->set_velocity(direction * speed);
+    auto velocity = direction * speed;
+
+
+    this->model->set_velocity(velocity);
 }
 void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<godot::InputEvent> &event) {
 

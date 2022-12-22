@@ -10,6 +10,9 @@ sky_material = SubResource("PhysicalSkyMaterial_snhqu")
 background_mode = 2
 sky = SubResource("Sky_1w4w2")
 sdfgi_enabled = true
+sdfgi_read_sky_light = false
+glow_enabled = true
+glow_normalized = true
 
 [node name="Startup" type="Startup"]
 
