@@ -15,9 +15,8 @@ args = ARGUMENTS
 #if not "headers_dir" in args:
 #    args["headers_dir"] = ["include"]
 
-# "You must compile with target=debug for your plugin to work in the editor."
 # Source: https://godotengine.org/article/introducing-gd-extensions
-args["target"] = "debug"
+args["target"] = "editor"
 
 Export(ARGUMENTS = args)
 
@@ -61,7 +60,7 @@ opts.Add(
         ignorecase=2,
     )
 )
-opts.Add(EnumVariable("target", "Compilation target", "debug", allowed_values=("debug", "release"), ignorecase=2))
+opts.Add(EnumVariable("target", "Compilation target", "editor", allowed_values=("editor", "template_release", "template_debug"), ignorecase=2))
 
 #### /Copied from ../lib/godot-cpp/SConstruct
 
@@ -91,7 +90,8 @@ ret = {
         env.File(builtFileName)
     ], 
     'headerfileIncludePaths': [
-        env.Dir(libraryBasePath + '/godot-headers/'),
+        env.Dir(libraryBasePath + '/'),
+        env.Dir(libraryBasePath + '/gdextension/'),
         env.Dir(libraryBasePath + '/include/'),
         env.Dir(libraryBasePath + '/include/godot_cpp/'),
         env.Dir(libraryBasePath + '/include/godot_cpp/classes'),

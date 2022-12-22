@@ -68,7 +68,7 @@ void SimpleshipControls::model_unhandled_key_input(const godot::Ref<godot::Input
     }
 
     if (event->is_action_pressed(Actions::UI_FORWARD)) {
-        this->model->add_constant_central_force(this->model->get_global_transform().basis.get_axis(2).normalized() * -speed);
+        this->model->add_constant_central_force(this->model->get_global_transform().basis.get_column(2).normalized() * -speed);
     } else if (event->is_action_released(Actions::UI_FORWARD)) {
         this->model->set_constant_force(godot::Vector3(0, 0, 0));
     }

@@ -11,8 +11,8 @@ namespace app {
 
 class SimpleshipControls;
 
-class Simpleship : public godot::RigidDynamicBody3D, public PlayerControlledEntityInterface {
-    GDCLASS(Simpleship, godot::RigidDynamicBody3D);
+class Simpleship : public godot::RigidBody3D, public PlayerControlledEntityInterface {
+    GDCLASS(Simpleship, godot::RigidBody3D);
 
 protected:
     static void _bind_methods();

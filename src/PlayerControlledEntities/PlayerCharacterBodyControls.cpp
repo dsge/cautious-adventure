@@ -76,25 +76,25 @@ void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::
 
     if (this->input->is_action_pressed(Actions::UI_FORWARD)) {
         if (!this->input->is_action_just_released(Actions::UI_FORWARD)) {
-            direction += -this->model->get_global_transform().basis.get_axis(2).normalized();
+            direction += -this->model->get_global_transform().basis.get_column(2).normalized();
         }
     }
 
     if (this->input->is_action_pressed(Actions::UI_BACKWARDS)) {
         if (!this->input->is_action_just_released(Actions::UI_BACKWARDS)) {
-            direction += this->model->get_global_transform().basis.get_axis(2).normalized();
+            direction += this->model->get_global_transform().basis.get_column(2).normalized();
         }
     }
 
     if (this->input->is_action_pressed(Actions::UI_LEFT)) {
         if (!this->input->is_action_just_released(Actions::UI_LEFT)) {
-            direction += -this->model->get_global_transform().basis.get_axis(0).normalized();
+            direction += -this->model->get_global_transform().basis.get_column(0).normalized();
         }
     }
 
     if (this->input->is_action_pressed(Actions::UI_RIGHT)) {
         if (!this->input->is_action_just_released(Actions::UI_RIGHT)) {
-            direction += this->model->get_global_transform().basis.get_axis(0).normalized();
+            direction += this->model->get_global_transform().basis.get_column(0).normalized();
         }
     }
 

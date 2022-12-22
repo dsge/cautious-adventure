@@ -1,4 +1,4 @@
-#include <godot/gdnative_interface.h>
+#include <gdextension/gdextension_interface.h>
 #include <core/class_db.hpp>
 #include <core/defs.hpp>
 #include <godot.hpp>
@@ -26,7 +26,7 @@
 #include <input_event_key.hpp>
 #include <input_event_mouse_motion.hpp>
 
-#include <rigid_dynamic_body3d.hpp>
+#include <rigid_body3d.hpp>
 #include <character_body3d.hpp>
 #include <camera3d.hpp>
 #include <physics_material.hpp>

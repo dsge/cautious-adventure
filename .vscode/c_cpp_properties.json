@@ -3,7 +3,8 @@
     "env": {
         "appIncludePaths": ["${workspaceFolder}/src"],
         "godotCppIncludePaths": [
-            "${workspaceFolder}/lib/godot-cpp/godot-headers/",
+            "${workspaceFolder}/lib/godot-cpp/",
+            "${workspaceFolder}/lib/godot-cpp/gdextension/",
             "${workspaceFolder}/lib/godot-cpp/gen/include/",
             "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/classes",
             "${workspaceFolder}/lib/godot-cpp/gen/include/godot_cpp/variant",
@@ -166,7 +167,7 @@
           "${workspaceFolder}/lib/googletest/googletest/src"
         ],
         "spdlogIncludePaths": [
-          "${workspaceFolder}/lib/spdlog/include",
+          "${workspaceFolder}/lib/spdlog/include"
         ]
     },
     "configurations": [
