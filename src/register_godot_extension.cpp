@@ -6,12 +6,13 @@
 #include "includes/PlayerControlledEntities/Simpleship.h"
 #include "includes/PlayerControlledEntities/PlayerCharacterBody.h"
 
-using namespace app;
-
 void register_godot_extension(godot::ModuleInitializationLevel p_level) {
     if (p_level != godot::MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
+
+    using namespace app;
+
 	godot::ClassDB::register_class<Startup>();
     godot::ClassDB::register_class<PlayerControlledEntityHandler>();
     godot::ClassDB::register_class<FooExperiment>();
