@@ -1,5 +1,4 @@
-#ifndef APP_HELPERFUNCTIONS_H
-#define APP_HELPERFUNCTIONS_H
+#pragma once
 
 #include <node.hpp>
 #include <node_path.hpp>
@@ -53,5 +52,3 @@ template<class T> T *call_get_node(godot::Node* node, const godot::NodePath &p_p
 }
 
 }
-
-#endif

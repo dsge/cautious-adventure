@@ -11,6 +11,10 @@ namespace app {
         static constexpr char UI_DESCEND[] = "ui_descend";
 
         static constexpr char UI_TOGGLE_MOUSE_CAPTURE[] = "ui_toggle_mouse_capture";
+
+        static constexpr char UI_SET_TIME_NOON[] = "ui_set_time_noon";
+        static constexpr char UI_SET_TIME_MIDNIGHT[] = "ui_set_time_midnight";
+        static constexpr char UI_PLAYPAUSE_DAYNIGHT_CYCLE[] = "ui_playpause_daynight_cycle";
     };
 }
 #endif

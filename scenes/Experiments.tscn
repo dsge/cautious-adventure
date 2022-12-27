@@ -57,7 +57,7 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pxvgn")
 
-[node name="Node3D" type="RigidDynamicBody3D" parent="MapElements"]
+[node name="Node3D" type="RigidBody3D" parent="MapElements"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 1)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MapElements/Node3D"]
@@ -69,7 +69,7 @@ skeleton = NodePath("../../..")
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.503825, 3)
 shape = SubResource("ConvexPolygonShape3D_v7neh")
 
-[node name="Node3D2" type="RigidDynamicBody3D" parent="MapElements"]
+[node name="Node3D2" type="RigidBody3D" parent="MapElements"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, -50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Node3D2"]
@@ -87,10 +87,6 @@ transform = Transform3D(0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, 0.517638, -1
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 6)
 fov = 90.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.696339, -0.0732273, -0.713968, 0.717713, 0.0710466, 0.692705, 2.45045e-10, -0.994781, 0.102029, 0, 4.95164, 0)
-shadow_enabled = true
-
 [node name="SimpleShip" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2.15201, -1.11114)
 
@@ -101,3 +97,21 @@ physics_material_override = SubResource("PhysicsMaterial_iraek")
 
 [node name="PlayerCharacterBody" parent="." instance=ExtResource("4_d4jvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="DaynightCycleInfo" type="DaynightCycleInfo" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1094.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 183.0
+grow_horizontal = 0
+
+[node name="InfoLabel" type="Label" parent="DaynightCycleInfo"]
+offset_right = 1079.0
+offset_bottom = 26.0
+size_flags_vertical = 0
+text = "asdadadasdadasda"
+horizontal_alignment = 2
+autowrap_mode = 3

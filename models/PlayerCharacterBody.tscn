@@ -28,3 +28,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 spot_range = 51.027
 spot_attenuation = 0.108819
 spot_angle = 29.7996
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.367199, -0.930142, 0, 0.71974, 0.284137, 0.633435, -0.589185, -0.232597, 0.773796, 0, 4.22717, 3.93287)
+editor_only = true

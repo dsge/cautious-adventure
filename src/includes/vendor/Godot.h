@@ -19,6 +19,7 @@
 #include <ref.hpp>
 #include <resource_loader.hpp>
 #include <packed_scene.hpp>
+#include <animation_player.hpp>
 
 #include <object.hpp>
 #include <input_event.hpp>
@@ -32,3 +33,6 @@
 #include <physics_material.hpp>
 
 #include <math.hpp>
+
+#include <margin_container.hpp>
+#include <label.hpp>

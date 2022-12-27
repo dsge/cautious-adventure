@@ -11,6 +11,8 @@
 #include "./PlayerControlledEntities/PlayerControlledEntityHandler.h"
 #include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
 #include "./PlayerControlledEntities/Simpleship.h"
+#include "./DaynightCycleManager.h"
+#include "./helper-functions.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>

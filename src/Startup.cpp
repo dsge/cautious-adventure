@@ -49,9 +49,16 @@ void Startup::_enter_tree() {
             instance->node = handler;
         })
         .singleInstance();
+    builder
+        .registerType< DaynightCycleManager >()
+        .onActivated([sceneContainer, this](Hypodermic::ComponentContext&, const std::shared_ptr< DaynightCycleManager >& instance) {
+            instance->animationPlayer = app::call_get_node<godot::AnimationPlayer>(this, "/root/Startup/AnimationPlayer");
+            instance->initDaylengthMultiplier();
+        })
+        .singleInstance();
     this->container = builder.build();
 
-
+    // app::setGlobalContainer(this->container);
 
 
     // std::cout << "Startup enter tree" << std::endl;
