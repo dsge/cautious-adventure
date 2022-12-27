@@ -17,8 +17,6 @@ void PlayerCharacterBodyControls::model_enter_tree() {
 }
 
 void PlayerCharacterBodyControls::model_ready() {
-    spdlog::info("PlayerCharacterBodyControls::model_ready");
-
     auto model = this->model;
 }
 

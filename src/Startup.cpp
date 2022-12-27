@@ -3,12 +3,9 @@
 using namespace app;
 
 void Startup::_bind_methods() {
-    // std::cout << "Startup bind methods cccccc" << std::endl;
-    // godot::UtilityFunctions::print("Startup bind methods sss");
     auto console = spdlog::stdout_logger_mt("console");
     spdlog::set_default_logger(console);
     spdlog::set_level(spdlog::level::debug); // Set global log level to debug
-    spdlog::info("Startup bind methods cccccc");
     // ClassDB::bind_method(D_METHOD("init"), &Startup::_init);
     // ClassDB::bind_method(D_METHOD("_init"), &Startup::_init);
     godot::ClassDB::bind_method(godot::D_METHOD("ready"), &Startup::_ready);
@@ -17,18 +14,14 @@ void Startup::_bind_methods() {
 }
 
 Startup::Startup() {
-    // godot::UtilityFunctions::print("Startup constructor");
-    // std::cout << "Startup constructor" << std::endl;
 
 }
 
 void Startup::_init() {
-    // std::cout << "Startup init" << std::endl;
-    // godot::UtilityFunctions::print("Startup init");
 }
 
 void Startup::_enter_tree() {
-    spdlog::info("Startup enter tree");
+    // spdlog::info("Startup enter tree");
 
     godot::Node3D* sceneContainer = memnew(godot::Node3D);
     sceneContainer->set_name("sceneContainer");
@@ -70,7 +63,6 @@ void Startup::_enter_tree() {
 } */
 
 void Startup::_ready() {
-    spdlog::info("Startup::_ready");
     this->add_child((this->container->resolve< PlayerControlledEntityHandlerWrapper >())->node);
     // this->add_child(memnew(PlayerControlledEntityHandler));
     // std::cout << "Startup ready" << std::endl;
@@ -84,16 +76,12 @@ void Startup::_ready() {
 
 void Startup::runTestsAndExit() {
     #ifdef INCLUDE_TESTRUNNER
-    // std::cout << "Startup::runTestsAndExit()" << std::endl;
     ::testing::InitGoogleTest();
     ::exit(RUN_ALL_TESTS());
     #endif
 }
 
 void Startup::initGameNormally() {
-    // std::cout << "Startup::initGameNormally()" << std::endl;
-
-
     auto sceneSwitcher = container->resolve< SceneSwitcher >();
     sceneSwitcher->switchLevel("res://scenes/Experiments.tscn");
 }

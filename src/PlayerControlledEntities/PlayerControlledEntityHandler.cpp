@@ -8,12 +8,10 @@ void PlayerControlledEntityHandler::_bind_methods() {
 }
 
 PlayerControlledEntityHandler::PlayerControlledEntityHandler() {
-    spdlog::info("PlayerControlledEntityHandler::contructor");
 }
 
 
 void PlayerControlledEntityHandler::_ready() {
-    spdlog::info("PlayerControlledEntityHandler::_ready");
 }
 
 void PlayerControlledEntityHandler::_process(float delta) {
@@ -44,5 +42,4 @@ PlayerControlledEntityInterface* PlayerControlledEntityHandler::getModel() {
 }
 
 PlayerControlledEntityHandler::~PlayerControlledEntityHandler() {
-    spdlog::info("PlayerControlledEntityHandler::destructor");
 }

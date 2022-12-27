@@ -16,8 +16,6 @@ SceneSwitcher::~SceneSwitcher() {
         this->playerControls->queue_free();
         delete this->playerControls;
     }*/
-
-    spdlog::info("SceneSwitcher destructor yeeaaaahhh");
 }
 
 void SceneSwitcher::switchLevel(godot::String levelName) {
@@ -25,13 +23,12 @@ void SceneSwitcher::switchLevel(godot::String levelName) {
         spdlog::info("SceneSwitcher switchLevel no sceneContainer");
         return;
     }
-    spdlog::info("SceneSwitcher switchLevel HAS sceneContainer");
     // initialize any variables here
 
     // https://godotengine.org/qa/12873/calling-nodes-from-c
     // https://godotengine.org/qa/45083/solved-how-to-load-resource-scene-using-gdnative-c
 
-    
+
 
     godot::Ref<godot::PackedScene> levelPrototype = this->resourceLoader->load(levelName, "PackedScene");
 	if (!levelPrototype.is_valid()) {

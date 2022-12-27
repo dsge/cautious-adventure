@@ -17,8 +17,6 @@ void SimpleshipControls::model_enter_tree() {
 }
 
 void SimpleshipControls::model_ready() {
-    spdlog::info("SimpleshipControls::model_ready");
-
     auto model = this->model;
 
     /*godot::Camera3D* camera = model->getThirdPersonCamera();
