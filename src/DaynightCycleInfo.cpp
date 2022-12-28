@@ -15,7 +15,10 @@ DaynightCycleInfo::DaynightCycleInfo() {
 
 void DaynightCycleInfo::_enter_tree() {
     this->infoLabel = app::call_get_node<godot::Label>(this, "InfoLabel");
-    this->daynightCycleManager = app::call_get_node<app::Startup>(this, "/root/Startup")->getContainer()->resolve< app::DaynightCycleManager >();
+    auto startup = app::call_get_node<app::Startup>(this, "/root/Startup");
+    if (startup) {
+        this->daynightCycleManager = startup->getContainer()->resolve< app::DaynightCycleManager >();
+    }
 }
 
 void DaynightCycleInfo::_ready() {
@@ -23,17 +26,29 @@ void DaynightCycleInfo::_ready() {
 }
 
 void DaynightCycleInfo::_process(float delta) {
-    this->infoLabel->set_text(godot::String("{0}:{1}\nIsDaytime: {2}\nIsNighttime: {3}").format(godot::Array::make(
-        godot::String("%02.0f") % this->daynightCycleManager->getHour(),
-        godot::String("%02.0f") % this->daynightCycleManager->getMinute(),
-        this->daynightCycleManager->isDaytime(),
-        this->daynightCycleManager->isNighttime()
-    )));
+    if (this->daynightCycleManager) {
+        this->infoLabel->set_text(godot::String("{0}:{1}\nIsDaytime: {2}\nIsNighttime: {3}").format(godot::Array::make(
+            godot::String("%02.0f") % this->daynightCycleManager->getHour(),
+            godot::String("%02.0f") % this->daynightCycleManager->getMinute(),
+            this->daynightCycleManager->isDaytime(),
+            this->daynightCycleManager->isNighttime()
+        )));
+    }
 }
 
 void DaynightCycleInfo::_unhandled_key_input(const godot::Ref<godot::InputEvent> &event) {
-    if (this->input->is_action_just_released(Actions::UI_PLAYPAUSE_DAYNIGHT_CYCLE)) {
-        this->daynightCycleManager->playPauseDaynightCycle();
+    if (this->daynightCycleManager) {
+        if (this->input->is_action_just_released(Actions::UI_PLAYPAUSE_DAYNIGHT_CYCLE)) {
+            this->daynightCycleManager->playPauseDaynightCycle();
+        }
+        if (this->input->is_action_just_released(Actions::UI_SET_TIME_NOON)) {
+            this->daynightCycleManager->pauseDaynightCycle();
+            this->daynightCycleManager->setTime(12.0);
+        }
+        if (this->input->is_action_just_released(Actions::UI_SET_TIME_MIDNIGHT)) {
+            this->daynightCycleManager->pauseDaynightCycle();
+            this->daynightCycleManager->setTime(0.0);
+        }
     }
 }
 

@@ -15,6 +15,10 @@ protected:
      * @brief at what second of animationPlayer->get_current_animation_position() is is daybreak - it will be treated as 06:00
      */
     double animationDaybreakHour = 9;
+    double daybreakHour = 6;
+
+    double animationTimeToHour(double animationTime) const;
+    double hourToAnimationTime(double hour) const;
 
 public:
     godot::AnimationPlayer* animationPlayer;
@@ -40,6 +44,9 @@ public:
     bool isDaytime() const;
     bool isNighttime() const;
     void playPauseDaynightCycle();
+    void pauseDaynightCycle();
+    void playDaynightCycle();
+    void setTime(double hour);
 };
 
 }

@@ -15,7 +15,7 @@ class DaynightCycleInfo : public godot::MarginContainer {
 protected:
     godot::Input* input = nullptr;
     godot::Label* infoLabel = nullptr;
-    std::shared_ptr< app::DaynightCycleManager > daynightCycleManager;
+    std::shared_ptr< app::DaynightCycleManager > daynightCycleManager = nullptr;
 
     static void _bind_methods();
 
