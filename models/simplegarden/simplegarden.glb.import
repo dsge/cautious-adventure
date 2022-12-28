@@ -1,0 +1,52 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://canx5ikac8xnu"
+path="res://.godot/imported/simplegarden.glb-afdd1e386a5febdd67ff875ad1d51a7d.scn"
+
+[deps]
+
+source_file="res://models/simplegarden/simplegarden.glb"
+dest_files=["res://.godot/imported/simplegarden.glb-afdd1e386a5febdd67ff875ad1d51a7d.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Light": {
+"import/skip_import": true
+},
+"PATH:garden": {
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:tree": {
+"generate/physics": true,
+"physics/shape_type": 6
+},
+"PATH:tree001": {
+"generate/physics": true,
+"physics/shape_type": 5
+},
+"PATH:tree002": {
+"generate/physics": true,
+"physics/shape_type": 5
+}
+}
+}

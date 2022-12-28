@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfu8llvq28eth"]
+[gd_scene load_steps=14 format=3 uid="uid://dfu8llvq28eth"]
 
 [ext_resource type="Texture2D" uid="uid://bnujfrgxkl0r6" path="res://static/kenney_prototypetextures/PNG/Dark/texture_07.png" id="1_rrrxn"]
 [ext_resource type="PackedScene" uid="uid://b1a5khw3kbqrc" path="res://resources/blender/Simpleship2.tscn" id="2_5yax2"]
 [ext_resource type="PackedScene" uid="uid://farbyk1eys5j" path="res://models/simplespacebase/Simplespacebase.tscn" id="2_l5b6e"]
 [ext_resource type="PackedScene" uid="uid://cqr6w50vrit58" path="res://resources/SimpleDebugOverlay.tscn" id="3_6pgfo"]
+[ext_resource type="PackedScene" uid="uid://dvemaastik08h" path="res://models/simplegarden/Simplegarden.tscn" id="3_ogswd"]
 [ext_resource type="PackedScene" uid="uid://cmrfb0imm1o1m" path="res://models/PlayerCharacterBody.tscn" id="4_d4jvb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
@@ -26,19 +27,6 @@ material = SubResource("StandardMaterial3D_ixpr8")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v7neh"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwr06"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_45km0"]
-material = SubResource("StandardMaterial3D_wwr06")
-size = Vector3(10, 10, 10)
-subdivide_width = 4
-subdivide_height = 4
-subdivide_depth = 4
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nhb01"]
-points = PackedVector3Array(5, 5, 5, 5, 5, -5, -5, 5, 5, 5, -5, 5, 5, -5, -5, -5, 5, -5, -5, -5, 5, -5, -5, -5)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iraek"]
 absorbent = true
@@ -69,19 +57,15 @@ skeleton = NodePath("../../..")
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.503825, 3)
 shape = SubResource("ConvexPolygonShape3D_v7neh")
 
-[node name="Node3D2" type="RigidBody3D" parent="MapElements"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, -50)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MapElements/Node3D2"]
-mesh = SubResource("BoxMesh_45km0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapElements/Node3D2"]
-shape = SubResource("ConvexPolygonShape3D_nhb01")
-
 [node name="Node3D3" type="Node3D" parent="MapElements"]
 
 [node name="simplespacebase" parent="MapElements/Node3D3" instance=ExtResource("2_l5b6e")]
 transform = Transform3D(0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, 0.517638, -104, 0, -25)
+
+[node name="Node3D4" type="Node3D" parent="MapElements"]
+
+[node name="simplegarden" parent="MapElements/Node3D4" instance=ExtResource("3_ogswd")]
+transform = Transform3D(6, 0, 3.41061e-14, 0, 6, 0, -3.41061e-14, 0, 6, 7, 0, -62.5781)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 6)
