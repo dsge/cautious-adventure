@@ -56,7 +56,7 @@ void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::
         if (head) {
             head->rotate_x( -mouseMotionEvent->get_relative().y * mouseSensitivity );
             auto headRotation = head->get_rotation();
-            headRotation.x = CLAMP(headRotation.x, -1.2f, 1.2f);
+            headRotation.x = godot::CLAMP(headRotation.x, -1.2f, 1.2f);
             head->set_rotation(headRotation);
         }
     }
