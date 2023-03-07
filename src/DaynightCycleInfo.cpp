@@ -22,7 +22,6 @@ void DaynightCycleInfo::_enter_tree() {
 }
 
 void DaynightCycleInfo::_ready() {
-
 }
 
 void DaynightCycleInfo::_process(float delta) {

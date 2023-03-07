@@ -93,8 +93,7 @@ offset_bottom = 183.0
 grow_horizontal = 0
 
 [node name="InfoLabel" type="Label" parent="DaynightCycleInfo"]
-offset_right = 1079.0
-offset_bottom = 26.0
+layout_mode = 2
 size_flags_vertical = 0
 text = "asdadadasdadasda"
 horizontal_alignment = 2
