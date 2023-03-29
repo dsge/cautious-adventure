@@ -1,6 +1,6 @@
 root = true
 
-[*.{cs,sh,json,h,cpp,hpp,c}]
+[*.{cs,sh,json,h,cpp,hpp,c,tscn,godot,gdextension,tres}]
 indent_style = space
 indent_size = 4
 charset = utf-8
