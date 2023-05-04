@@ -61,7 +61,11 @@ void FooExperiment::_ready() {
 
         auto sceneSwitcher = container->resolve< SceneSwitcher >();
 
-        Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
+        /*Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
+        if (ship) {
+            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
+        }*/
+        Hovership* ship = app::call_get_node<Hovership>(sceneSwitcher->getSceneContainer(), "Experiments/hovership");
         if (ship) {
             container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
         }

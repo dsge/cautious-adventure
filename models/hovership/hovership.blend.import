@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/hovership.blend-90d25645d5fa554fb38f4140a5565
 
 [params]
 
-nodes/root_type="Node3D"
+nodes/root_type="Hovership"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

@@ -4,6 +4,7 @@
 #include "includes/FooExperiment.h"
 #include "includes/PlayerControlledEntities/PlayerControlledEntityHandler.h"
 #include "includes/PlayerControlledEntities/Simpleship.h"
+#include "includes/PlayerControlledEntities/Hovership.h"
 #include "includes/PlayerControlledEntities/PlayerCharacterBody.h"
 #include "includes/DaynightCycleInfo.h"
 
@@ -18,6 +19,7 @@ void register_godot_extension(godot::ModuleInitializationLevel p_level) {
     godot::ClassDB::register_class<PlayerControlledEntityHandler>();
     godot::ClassDB::register_class<FooExperiment>();
     godot::ClassDB::register_class<Simpleship>();
+    godot::ClassDB::register_class<Hovership>();
     godot::ClassDB::register_class<PlayerCharacterBody>();
     godot::ClassDB::register_class<DaynightCycleInfo>();
 

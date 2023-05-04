@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqr6w50vrit58" path="res://resources/SimpleDebugOverlay.tscn" id="3_6pgfo"]
 [ext_resource type="PackedScene" uid="uid://dvemaastik08h" path="res://models/simplegarden/Simplegarden.tscn" id="3_ogswd"]
 [ext_resource type="PackedScene" uid="uid://cmrfb0imm1o1m" path="res://models/PlayerCharacterBody.tscn" id="4_d4jvb"]
-[ext_resource type="PackedScene" uid="uid://bvhkbxarvyj5s" path="res://models/hovership/hovership.blend" id="7_iqvlt"]
+[ext_resource type="PackedScene" uid="uid://etmsc7xu3fg8" path="res://models/hovership/hovership.tscn" id="7_g7tf1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
 albedo_texture = ExtResource("1_rrrxn")
@@ -100,5 +100,5 @@ text = "asdadadasdadasda"
 horizontal_alignment = 2
 autowrap_mode = 3
 
-[node name="hovership" parent="." instance=ExtResource("7_iqvlt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11901, 0, -15.8112)
+[node name="hovership" parent="." instance=ExtResource("7_g7tf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, -20)
