@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://etmsc7xu3fg8"]
+
+[ext_resource type="PackedScene" uid="uid://bvhkbxarvyj5s" path="res://models/hovership/hovership.blend" id="1_l7jum"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1n3x"]
+animation = &"backrightAction"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0n3f8"]
+animation = &"backleftAction"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wesud"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_mvkyv"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j17iq"]
+graph_offset = Vector2(-263.242, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_0n3f8")
+nodes/Animation/position = Vector2(-160, 80)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_o1n3x")
+"nodes/Animation 2/position" = Vector2(-160, 220)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_wesud")
+nodes/Blend2/position = Vector2(100, 80)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_mvkyv")
+nodes/TimeSeek/position = Vector2(280, 80)
+nodes/output/position = Vector2(440, 100)
+node_connections = [&"output", 0, &"TimeSeek", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"TimeSeek", 0, &"Blend2"]
+
+[node name="hovership" instance=ExtResource("1_l7jum")]
+
+[node name="backleft" parent="shipbody/wheels" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -2.25, 0.75, 4)
+
+[node name="backright" parent="shipbody/wheels" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 2.25, 0.75, 4)
+
+[node name="AnimationPlayer" parent="." index="1"]
+playback_process_mode = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_j17iq")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+process_callback = 0
+parameters/Blend2/blend_amount = 0.5
+parameters/TimeSeek/seek_request = -1.0

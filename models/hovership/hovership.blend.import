@@ -1,0 +1,66 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bvhkbxarvyj5s"
+path="res://.godot/imported/hovership.blend-90d25645d5fa554fb38f4140a5565ffd.scn"
+
+[deps]
+
+source_file="res://models/hovership/hovership.blend"
+dest_files=["res://.godot/imported/hovership.blend-90d25645d5fa554fb38f4140a5565ffd.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Camera": {
+"import/skip_import": true
+},
+"PATH:Camera001": {
+"import/skip_import": true
+},
+"PATH:Light": {
+"import/skip_import": true
+},
+"PATH:Light001": {
+"import/skip_import": true
+},
+"PATH:wheel001": {
+"import/skip_import": true
+}
+}
+}
+gltf/embedded_image_handling=1
+blender/nodes/visible=0
+blender/nodes/punctual_lights=true
+blender/nodes/cameras=true
+blender/nodes/custom_properties=true
+blender/nodes/modifiers=1
+blender/meshes/colors=false
+blender/meshes/uvs=true
+blender/meshes/normals=true
+blender/meshes/tangents=true
+blender/meshes/skins=2
+blender/meshes/export_bones_deforming_mesh_only=false
+blender/materials/unpack_enabled=true
+blender/materials/export_materials=1
+blender/animation/limit_playback=true
+blender/animation/always_sample=true
+blender/animation/group_tracks=true
