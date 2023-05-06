@@ -35,6 +35,7 @@ public:
 
     godot::Camera3D* getThirdPersonCamera() override;
     godot::Camera3D* getFirstPersonCamera() override;
+    godot::AABB getBoundingBox();
     bool useFirstPersonCameraByDefault() override;
     void enableControls() override;
     void disableControls() override;

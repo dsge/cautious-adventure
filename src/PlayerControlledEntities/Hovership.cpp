@@ -64,6 +64,10 @@ godot::Camera3D* Hovership::getFirstPersonCamera() {
     return this->get_node<godot::Camera3D>("Camera3D");
 }
 
+godot::AABB Hovership::getBoundingBox() {
+    return this->get_node<godot::MeshInstance3D>("shipbody")->get_aabb();
+}
+
 bool Hovership::useFirstPersonCameraByDefault() {
     return false;
 }
@@ -72,6 +76,9 @@ void Hovership::enableControls() {
     if (!this->controls) {
         this->controls = new HovershipControls();
         this->controls->model = this;
+
+        this->controls->model_enter_tree();
+        this->controls->model_ready();
     }
 }
 

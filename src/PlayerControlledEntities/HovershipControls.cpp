@@ -13,7 +13,11 @@ void HovershipControls::model_enter_tree() {
     this->model->set_physics_material_override(material);
 
     this->model->set_use_continuous_collision_detection(true);
-    this->model->set_mass(20.0);
+    this->model->set_mass(1.0);
+
+    godot::AABB boundingBox = this->model->getBoundingBox();
+    this->model->set_mass(1.0);
+
 }
 
 void HovershipControls::model_ready() {
@@ -49,7 +53,7 @@ void HovershipControls::model_unhandled_key_input(const godot::Ref<godot::InputE
         // spdlog::info(k->get_unicode());
     }*/
 
-    const int mass = 20;
+    const int mass = 1;
 
     const int speed = 15 * mass;
 
