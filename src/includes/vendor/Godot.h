@@ -3,6 +3,9 @@
 #include <core/defs.hpp>
 #include <godot.hpp>
 
+#include <scene_tree.hpp>
+#include <window.hpp>
+
 #include <node.hpp>
 #include <node3d.hpp>
 #include <surface_tool.hpp>

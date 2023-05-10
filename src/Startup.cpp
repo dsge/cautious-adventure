@@ -77,7 +77,8 @@ void Startup::_ready() {
 void Startup::runTestsAndExit() {
     #ifdef INCLUDE_TESTRUNNER
     ::testing::InitGoogleTest();
-    ::exit(RUN_ALL_TESTS());
+    this->get_tree()->get_root()->propagate_notification(godot::Node::NOTIFICATION_WM_CLOSE_REQUEST);
+    this->get_tree()->quit(RUN_ALL_TESTS());
     #endif
 }
 
