@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Uneasy-balance"
 run/main_scene="res://scenes/Startup.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://resources/icon.png"
 
 [editor]
