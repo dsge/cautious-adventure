@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmqhde3tdtq4f"]
+[gd_scene load_steps=4 format=3 uid="uid://cmqhde3tdtq4f"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_snhqu"]
 ground_color = Color(0.113725, 0.74902, 0.184314, 1)
@@ -14,92 +14,6 @@ ambient_light_sky_contribution = 0.85
 glow_enabled = true
 glow_normalized = true
 
-[sub_resource type="Animation" id="Animation_reti2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionalLight3D:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_7wsju"]
-resource_name = "asd"
-length = 12.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 9, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0), Vector3(3.14159, 0, 0), Vector3(4.71239, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionalLight3D:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WorldEnvironment:environment:ambient_light_energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3, 4, 6, 8, 9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 1.0, 0.0, 0.25, 0.5, 0.625]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwvea"]
-_data = {
-"RESET": SubResource("Animation_reti2"),
-"asd": SubResource("Animation_7wsju")
-}
-
 [node name="Startup" type="Startup"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -108,9 +22,3 @@ environment = SubResource("Environment_h2f6m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 12.3376, 0)
 shadow_enabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "asd"
-libraries = {
-"": SubResource("AnimationLibrary_qwvea")
-}

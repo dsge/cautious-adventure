@@ -65,14 +65,14 @@ void FooExperiment::_ready() {
         if (ship) {
             container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
         }*/
-        Hovership* ship = app::call_get_node<Hovership>(sceneSwitcher->getSceneContainer(), "Experiments/hovership");
+        /*Hovership* ship = app::call_get_node<Hovership>(sceneSwitcher->getSceneContainer(), "Experiments/hovership");
         if (ship) {
             container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
-        }
-        /*PlayerCharacterBody* player = app::call_get_node<PlayerCharacterBody>(sceneSwitcher->getSceneContainer(), "Experiments/PlayerCharacterBody");
+        }*/
+        PlayerCharacterBody* player = app::call_get_node<PlayerCharacterBody>(sceneSwitcher->getSceneContainer(), "Experiments/PlayerCharacterBody");
         if (player) {
             container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(player);
-        }*/
+        }
 
     }
 

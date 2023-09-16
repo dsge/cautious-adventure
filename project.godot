@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Uneasy-balance"
+config/name="Cautious-adventure"
 run/main_scene="res://scenes/Startup.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://resources/icon.png"

@@ -7,8 +7,6 @@
 
 #include "./Startup.h"
 #include "./SceneSwitcher.h"
-#include "./PlayerControlledEntities/Simpleship.h"
-#include "./PlayerControlledEntities/Hovership.h"
 #include "./PlayerControlledEntities/PlayerCharacterBody.h"
 #include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
 #include "./helper-functions.h"

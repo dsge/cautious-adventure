@@ -4,7 +4,6 @@
 #include "../vendor/Godot.h"
 #include <spdlog/spdlog.h>
 
-#include "./Simpleship.h"
 #include "../interfaces/PlayerControlledEntityInterface.h"
 
 
