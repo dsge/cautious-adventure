@@ -15,6 +15,9 @@ namespace app {
         static constexpr char UI_SET_TIME_NOON[] = "ui_set_time_noon";
         static constexpr char UI_SET_TIME_MIDNIGHT[] = "ui_set_time_midnight";
         static constexpr char UI_PLAYPAUSE_DAYNIGHT_CYCLE[] = "ui_playpause_daynight_cycle";
+
+        static constexpr char UI_SCROLL_ZOOM_IN[] = "ui_scroll_zoom_in";
+        static constexpr char UI_SCROLL_ZOOM_OUT[] = "ui_scroll_zoom_out";
     };
 }
 #endif

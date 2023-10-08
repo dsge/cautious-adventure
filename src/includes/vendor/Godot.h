@@ -29,6 +29,7 @@
 #include <input.hpp>
 #include <input_event_key.hpp>
 #include <input_event_mouse_motion.hpp>
+#include <input_event_mouse_button.hpp>
 
 #include <rigid_body3d.hpp>
 #include <character_body3d.hpp>
@@ -42,3 +43,8 @@
 
 #include <ray_cast3d.hpp>
 #include <aabb.hpp>
+#include <spring_arm3d.hpp>
+#include <world3d.hpp>
+#include <physics_direct_space_state3d.hpp>
+#include <physics_ray_query_parameters3d.hpp>
+#include <navigation_agent3d.hpp>

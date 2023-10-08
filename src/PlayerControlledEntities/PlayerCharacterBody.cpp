@@ -55,15 +55,15 @@ void PlayerCharacterBody::_unhandled_key_input(const godot::Ref<godot::InputEven
 }
 
 godot::Camera3D* PlayerCharacterBody::getThirdPersonCamera() {
-    return this->get_node<godot::Camera3D>("Head/Camera3D");
+    return this->get_node<godot::Camera3D>("CameraContainer/SpringArm3D/Camera3D");
 }
 
 godot::Camera3D* PlayerCharacterBody::getFirstPersonCamera() {
-    return this->get_node<godot::Camera3D>("Head/Camera3D");
+    return this->get_node<godot::Camera3D>("CameraContainer/SpringArm3D/Camera3D");
 }
 
 bool PlayerCharacterBody::useFirstPersonCameraByDefault() {
-    return true;
+    return false;
 }
 
 void PlayerCharacterBody::enableControls() {

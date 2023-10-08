@@ -20,6 +20,10 @@ public:
      */
     bool mouseCaptured = false;
 
+    bool isLastMouseClickPositionValid = false;
+    godot::Vector2 lastMouseClickPosition = godot::Vector2();
+
+
     PlayerCharacterBodyControls();
     ~PlayerCharacterBodyControls();
 
