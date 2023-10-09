@@ -10,6 +10,7 @@ void PlayerCharacterBody::_bind_methods() {
     /*godot::ClassDB::bind_method(godot::D_METHOD("input"), &PlayerCharacterBody::_input);
     godot::ClassDB::bind_method(godot::D_METHOD("unhandled_input"), &PlayerCharacterBody::_unhandled_input);*/
     godot::ClassDB::bind_method(godot::D_METHOD("unhandled_key_input"), &PlayerCharacterBody::_unhandled_key_input);
+    godot::ClassDB::bind_method(godot::D_METHOD("on_agent_navigation_finished"), &PlayerCharacterBody::on_agent_navigation_finished);
 }
 
 PlayerCharacterBody::PlayerCharacterBody() {
@@ -19,11 +20,18 @@ void PlayerCharacterBody::_enter_tree() {
     if (this->controls) {
         this->controls->model_enter_tree();
     }
+    this->get_node<godot::NavigationAgent3D>("NavigationAgent3D")->connect("navigation_finished", godot::Callable(this, "on_agent_navigation_finished"));
 }
 
 void PlayerCharacterBody::_ready() {
     if (this->controls) {
         this->controls->model_ready();
+    }
+}
+
+void PlayerCharacterBody::on_agent_navigation_finished() {
+    if (this->controls) {
+        this->controls->model_on_agent_navigation_finished();
     }
 }
 

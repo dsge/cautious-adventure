@@ -17,6 +17,19 @@ void PlayerCharacterBodyControls::model_enter_tree() {
 void PlayerCharacterBodyControls::model_ready() {
 }
 
+
+
+void PlayerCharacterBodyControls::model_on_agent_navigation_finished() {
+    this->animate(PlayerCharacterAnimation::IDLE);
+}
+
+void PlayerCharacterBodyControls::animate(godot::String animationName) {
+    if (this->currentAnimation != animationName) {
+        this->currentAnimation = animationName;
+        this->animationPlayer->play(this->currentAnimation);
+    }
+}
+
 void PlayerCharacterBodyControls::model_process(float delta) {
     if (this->input->is_action_pressed(Actions::UI_MOUSE_PRIMARY)) {
         this->lastMouseClickPosition = this->model->get_viewport()->get_mouse_position();;
@@ -50,7 +63,7 @@ void PlayerCharacterBodyControls::model_physics_process(float delta) {
 
             if (!result.is_empty()) {
                 navigationAgent->set_target_position((godot::Vector3)result["position"]);
-                animationPlayer->play("CharacterArmature|Run");
+                this->animate(PlayerCharacterAnimation::RUN);
             }
         }
     }
@@ -58,7 +71,7 @@ void PlayerCharacterBodyControls::model_physics_process(float delta) {
     if (!navigationAgent->is_navigation_finished()) {
         auto nextPosition = navigationAgent->get_next_path_position();
         auto currentAgentPosition = this->model->get_global_position();
-        auto velocity = (nextPosition - currentAgentPosition).normalized() * 3.0f;
+        auto velocity = (nextPosition - currentAgentPosition).normalized() * 4.0f;
         this->model->set_velocity(velocity);
         this->model->move_and_slide();
 

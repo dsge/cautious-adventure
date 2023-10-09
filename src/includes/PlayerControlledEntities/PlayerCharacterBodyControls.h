@@ -5,6 +5,7 @@
 
 #include "../Actions.h"
 #include "./PlayerCharacterBody.h"
+#include "./PlayerCharacterAnimations.h"
 #include <bitset>
 
 #include <spdlog/spdlog.h>
@@ -15,6 +16,7 @@ class PlayerCharacterBodyControls {
 
 public:
     PlayerCharacterBody* model = NULL;
+    godot::String currentAnimation = PlayerCharacterAnimation::IDLE;
 
     PlayerCharacterBodyControls();
     ~PlayerCharacterBodyControls();
@@ -26,6 +28,7 @@ public:
 	void model_input(const godot::Ref<godot::InputEvent> &event);
 	void model_unhandled_input(const godot::Ref<godot::InputEvent> &event);
 	void model_unhandled_key_input(const godot::Ref<godot::InputEvent> &event);
+    void model_on_agent_navigation_finished();
 
 protected:
     /**
@@ -47,7 +50,7 @@ protected:
     godot::AnimationPlayer* animationPlayer = NULL;
     godot::Node3D* body = NULL;
 
-
+    void animate(godot::String animationName);
 };
 
 }

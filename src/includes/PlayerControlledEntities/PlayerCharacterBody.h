@@ -32,6 +32,7 @@ public:
 	/*void _input(const godot::Ref<godot::InputEvent> &event) override;*/
 	void _unhandled_input(const godot::Ref<godot::InputEvent> &event) override;
 	void _unhandled_key_input(const godot::Ref<godot::InputEvent> &event) override;
+    void on_agent_navigation_finished();
 
     godot::Camera3D* getThirdPersonCamera() override;
     godot::Camera3D* getFirstPersonCamera() override;
