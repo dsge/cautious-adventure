@@ -18,6 +18,8 @@ namespace app {
 
         static constexpr char UI_SCROLL_ZOOM_IN[] = "ui_scroll_zoom_in";
         static constexpr char UI_SCROLL_ZOOM_OUT[] = "ui_scroll_zoom_out";
+
+        static constexpr char UI_MOUSE_PRIMARY[] = "ui_mouse_primary";
     };
 }
 #endif

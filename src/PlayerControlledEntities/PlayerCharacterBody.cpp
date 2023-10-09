@@ -70,6 +70,11 @@ void PlayerCharacterBody::enableControls() {
     if (!this->controls) {
         this->controls = new PlayerCharacterBodyControls();
         this->controls->model = this;
+
+        if (this->get_tree() != nullptr) {
+            this->controls->model_enter_tree();
+            this->controls->model_ready();
+        }
     }
 }
 
