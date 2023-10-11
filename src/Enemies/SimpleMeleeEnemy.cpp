@@ -13,11 +13,22 @@ SimpleMeleeEnemy::SimpleMeleeEnemy() {
 }
 
 void SimpleMeleeEnemy::_enter_tree() {
+    this->animationPlayer = this->get_node<godot::AnimationPlayer>("AnimationPlayer");
+}
+
+void SimpleMeleeEnemy::animate(godot::String animationName, bool forcePlay) {
+    if (this->currentAnimation != animationName || forcePlay) {
+        this->currentAnimation = animationName;
+        this->animationPlayer->play(this->currentAnimation);
+    }
+}
+
+void SimpleMeleeEnemy::onHit(std::shared_ptr<HitData> hitData) {
 
 }
 
 void SimpleMeleeEnemy::_ready() {
-
+    this->animate(this->currentAnimation, true);
 }
 
 void SimpleMeleeEnemy::_process(double delta) {

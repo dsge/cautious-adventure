@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwjngrpidkisb"]
+[gd_scene load_steps=6 format=3 uid="uid://dwjngrpidkisb"]
 
 [ext_resource type="PackedScene" uid="uid://c0wwqs7hr1fd5" path="res://models/goblin/Goblin.glb" id="1_ungot"]
 [ext_resource type="Texture2D" uid="uid://bkwixt3qftudk" path="res://models/goblin/Goblin_Atlas.png" id="2_fx6i7"]
@@ -29,14 +29,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Goblin" instance=ExtResource("1_ungot")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d14on"]
 
-[node name="Skeleton3D" parent="RootNode/EnemyArmature" index="0"]
-bones/7/rotation = Quaternion(4.44089e-15, 0, 0, 1)
-bones/8/rotation = Quaternion(4.44089e-15, 1.19209e-07, 2.11758e-22, 1)
-bones/11/rotation = Quaternion(1.06288e-07, -1.04047e-07, 0.99571, -0.0925312)
-bones/14/rotation = Quaternion(-1.06288e-07, -1.04047e-07, 0.99571, 0.0925312)
+[node name="Goblin" instance=ExtResource("1_ungot")]
+
+[node name="RootNode" parent="." index="0"]
+transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0, 0)
 
 [node name="Goblin" parent="RootNode/EnemyArmature/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_omhu8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_d14on")

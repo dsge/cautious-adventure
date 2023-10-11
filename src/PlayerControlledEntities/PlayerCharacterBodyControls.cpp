@@ -146,12 +146,8 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
     }
 
     if (event->is_action_pressed(InputActions::UI_ASCEND) && this->container) {
-        spdlog::info("ASCEND");
-
         auto sceneContainer = this->container->resolve<SceneSwitcher>()->getSceneContainer();
-
         godot::Node3D* enemyInstance = app::call_cast_to<godot::Node3D>(this->goblinPrototype->instantiate());
-
         enemyInstance->set_position(this->enemySpawnLocation->get_position());
         sceneContainer->add_child(enemyInstance);
     }
