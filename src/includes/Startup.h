@@ -12,13 +12,15 @@
 #include "./PlayerControlledEntities/PlayerControlledEntityHandler.h"
 #include "./UI/GlobalHealthBar.h"
 #include "./GodotNodeWrapper.h"
-#include "./helper-functions.h"
 
 #ifdef INCLUDE_TESTRUNNER
     #include <gtest/gtest.h>
 #endif
 
 namespace app {
+
+template <class T> std::shared_ptr< T > resolve(godot::Node* node);
+template<class T> inline T* call_cast_to(godot::Node* node);
 
 class Startup : public godot::Node {
     GDCLASS(Startup, godot::Node);
@@ -49,5 +51,6 @@ public:
 
 }
 
+#include "./helper-functions.h"
 
 #endif

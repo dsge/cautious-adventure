@@ -52,28 +52,13 @@ void FooExperiment::_ready() {
     meshInstance->set_mesh(mesh);
     this->add_child(meshInstance);*/
 
-    auto startup = app::call_get_node<Startup>(this, "/root/Startup");
-    if (startup) {
-        auto container = startup->getContainer();
+    auto sceneSwitcher = app::resolve< SceneSwitcher >(this);
 
-        // auto initialControlledEntityCandidates = sceneSwitcher->getSceneContainer()->find_nodes("", "Simpleship", true, false);
-        // static_cast<Simpleship *>(initialControlledEntityCandidates[0].operator Object *())
-
-        auto sceneSwitcher = container->resolve< SceneSwitcher >();
-
-        /*Simpleship* ship = app::call_get_node<Simpleship>(sceneSwitcher->getSceneContainer(), "Experiments/SimpleShip/simpleship_2");
-        if (ship) {
-            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
-        }*/
-        /*Hovership* ship = app::call_get_node<Hovership>(sceneSwitcher->getSceneContainer(), "Experiments/hovership");
-        if (ship) {
-            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(ship);
-        }*/
+    if (sceneSwitcher) {
         PlayerCharacterBody* player = app::call_get_node<PlayerCharacterBody>(sceneSwitcher->getSceneContainer(), "Experiments/PlayerCharacterBody");
         if (player) {
-            container->resolve< GodotNodeWrapper<PlayerControlledEntityHandler> >()->node->setModel(player);
+            app::resolve< GodotNodeWrapper<PlayerControlledEntityHandler> >(this)->node->setModel(player);
         }
-
     }
 
 

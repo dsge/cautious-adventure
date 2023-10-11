@@ -58,6 +58,7 @@ void Startup::_enter_tree() {
             instance->node = app::call_cast_to<GlobalHealthBar>(globalHealthBarPrototype->instantiate());
         })
         .singleInstance();
+
     this->container = builder.build();
 
     // app::setGlobalContainer(this->container);
