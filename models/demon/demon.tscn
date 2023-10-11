@@ -32,5 +32,9 @@ blend_shape_mode = 0
 
 [node name="Demon" instance=ExtResource("1_cmbme")]
 
+[node name="Skeleton3D" parent="RootNode/EnemyArmature" index="0"]
+bones/11/rotation = Quaternion(1.15416e-07, -4.50339e-08, 0.99571, -0.0925312)
+bones/14/rotation = Quaternion(-1.15416e-07, -4.50339e-08, 0.99571, 0.0925312)
+
 [node name="Demon" parent="RootNode/EnemyArmature/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_rk0c0")
