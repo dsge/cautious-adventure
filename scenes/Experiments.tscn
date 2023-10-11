@@ -164,3 +164,6 @@ fov = 90.0
 
 [node name="PlayerCharacterBody" parent="." instance=ExtResource("4_d4jvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -37)
+
+[node name="EnemySpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88788, 0.5, -40.5587)

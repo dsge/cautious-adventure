@@ -1,7 +1,7 @@
 #ifndef APP_ACTIONS_H
 #define APP_ACTIONS_H
 namespace app {
-    struct Actions {
+    struct InputActions {
         static constexpr char UI_FORWARD[] = "ui_forward";
         static constexpr char UI_BACKWARDS[] = "ui_backwards";
         static constexpr char UI_LEFT[] = "ui_left";

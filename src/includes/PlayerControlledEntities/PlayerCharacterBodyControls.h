@@ -6,6 +6,12 @@
 #include "../enums/InputActions.h"
 #include "./PlayerCharacterBody.h"
 #include "../enums/PlayerCharacterAnimations.h"
+#include <Hypodermic/Hypodermic.h>
+#include "../SceneSwitcher.h"
+#include "../helper-functions.h"
+#include "../Startup.h"
+#include "../SceneSwitcher.h"
+#include "../Enemies/SimpleMeleeEnemy.h"
 #include <bitset>
 
 #include <spdlog/spdlog.h>
@@ -16,6 +22,12 @@ class PlayerCharacterBodyControls {
 
 public:
     PlayerCharacterBody* model = NULL;
+
+    godot::Ref<godot::PackedScene> goblinPrototype = NULL;
+    godot::Ref<godot::PackedScene> demonPrototype = NULL;
+    godot::Node3D* enemySpawnLocation = NULL;
+    std::shared_ptr<Hypodermic::Container> container = NULL;
+
     godot::String currentAnimation = PlayerCharacterAnimation::IDLE;
 
     PlayerCharacterBodyControls();

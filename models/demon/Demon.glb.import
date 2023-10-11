@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Demon.glb-d6266b86e2c4378811f62459b8e5cfbc.sc
 
 [params]
 
-nodes/root_type="Node3D"
+nodes/root_type="SimpleMeleeEnemy"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

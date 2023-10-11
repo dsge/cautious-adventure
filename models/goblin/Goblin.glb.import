@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Goblin.glb-8bd44a0f6b233623f0182a99acecfb17.s
 
 [params]
 
-nodes/root_type="Node3D"
+nodes/root_type="SimpleMeleeEnemy"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

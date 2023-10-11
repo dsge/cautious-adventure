@@ -6,7 +6,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qm6b"]
 resource_name = "Atlas"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("2_fx6i7")
 metallic = 0.4
 texture_filter = 2
@@ -31,6 +30,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [node name="Goblin" instance=ExtResource("1_ungot")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/EnemyArmature" index="0"]
 bones/7/rotation = Quaternion(4.44089e-15, 0, 0, 1)

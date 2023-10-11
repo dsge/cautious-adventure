@@ -4,6 +4,11 @@ using namespace app;
 
 PlayerCharacterBodyControls::PlayerCharacterBodyControls() {
     this->input = godot::Input::get_singleton();
+
+    auto resourceLoader = godot::ResourceLoader::get_singleton();
+
+    this->goblinPrototype = resourceLoader->load("res://models/goblin/goblin.tscn", "PackedScene");
+    this->demonPrototype = resourceLoader->load("res://models/demon/demon.tscn", "PackedScene");
 }
 
 void PlayerCharacterBodyControls::model_enter_tree() {
@@ -12,6 +17,11 @@ void PlayerCharacterBodyControls::model_enter_tree() {
     this->navigationAgent = this->model->get_node<godot::NavigationAgent3D>("NavigationAgent3D");
     this->animationPlayer = this->model->get_node<godot::AnimationPlayer>("Body/Witch/AnimationPlayer");
     this->body = this->model->get_node<godot::Node3D>("Body");
+
+    this->enemySpawnLocation = this->model->get_node<godot::Node3D>("../EnemySpawner");
+
+    this->container = this->model->get_node<Startup>("/root/Startup")->getContainer();
+
 }
 
 void PlayerCharacterBodyControls::model_ready() {
@@ -31,7 +41,7 @@ void PlayerCharacterBodyControls::animate(godot::String animationName) {
 }
 
 void PlayerCharacterBodyControls::model_process(float delta) {
-    if (this->input->is_action_pressed(Actions::UI_MOUSE_PRIMARY)) {
+    if (this->input->is_action_pressed(InputActions::UI_MOUSE_PRIMARY)) {
         this->lastMouseClickPosition = this->model->get_viewport()->get_mouse_position();;
         this->isLastMouseClickPositionValid = true;
     }
@@ -101,11 +111,11 @@ void PlayerCharacterBodyControls::model_unhandled_input(const godot::Ref<godot::
 
         double length = cameraSpringArm->get_length();
 
-        if (this->input->is_action_pressed(Actions::UI_SCROLL_ZOOM_IN)) {
+        if (this->input->is_action_pressed(InputActions::UI_SCROLL_ZOOM_IN)) {
             length -= 0.1;
         }
 
-        if (this->input->is_action_pressed(Actions::UI_SCROLL_ZOOM_OUT)) {
+        if (this->input->is_action_pressed(InputActions::UI_SCROLL_ZOOM_OUT)) {
             length += 0.1;
         }
 
@@ -124,7 +134,7 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
         spdlog::info(k->get_unicode());
     }*/
 
-    if (event->is_action_pressed(Actions::UI_TOGGLE_MOUSE_CAPTURE) && this->input) {
+    if (event->is_action_pressed(InputActions::UI_TOGGLE_MOUSE_CAPTURE) && this->input) {
         if (/*this->input->get_mouse_mode() != godot::Input::MOUSE_MODE_CAPTURED*/ !this->mouseCaptured) {
             this->input->set_mouse_mode(godot::Input::MOUSE_MODE_CAPTURED);
             this->mouseCaptured = true;
@@ -133,6 +143,17 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
             this->mouseCaptured = false;
         }
 
+    }
+
+    if (event->is_action_pressed(InputActions::UI_ASCEND) && this->container) {
+        spdlog::info("ASCEND");
+
+        auto sceneContainer = this->container->resolve<SceneSwitcher>()->getSceneContainer();
+
+        godot::Node3D* enemyInstance = app::call_cast_to<godot::Node3D>(this->goblinPrototype->instantiate());
+
+        enemyInstance->set_position(this->enemySpawnLocation->get_position());
+        sceneContainer->add_child(enemyInstance);
     }
 
 
