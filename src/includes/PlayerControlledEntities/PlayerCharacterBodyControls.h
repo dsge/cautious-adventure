@@ -3,9 +3,9 @@
 
 #include "../vendor/Godot.h"
 
-#include "../Actions.h"
+#include "../enums/InputActions.h"
 #include "./PlayerCharacterBody.h"
-#include "./PlayerCharacterAnimations.h"
+#include "../enums/PlayerCharacterAnimations.h"
 #include <bitset>
 
 #include <spdlog/spdlog.h>
