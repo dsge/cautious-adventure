@@ -10,6 +10,7 @@ class GlobalHealthBar : public godot::Control {
     GDCLASS(GlobalHealthBar, godot::Control);
 
 public:
+    static constexpr char SIGNAL_UPDATE_DESTRUCTIBLE_OBJECT[] = "update_destructible_object";
     static void _bind_methods();
     GlobalHealthBar();
     ~GlobalHealthBar();

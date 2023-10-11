@@ -8,7 +8,7 @@ void GlobalHealthBar::_bind_methods() {
     godot::ClassDB::bind_method(godot::D_METHOD("enter_tree"), &GlobalHealthBar::_enter_tree);
     // godot::ClassDB::bind_method(godot::D_METHOD("physics_process"), &GlobalHealthBar::_physics_process);
 
-    ADD_SIGNAL(godot::MethodInfo("update_destructible_object", godot::PropertyInfo(godot::Variant::OBJECT, "name")));
+    ADD_SIGNAL(godot::MethodInfo(GlobalHealthBar::SIGNAL_UPDATE_DESTRUCTIBLE_OBJECT, godot::PropertyInfo(godot::Variant::OBJECT, "name")));
 }
 
 GlobalHealthBar::GlobalHealthBar() {
