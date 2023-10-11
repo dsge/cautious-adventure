@@ -27,6 +27,9 @@ void Startup::_enter_tree() {
     sceneContainer->set_name("sceneContainer");
     this->add_child(sceneContainer);
 
+    auto resourceLoader = godot::ResourceLoader::get_singleton();
+    godot::Ref<godot::PackedScene> globalHealthBarPrototype = resourceLoader->load("res://scenes/GlobalHealthBar.tscn", "PackedScene");
+
     Hypodermic::ContainerBuilder builder;
     builder
         .registerType< SceneSwitcher >()
@@ -35,11 +38,24 @@ void Startup::_enter_tree() {
         })
         .singleInstance();
     builder
-        .registerType< PlayerControlledEntityHandlerWrapper >()
-        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< PlayerControlledEntityHandlerWrapper >& instance) {
+        .registerType< GodotNodeWrapper<PlayerControlledEntityHandler>  >()
+        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< GodotNodeWrapper<PlayerControlledEntityHandler> >& instance) {
             auto handler = memnew(PlayerControlledEntityHandler);
             handler->set_name("PlayerControlledEntityHandler");
             instance->node = handler;
+        })
+        .singleInstance();
+    builder
+        .registerType< GodotNodeWrapper<godot::ResourceLoader> >()
+        .onActivated([](Hypodermic::ComponentContext&, const std::shared_ptr< GodotNodeWrapper<godot::ResourceLoader> >& instance) {
+            instance->node = godot::ResourceLoader::get_singleton();
+        })
+        .singleInstance();
+    this->container = builder.build();
+    builder
+        .registerType< GodotNodeWrapper<GlobalHealthBar> >()
+        .onActivated([globalHealthBarPrototype](Hypodermic::ComponentContext&, const std::shared_ptr< GodotNodeWrapper<GlobalHealthBar> >& instance) {
+            instance->node = app::call_cast_to<GlobalHealthBar>(globalHealthBarPrototype->instantiate());
         })
         .singleInstance();
     this->container = builder.build();
@@ -56,7 +72,9 @@ void Startup::_enter_tree() {
 } */
 
 void Startup::_ready() {
-    this->add_child((this->container->resolve< PlayerControlledEntityHandlerWrapper >())->node);
+    this->add_child((this->container->resolve< GodotNodeWrapper<PlayerControlledEntityHandler> >())->node);
+    this->add_child((this->container->resolve< GodotNodeWrapper<GlobalHealthBar> >())->node);
+
     // this->add_child(memnew(PlayerControlledEntityHandler));
     // std::cout << "Startup ready" << std::endl;
     // godot::UtilityFunctions::print("Startup ready");

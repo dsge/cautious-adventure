@@ -71,7 +71,7 @@ void FooExperiment::_ready() {
         }*/
         PlayerCharacterBody* player = app::call_get_node<PlayerCharacterBody>(sceneSwitcher->getSceneContainer(), "Experiments/PlayerCharacterBody");
         if (player) {
-            container->resolve< PlayerControlledEntityHandlerWrapper >()->node->setModel(player);
+            container->resolve< GodotNodeWrapper<PlayerControlledEntityHandler> >()->node->setModel(player);
         }
 
     }

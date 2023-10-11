@@ -48,3 +48,7 @@
 #include <physics_direct_space_state3d.hpp>
 #include <physics_ray_query_parameters3d.hpp>
 #include <navigation_agent3d.hpp>
+
+#include <control.hpp>
+#include <color_rect.hpp>
+#include <label.hpp>

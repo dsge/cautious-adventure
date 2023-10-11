@@ -8,8 +8,8 @@
 #include "./Startup.h"
 #include "./SceneSwitcher.h"
 #include "./PlayerControlledEntities/PlayerCharacterBody.h"
-#include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
 #include "./helper-functions.h"
+#include "./GodotNodeWrapper.h"
 
 namespace app {
 

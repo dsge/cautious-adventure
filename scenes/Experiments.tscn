@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfu8llvq28eth"]
+[gd_scene load_steps=13 format=3 uid="uid://dfu8llvq28eth"]
 
 [ext_resource type="Texture2D" uid="uid://bnujfrgxkl0r6" path="res://static/kenney_prototypetextures/PNG/Dark/texture_07.png" id="1_rrrxn"]
 [ext_resource type="PackedScene" uid="uid://farbyk1eys5j" path="res://models/simplespacebase/Simplespacebase.tscn" id="2_l5b6e"]
 [ext_resource type="Material" uid="uid://cpbwdnxgj8p6d" path="res://resources/dummy_material.tres" id="3_lsa1x"]
 [ext_resource type="PackedScene" uid="uid://cmrfb0imm1o1m" path="res://models/PlayerCharacterBody.tscn" id="4_d4jvb"]
+[ext_resource type="PackedScene" uid="uid://b6md8krwet3un" path="res://scenes/GlobalHealthBar.tscn" id="5_48ogf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_savjp"]
 albedo_texture = ExtResource("1_rrrxn")
@@ -168,3 +169,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -37)
 
 [node name="EnemySpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -40)
+
+[node name="GlobalHealthBar" parent="." instance=ExtResource("5_48ogf")]

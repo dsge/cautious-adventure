@@ -133,6 +133,7 @@ def globFolder(folderPath):
 sources = globFolder('src')
 sources += globFolder('src/PlayerControlledEntities')
 sources += globFolder('src/Enemies')
+sources += globFolder('src/UI')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], env['app_arch_suffix'])
 library = env.SharedLibrary(target=env["target_path"] + target_name, source=sources)

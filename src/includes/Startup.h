@@ -10,7 +10,8 @@
 
 #include "./SceneSwitcher.h"
 #include "./PlayerControlledEntities/PlayerControlledEntityHandler.h"
-#include "./PlayerControlledEntities/PlayerControlledEntityHandlerWrapper.h"
+#include "./UI/GlobalHealthBar.h"
+#include "./GodotNodeWrapper.h"
 #include "./helper-functions.h"
 
 #ifdef INCLUDE_TESTRUNNER
