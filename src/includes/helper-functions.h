@@ -1,5 +1,7 @@
 #pragma once
 
+
+#include <object.hpp>
 #include <node.hpp>
 #include <node_path.hpp>
 #include <spdlog/spdlog.h>

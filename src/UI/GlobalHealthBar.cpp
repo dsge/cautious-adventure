@@ -24,8 +24,9 @@ void GlobalHealthBar::_ready() {
 }
 
 void GlobalHealthBar::onUpdateDestructibleObject(godot::Variant targetObject) {
-    auto obj = (godot::Object*)targetObject;
+    auto obj = Object::cast_to<godot::Node>((godot::Object*)targetObject);
     if (obj != nullptr) {
+        this->get_node<godot::Label>("Text")->set_text(obj->get_name());
         this->set_visible(true);
     } else {
         this->set_visible(false);

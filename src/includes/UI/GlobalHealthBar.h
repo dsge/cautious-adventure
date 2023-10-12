@@ -2,7 +2,6 @@
 
 #include "../vendor/Godot.h"
 #include "../interfaces/DestructibleInterface.h"
-#include "../helper-functions.h"
 
 #include <spdlog/spdlog.h>
 

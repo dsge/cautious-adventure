@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b6md8krwet3un"]
 
 [node name="GlobalHealthBar" type="GlobalHealthBar"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
