@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmrfb0imm1o1m"]
+[gd_scene load_steps=9 format=3 uid="uid://cmrfb0imm1o1m"]
 
 [ext_resource type="PackedScene" uid="uid://iwj3e0pfuw7f" path="res://models/witch.tscn" id="1_p25sc"]
 
@@ -12,6 +12,29 @@ albedo_color = Color(0.976471, 0.627451, 1, 1)
 material = SubResource("StandardMaterial3D_rqevr")
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vsypu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ix581"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 0.66
+emission_ring_inner_radius = 0.0
+particle_flag_rotate_y = true
+gravity = Vector3(0, 9.8, 0)
+angle_min = 20.0
+angle_max = 180.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mle0k"]
+cull_mode = 2
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 12.55
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_uwrhs"]
+material = SubResource("StandardMaterial3D_mle0k")
+size = Vector2(0.1, 0.1)
 
 [node name="PlayerCharacterBody" type="PlayerCharacterBody"]
 collision_layer = 2
@@ -65,3 +88,11 @@ shape = SubResource("SeparationRayShape3D_vsypu")
 path_desired_distance = 0.25
 target_desired_distance = 0.1
 path_height_offset = 0.5
+
+[node name="ParticleExperiment" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ParticleExperiment"]
+amount = 20
+lifetime = 0.66
+process_material = SubResource("ParticleProcessMaterial_ix581")
+draw_pass_1 = SubResource("QuadMesh_uwrhs")
