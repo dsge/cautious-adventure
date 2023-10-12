@@ -23,6 +23,20 @@ void SimpleMeleeEnemy::_enter_tree() {
     }
     this->connect("mouse_entered", godot::Callable(this, "my_mouse_enter"));
     this->connect("mouse_exited", godot::Callable(this, "my_mouse_exit"));
+
+
+    /*auto children = this->find_children("*", "MeshInstance3D");
+    if (children.size()) {
+        godot::MeshInstance3D* meshInstance = godot::Object::cast_to<godot::MeshInstance3D>(children[0]);
+        auto mesh = meshInstance->get_mesh();
+        auto surface = mesh->surface_get_material(0);
+        auto nextPassMaterial = surface->get_next_pass();
+        if (nextPassMaterial.is_valid()) {
+            spdlog::info("nextPassMaterial yess");
+        } else {
+            spdlog::info("nextPassMaterial nooo");
+        }
+    }*/
 }
 
 void SimpleMeleeEnemy::animate(godot::String animationName, bool forcePlay) {

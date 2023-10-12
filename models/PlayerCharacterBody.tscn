@@ -92,6 +92,7 @@ path_height_offset = 0.5
 [node name="ParticleExperiment" type="Node3D" parent="."]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="ParticleExperiment"]
+visible = false
 amount = 20
 lifetime = 0.66
 process_material = SubResource("ParticleProcessMaterial_ix581")

@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwjngrpidkisb"]
+[gd_scene load_steps=7 format=3 uid="uid://dwjngrpidkisb"]
 
 [ext_resource type="PackedScene" uid="uid://c0wwqs7hr1fd5" path="res://models/goblin/Goblin.glb" id="1_ungot"]
 [ext_resource type="Texture2D" uid="uid://bkwixt3qftudk" path="res://models/goblin/Goblin_Atlas.png" id="2_fx6i7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfhhp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.0784314)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qm6b"]
 resource_name = "Atlas"
+next_pass = SubResource("StandardMaterial3D_bfhhp")
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("2_fx6i7")
 metallic = 0.4

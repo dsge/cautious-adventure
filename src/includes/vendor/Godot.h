@@ -10,6 +10,8 @@
 #include <node3d.hpp>
 #include <surface_tool.hpp>
 #include <mesh.hpp>
+#include <mesh_instance3d.hpp>
+#include <material.hpp>
 #include <vector3.hpp>
 #include <vector2.hpp>
 #include <array_mesh.hpp>
@@ -17,6 +19,7 @@
 #include <packed_vector2_array.hpp>
 #include <packed_int32_array.hpp>
 #include <array.hpp>
+#include <typed_array.hpp>
 #include <mesh_instance3d.hpp>
 #include <utility_functions.hpp>
 #include <ref.hpp>
