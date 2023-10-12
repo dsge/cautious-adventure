@@ -61,6 +61,8 @@ void Startup::_enter_tree() {
 
     this->container = builder.build();
 
+    app::setGlobalContainer(this->container);
+
     // app::setGlobalContainer(this->container);
 
 

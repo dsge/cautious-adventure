@@ -8,6 +8,8 @@ void SimpleMeleeEnemy::_bind_methods() {
     godot::ClassDB::bind_method(godot::D_METHOD("enter_tree"), &SimpleMeleeEnemy::_enter_tree);
     godot::ClassDB::bind_method(godot::D_METHOD("physics_process"), &SimpleMeleeEnemy::_physics_process);
     godot::ClassDB::bind_method(godot::D_METHOD("unhandled_input"), &SimpleMeleeEnemy::_unhandled_input);
+    godot::ClassDB::bind_method(godot::D_METHOD("my_mouse_enter"), &SimpleMeleeEnemy::_mouse_enter);
+    godot::ClassDB::bind_method(godot::D_METHOD("my_mouse_exit"), &SimpleMeleeEnemy::_mouse_exit);
 }
 
 SimpleMeleeEnemy::SimpleMeleeEnemy() {
@@ -19,6 +21,8 @@ void SimpleMeleeEnemy::_enter_tree() {
     if (globalHealthBarWrapper) {
         this->globalHealthBar = globalHealthBarWrapper->node;
     }
+    this->connect("mouse_entered", godot::Callable(this, "my_mouse_enter"));
+    this->connect("mouse_exited", godot::Callable(this, "my_mouse_exit"));
 }
 
 void SimpleMeleeEnemy::animate(godot::String animationName, bool forcePlay) {

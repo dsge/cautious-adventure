@@ -3,7 +3,8 @@
 #include <node.hpp>
 #include <node_path.hpp>
 #include <spdlog/spdlog.h>
-#include "./Startup.h"
+#include <Hypodermic/Hypodermic.h>
+#include <memory>
 
 namespace app {
 /**
@@ -48,19 +49,26 @@ template<class T> inline T* call_cast_to(godot::Node* node) {
  * @param path
  * @return godot::Node*
  */
-template<class T> T *call_get_node(godot::Node* node, const godot::NodePath &p_path) {
+template<class T> inline T *call_get_node(godot::Node* node, const godot::NodePath &p_path) {
     return call_cast_to<T>(call_get_node_or_null(node, p_path));
 }
 
-template <class T> std::shared_ptr< T > resolve(godot::Node* node) {
-    auto startup = app::call_get_node<Startup>(node, "/root/Startup");
-    if (startup) {
-        auto container = startup->getContainer();
-        return container->template resolve<T>();
+inline std::shared_ptr<Hypodermic::Container> globalContainer;
 
-    } else {
+inline void setGlobalContainer(std::shared_ptr<Hypodermic::Container> value){
+    app::globalContainer = value;
+}
+inline std::shared_ptr<Hypodermic::Container> getGlobalContainer(){
+    return app::globalContainer;
+}
+template <class T> inline std::shared_ptr< T > resolve(godot::Node* node) {
+    auto container = app::getGlobalContainer();
+    if (!container) {
         return nullptr;
+
+
     }
+    return container->template resolve<T>();
 }
 
 }
