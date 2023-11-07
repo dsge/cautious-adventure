@@ -10,8 +10,7 @@ class DestructibleInterface
     public:
         DestructibleInterface() {}
         virtual ~DestructibleInterface() {}
-        // virtual godot::Camera3D* getThirdPersonCamera() = 0;
-        virtual void onHit(std::shared_ptr<HitData> hitData) = 0;
+        virtual void onGettingHit(std::shared_ptr<HitData> hitData) = 0;
 };
 
 }

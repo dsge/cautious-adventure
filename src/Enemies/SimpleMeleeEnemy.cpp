@@ -62,7 +62,7 @@ void SimpleMeleeEnemy::_mouse_exit() {
     }
 }
 
-void SimpleMeleeEnemy::onHit(std::shared_ptr<HitData> hitData) {
+void SimpleMeleeEnemy::onGettingHit(std::shared_ptr<HitData> hitData) {
 
 }
 

@@ -41,6 +41,8 @@ public:
     void enableControls() override;
     void disableControls() override;
     bool getControlsEnabled() override;
+
+    double getAttackRange();
 };
 
 }

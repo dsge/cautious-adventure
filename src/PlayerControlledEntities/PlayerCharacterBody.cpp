@@ -97,6 +97,10 @@ bool PlayerCharacterBody::getControlsEnabled() {
     return !!this->controls;
 }
 
+double PlayerCharacterBody::getAttackRange() {
+    return 3.0;
+}
+
 PlayerCharacterBody::~PlayerCharacterBody() {
     this->disableControls();
 }

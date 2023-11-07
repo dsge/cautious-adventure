@@ -31,7 +31,7 @@ public:
 	void _unhandled_input(const godot::Ref<godot::InputEvent> &event) override;
 	void _mouse_enter() override;
     void _mouse_exit() override;
-    void onHit(std::shared_ptr<HitData> hitData) override;
+    void onGettingHit(std::shared_ptr<HitData> hitData) override;
 
 protected:
     godot::AnimationPlayer* animationPlayer = NULL;

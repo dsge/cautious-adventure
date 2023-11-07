@@ -12,15 +12,14 @@
 #include "../Startup.h"
 #include "../SceneSwitcher.h"
 #include "../Enemies/SimpleMeleeEnemy.h"
+#include "./MouseTarget.h"
 #include <bitset>
 
 #include <spdlog/spdlog.h>
 
 namespace app {
 
-class PlayerCharacterBodyControls {
-
-public:
+struct PlayerCharacterBodyControls {
     PlayerCharacterBody* model = NULL;
 
     godot::Ref<godot::PackedScene> goblinPrototype = NULL;
@@ -47,11 +46,7 @@ protected:
      * until `this->input->get_mouse_mode() != godot::Input::MOUSE_MODE_CAPTURED` actually works
      */
     bool mouseCaptured = false;
-    /**
-     * for communicating between `model_unhandled_key_input()` and `model_physics_process()`
-     */
-    bool isLastMouseClickPositionValid = false;
-    godot::Vector2 lastMouseClickPosition = godot::Vector2();
+    MouseTarget mouseTarget;
     /**
      * godot nodes used internally
      */
