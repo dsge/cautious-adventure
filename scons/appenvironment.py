@@ -10,7 +10,7 @@ editorDirectory = os.path.join(os.path.dirname(
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_godot_binaries(version='4.1.1', suffix='stable'):
+def ensure_godot_binaries(version='4.2', suffix='stable'):
     force = needs_fresh_download(version, suffix)
     did_download = False
     if (ensure_binary(version, suffix, 'linux.x86_64', force)):

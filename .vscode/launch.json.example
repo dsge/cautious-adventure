@@ -5,8 +5,36 @@
             "name": "Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64",
+            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
             "args": [
+                "--audio-driver",
+                "Dummy",
+                "--path",
+                "${workspaceFolder}",
+                "--verbose"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "linuxbuild"
+        },
+        {
+            "name": "Launch in debug editor",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
+            "args": [
+                "--audio-driver",
+                "Dummy",
                 "--path",
                 "${workspaceFolder}",
                 "--verbose"
@@ -29,7 +57,7 @@
             "name": "Open project in Godot Editor",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64",
+            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
             "args": [
                 "-e",
                 "--path",
@@ -53,8 +81,10 @@
             "name": "Launch tests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/geri/workspace/godot/bin/godot.linuxbsd.opt.tools.64",
+            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
             "args": [
+                "--audio-driver",
+                "Dummy",
                 "--path",
                 "${workspaceFolder}"
             ],
