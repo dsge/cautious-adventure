@@ -10550,7 +10550,6 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/CharacterArmature" index="0"]
-bones/0/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-0.0694294, -8.6946e-17, -9.33575e-10, 0.997587)
 bones/3/rotation = Quaternion(-0.0193345, -7.45198e-09, -9.31497e-10, 0.999813)
 bones/4/rotation = Quaternion(0.153868, -0.237706, -0.00529317, 0.959058)
@@ -10594,7 +10593,6 @@ bones/30/rotation = Quaternion(-0.0894857, -0.0379283, -0.022308, 0.995016)
 bones/31/rotation = Quaternion(-0.116958, -0.00965458, -0.00323035, 0.993085)
 bones/33/rotation = Quaternion(-0.317099, -0.317893, -0.180712, 0.875063)
 bones/34/rotation = Quaternion(0.131836, 0.274653, -0.0108175, 0.952401)
-bones/34/scale = Vector3(1, 1, 1)
 bones/35/rotation = Quaternion(-0.0596972, 0.0318687, 0.117547, 0.990759)
 bones/35/scale = Vector3(1, 1, 1)
 bones/37/rotation = Quaternion(-0.269814, 0.417607, 0.40977, 0.764783)
@@ -10639,10 +10637,9 @@ bones/66/scale = Vector3(1, 0.999999, 1)
 bones/68/rotation = Quaternion(0.965092, -0.0183966, 0.171005, 0.197524)
 bones/69/rotation = Quaternion(0.222987, 7.46389e-09, 7.64302e-09, 0.974821)
 bones/69/scale = Vector3(1, 1, 1)
-bones/75/scale = Vector3(1, 1, 1)
 
 [node name="RightHandWeaponAttachment" type="BoneAttachment3D" parent="RootNode/CharacterArmature/Skeleton3D" index="4"]
-transform = Transform3D(-0.312348, 0.00568471, -0.94995, 0.913591, -0.272275, -0.302022, -0.260365, -0.962202, 0.0798514, -0.00212816, -0.00144677, 0.00972779)
+transform = Transform3D(-0.312348, 0.00568531, -0.949951, 0.913591, -0.272276, -0.302022, -0.260366, -0.962202, 0.0798509, -0.00212815, -0.00144677, 0.00972779)
 bone_name = "Middle1.R"
 bone_idx = 46
 

@@ -38,9 +38,6 @@ collision_layer = 5
 [node name="RootNode" parent="." index="0"]
 transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0, 0)
 
-[node name="Skeleton3D" parent="RootNode/EnemyArmature" index="0"]
-bones/0/scale = Vector3(1, 1, 1)
-
 [node name="Demon" parent="RootNode/EnemyArmature/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_rk0c0")
 
