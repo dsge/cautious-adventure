@@ -3,6 +3,9 @@ import os
 import sys
 
 from scons import utils
+from scons import appenvironment
+
+appenvironment.ensure_godot_binaries()
 
 # default values, adapt them to your setup
 default_library_name = "libapp"
