@@ -1,6 +1,12 @@
 import json
 import os.path
 from shutil import copyfile
+from SCons.Tool import msvc, mingw
+import sys
+from SCons.Variables import *
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(
+    os.path.realpath(__file__)), '..', 'lib', 'godot-cpp', 'tools')))
+import my_spawn
 
 def override_build_output_messages(sys, env):
 
@@ -209,28 +215,6 @@ def autoDetectHostPlatform(sys):
 # - CPPDEFINES are for pre-processor defines
 # - LINKFLAGS are for linking flags
     
-def setOsxEnv(env):
-    env["target_path"] += "osx/"
-    # cpp_library += ".osx"
-
-    if env["bits"] == "32":
-        raise ValueError("Only 64-bit builds are supported for the macOS target.")
-
-    if env["macos_arch"] == "universal":
-        env.Append(LINKFLAGS=["-arch", "x86_64", "-arch", "arm64"])
-        env.Append(CCFLAGS=["-arch", "x86_64", "-arch", "arm64"])
-    else:
-        env.Append(LINKFLAGS=["-arch", env["macos_arch"]])
-        env.Append(CCFLAGS=["-arch", env["macos_arch"]])
-
-    env.Append(CXXFLAGS=["-std=c++17"])
-    if env["target"] == "debug":
-        env.Append(CCFLAGS=["-g", "-O2"])
-    else:
-        env.Append(CCFLAGS=["-g", "-O3"])
-
-    env['app_arch_suffix'] = env["macos_arch"]
-
 def setLinuxEnv(env):
     # cpp_library += ".linux"
     env.Append(CCFLAGS=["-fPIC", "-Wwrite-strings"])
@@ -242,29 +226,82 @@ def setLinuxEnv(env):
     else:
         env.Append(CCFLAGS=["-O3"])
 
-    env['app_arch_suffix'] = str(env['bits'])
-
 def setWindowsEnv(env, os):
-    # cpp_library += ".windows"
-    # This makes sure to keep the session environment variables on windows,
-    # that way you can run scons in a vs 2017 prompt and it will find all the required tools
-    env.Append(ENV=os.environ)
+    base = None
+    if not env["use_mingw"] and msvc.exists(env):
+        if env["arch"] == "x86_64":
+            env["TARGET_ARCH"] = "amd64"
+        elif env["arch"] == "x86_32":
+            env["TARGET_ARCH"] = "x86"
+        env["is_msvc"] = True
 
-    env.Append(CPPDEFINES=["WIN32", "_WIN32", "_WINDOWS", "_CRT_SECURE_NO_WARNINGS"])
-    env.Append(CCFLAGS=["-W3", "-GR"])
-    env.Append(CXXFLAGS=["-std:c++17"])
-    if env["target"] == "debug":
-        env.Append(CPPDEFINES=["_DEBUG"])
-        env.Append(CCFLAGS=["-EHsc", "-MDd", "-ZI", "-FS"])
-        env.Append(LINKFLAGS=["-DEBUG"])
+        # MSVC, linker, and archiver.
+        msvc.generate(env)
+        env.Tool("mslib")
+        env.Tool("mslink")
+
+        env.Append(CPPDEFINES=["TYPED_METHOD_BIND", "NOMINMAX"])
+        env.Append(CCFLAGS=["/utf-8"])
+        env.Append(LINKFLAGS=["/WX"])
+
+        if env["use_clang_cl"]:
+            env["CC"] = "clang-cl"
+            env["CXX"] = "clang-cl"
+
+        if env["use_static_cpp"]:
+            env.Append(CCFLAGS=["/MT"])
+        else:
+            env.Append(CCFLAGS=["/MD"])
+
+    elif sys.platform == "win32" or sys.platform == "msys":
+        env["use_mingw"] = True
+        mingw.generate(env)
+        # Don't want lib prefixes
+        env["IMPLIBPREFIX"] = ""
+        env["SHLIBPREFIX"] = ""
+        # Want dll suffix
+        env["SHLIBSUFFIX"] = ".dll"
+
+        env.Append(CCFLAGS=["-Wwrite-strings"])
+        env.Append(LINKFLAGS=["-Wl,--no-undefined"])
+        env.Append(CXXFLAGS=["-Wa,-mbig-obj", "-std=c++17"]) # -flto  # -Wa,-mbig-obj
+        if env["use_static_cpp"]:
+            env.Append(
+                LINKFLAGS=[
+                    "-static",
+                    "-static-libgcc",
+                    "-static-libstdc++",
+                ]
+            )
+
+        # Long line hack. Use custom spawn, quick AR append (to avoid files with the same names to override each other).
+        my_spawn.configure(env)
+
     else:
-        env.Append(CPPDEFINES=["NDEBUG"])
-        env.Append(CCFLAGS=["-O2", "-EHsc", "-MD"])
+        env["use_mingw"] = True
+        # Cross-compilation using MinGW
+        prefix = "i686" if env["arch"] == "x86_32" else env["arch"]
+        env["CXX"] = prefix + "-w64-mingw32-g++"
+        env["CC"] = prefix + "-w64-mingw32-gcc"
+        env["AR"] = prefix + "-w64-mingw32-ar"
+        env["RANLIB"] = prefix + "-w64-mingw32-ranlib"
+        env["LINK"] = prefix + "-w64-mingw32-g++"
+        # Want dll suffix
+        env["SHLIBSUFFIX"] = ".dll"
 
-    if not(env["use_llvm"]):
-        env.Append(CPPDEFINES=["TYPED_METHOD_BIND"])
+        env.Append(CCFLAGS=["-Wwrite-strings"]) 
+        env.Append(LINKFLAGS=["-Wl,--no-undefined"]) 
+        env.Append(CXXFLAGS=["-Wa,-mbig-obj", "-std=c++17"]) # -flto  # -Wa,-mbig-obj
+        if env["use_static_cpp"]:
+            env.Append(
+                LINKFLAGS=[
+                    "-static",
+                    "-static-libgcc",
+                    "-static-libstdc++",
+                ]
+            )
 
-    env['app_arch_suffix'] = str(env['bits'])
+    env.Append(CPPDEFINES=["WINDOWS_ENABLED"])
 
 def parseChildSconstructBuildResults(res, env, os):
     if "builds" in res:
