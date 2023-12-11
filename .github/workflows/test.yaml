@@ -53,6 +53,7 @@ jobs:
         run: scons platform=linux -j$(nproc)
       - name: build windows dll
         run: scons platform=windows -j$(nproc)
+      - run: mkdir /tmp/dist
       - name: Export Linux Build
         run: $GITHUB_WORKSPACE/godot-editor/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Linux/X11" /tmp/dist/app-linux-demo.zip
       - name: Export Windows Build
