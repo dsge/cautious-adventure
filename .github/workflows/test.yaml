@@ -24,7 +24,7 @@ jobs:
         id: godoteditorcache
         uses: actions/cache@v3
         with: 
-          key: ${{ runner.os }}-build-godot-editor-and-templates-${{ hashFiles('$GITHUB_WORKSPACE/scons/appenvironment.py') }}
+          key: ${{ runner.os }}-build-godot-editor-and-templates-${{ hashFiles('scons/appenvironment.py') }}
           path: |
             $GITHUB_WORKSPACE/godot-editor
       - uses: actions/cache@v3
