@@ -66,10 +66,10 @@ if env["target"] == "debug":
 env.Append(CPPDEFINES=['SPDLOG_COMPILED_LIB'])
 
 additionalSconsFilePaths = [
+    'scons/godot-cpp.SConstruct',
     'scons/googletest.SConstruct',
     'scons/hypodermic.SConstruct',
     'scons/spdlog.SConstruct',
-    'scons/godot-cpp.SConstruct',
 ]
 
 env['app_additionalCppHeaderIncludePaths'] = [] # where to look for #included files during build time
@@ -89,12 +89,15 @@ cppHeaderIncludePaths = []
 cppHeaderIncludePaths += env['app_additionalCppHeaderIncludePaths']
 # cppHeaderIncludePaths += ["./src"]
 
+finalEnv = env.Clone()
+
 # make sure our binding library is properly includes
-env.Append(CPPPATH=cppHeaderIncludePaths)
-env.Append(LIBPATH=env['app_additionalLibraryPaths'])
-env.Append(LIBS=env['app_additionalLibraryNames'])
+finalEnv.Append(CPPPATH=cppHeaderIncludePaths)
+finalEnv.Append(LIBPATH=env['app_additionalLibraryPaths'])
+finalEnv.Append(LIBS=env['app_additionalLibraryNames'])
 
 utils.override_build_output_messages(sys, env) 
+utils.override_build_output_messages(sys, finalEnv) 
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 
@@ -107,6 +110,6 @@ sources += globFolder('src/Enemies')
 sources += globFolder('src/UI')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], '64')
-library = env.SharedLibrary(target=env["target_path"] + target_name, source=sources)
+library = finalEnv.SharedLibrary(target=env["target_path"] + target_name, source=sources)
 
 Default(library)
