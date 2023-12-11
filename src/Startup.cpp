@@ -11,6 +11,7 @@ void Startup::_bind_methods() {
     godot::ClassDB::bind_method(godot::D_METHOD("ready"), &Startup::_ready);
     godot::ClassDB::bind_method(godot::D_METHOD("process"), &Startup::_process);
     godot::ClassDB::bind_method(godot::D_METHOD("enter_tree"), &Startup::_enter_tree);
+    godot::ClassDB::bind_method(godot::D_METHOD("exit_tree"), &Startup::_exit_tree);
 }
 
 Startup::Startup() {
@@ -21,7 +22,10 @@ void Startup::_init() {
 }
 
 void Startup::_enter_tree() {
-    // spdlog::info("Startup enter tree");
+    spdlog::info("Startup enter tree");
+    if (godot::Engine::get_singleton()->is_editor_hint()){
+        return;
+    }
 
     godot::Node3D* sceneContainer = memnew(godot::Node3D);
     sceneContainer->set_name("sceneContainer");
@@ -70,20 +74,32 @@ void Startup::_enter_tree() {
     // godot::UtilityFunctions::print("Startup enter tree");
 }
 
+void Startup::_exit_tree() {
+    spdlog::info("Startup exit tree");
+}
+
 /* void Startup::_notification(int64_t what) {
     std::cout << "Startup notification with: " << what << std::endl;
 } */
 
 void Startup::_ready() {
+    if (godot::Engine::get_singleton()->is_editor_hint()){
+        /**
+         * When the Startup node is included somewhere in the Editor UI then we don't want it to start loading in other scenes
+         */
+        return;
+    }
     this->add_child((this->container->resolve< GodotNodeWrapper<PlayerControlledEntityHandler> >())->node);
     this->add_child((this->container->resolve< GodotNodeWrapper<GlobalHealthBar> >())->node);
-
     // this->add_child(memnew(PlayerControlledEntityHandler));
     // std::cout << "Startup ready" << std::endl;
     // godot::UtilityFunctions::print("Startup ready");
     #ifdef INCLUDE_TESTRUNNER
         this->runTestsAndExit();
     #else
+        /**
+         * The Startup node is loaded in a situation where the game is running in standalone mode ( not in Godot Editor UI )
+         */
         this->initGameNormally();
     #endif
 }

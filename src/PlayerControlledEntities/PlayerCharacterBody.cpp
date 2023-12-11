@@ -20,6 +20,7 @@ void PlayerCharacterBody::_enter_tree() {
     if (this->controls) {
         this->controls->model_enter_tree();
     }
+    spdlog::info("PlayerCharacterBody::_enter_tree");
     this->get_node<godot::NavigationAgent3D>("NavigationAgent3D")->connect("navigation_finished", godot::Callable(this, "on_agent_navigation_finished"));
 }
 

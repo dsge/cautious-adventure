@@ -1,0 +1,67 @@
+name: Test Flow
+on: [push, pull_request]
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-static
+  cancel-in-progress: true
+
+jobs:
+  build-linux-dist:
+    name: Build linux distributable
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: 
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qqq build-essential tar mingw-w64
+      - run: sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+      - run: sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+      - name: Cache Godot Editor and Export Templates
+        id: godoteditorcache
+        uses: actions/cache@v3
+        with: 
+          key: ${{ runner.os }}-build-godot-editor-and-templates-${{ hashFiles('$GITHUB_WORKSPACE/scons/appenvironment.py') }}
+          path: |
+            $GITHUB_WORKSPACE/godot-editor
+      - uses: actions/cache@v3
+        with:
+          path: |
+            /opt/hostedtoolcache
+      - if: ${{ steps.godoteditorcache.outputs.cache-hit != 'true' }}
+        name: Check cache miss
+        continue-on-error: true
+        run: echo 'Cache miss'
+      - if: ${{ steps.godoteditorcache.outputs.cache-hit == 'true' }}
+        name: Check cache hit
+        continue-on-error: true
+        run: echo 'Cache hit'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+          cache: 'pip'
+      - name: Install scons
+        run: python3 -m pip install scons==4.4.0
+      - name: verify scons
+        run: scons --version
+      - name: hello
+        run: echo "$(git describe --always)"
+      - name: build linux so
+        run: scons platform=linux -j$(nproc)
+      - name: build windows dll
+        run: scons platform=windows -j$(nproc)
+      - name: Export Linux Build
+        run: $GITHUB_WORKSPACE/godot-editor/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Linux/X11" /tmp/dist/app-linux-demo.zip
+      - name: Export Windows Build
+        run: $GITHUB_WORKSPACE/godot-editor/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Windows Desktop" /tmp/dist/app-windows-demo.zip
+      - uses: actions/upload-artifact@v3
+        with:
+          name: app-linux-demo
+          path: /tmp/dist/app-linux-demo.zip
+      - uses: actions/upload-artifact@v3
+        with:
+          name: app-windows-demo
+          path: /tmp/dist/app-windows-demo.zip

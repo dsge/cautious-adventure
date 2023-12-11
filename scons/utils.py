@@ -197,15 +197,31 @@ def autoDetectHostPlatform(sys):
     # This is used if no `platform` argument is passed
     if sys.platform.startswith("linux"):
         ret = "linux"
-    elif sys.platform.startswith("freebsd"):
-        ret = "freebsd"
-    elif sys.platform == "darwin":
-        ret = "osx"
+    #elif sys.platform.startswith("freebsd"):
+    #    ret = "freebsd"
+    #elif sys.platform == "darwin":
+    #    ret = "osx"
     elif sys.platform == "win32" or sys.platform == "msys":
         ret = "windows"
     else:
         raise ValueError("Could not detect platform automatically, please specify with " "platform=<platform>")
     return ret
+
+def setupEnvForPlatform(env, platform = ''):
+    if not platform and "platform" in env:
+        platform = env["platform"]
+    if not platform and 'ARGUMENTS' in globals() and "platform" in ARGUMENTS:
+        platform = ARGUMENTS["platform"]
+    if not platform :
+        platform = autoDetectHostPlatform(sys)
+    if not platform or platform == "":
+        print("No valid target platform selected.")
+        quit()
+    elif platform in ("x11", "linux"):
+        setLinuxEnv(env)
+    elif platform == "windows":
+        env['arch'] = 'x86_64'
+        setWindowsEnv(env, os)
 
 # For the reference:
 # - CCFLAGS are compilation flags shared between C and C++
@@ -221,7 +237,7 @@ def setLinuxEnv(env):
     env.Append(CXXFLAGS=["-std=c++17"])
     env.Append(LINKFLAGS=["-Wl,-R,'$$ORIGIN'"])
     
-    if env["target"] == "debug":
+    if not "target" in env or env["target"] == "debug":
         env.Append(CCFLAGS=["-g", "-Og"])
     else:
         env.Append(CCFLAGS=["-O3"])

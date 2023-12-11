@@ -20,7 +20,7 @@ void PlayerCharacterBodyControls::model_enter_tree() {
 
     this->enemySpawnLocation = this->model->get_node<godot::Node3D>("../EnemySpawner");
 
-    this->container = this->model->get_node<Startup>("/root/Startup")->getContainer();
+    // this->container = Startup::containerInstance;
 
 }
 
@@ -171,12 +171,12 @@ void PlayerCharacterBodyControls::model_unhandled_key_input(const godot::Ref<god
 
     }
 
-    if (event->is_action_pressed(InputActions::UI_ASCEND) && this->container) {
+    /* if (event->is_action_pressed(InputActions::UI_ASCEND) && this->container) {
         auto sceneContainer = this->container->resolve<SceneSwitcher>()->getSceneContainer();
         godot::Node3D* enemyInstance = app::call_cast_to<godot::Node3D>(this->goblinPrototype->instantiate());
         enemyInstance->set_position(this->enemySpawnLocation->get_position());
         sceneContainer->add_child(enemyInstance);
-    }
+    } */
 
 
 }

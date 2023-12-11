@@ -50,6 +50,7 @@ opts.Update(env)
 # Generates help for the -h scons option.
 Help(opts.GenerateHelpText(env))
 
+utils.setupEnvForPlatform(env, env["platform"])
 # Process some arguments
 if env["use_llvm"]:
     env["CC"] = "clang"
@@ -62,22 +63,13 @@ if env["target"] == "debug":
         env.Append(CCFLAGS=['-fprofile-arcs', '-ftest-coverage'])
         env.Append(LIBS=['gcov'])
 
-if env["platform"] == "":
-    print("No valid target platform selected.")
-    quit()
-
-elif env["platform"] in ("x11", "linux"):
-    utils.setLinuxEnv(env)
-
-elif env["platform"] == "windows":
-    env['arch'] = 'x86_64'
-    utils.setWindowsEnv(env, os)
+env.Append(CPPDEFINES=['SPDLOG_COMPILED_LIB'])
 
 additionalSconsFilePaths = [
-    'scons/godot-cpp.SConstruct',
     'scons/googletest.SConstruct',
     'scons/hypodermic.SConstruct',
     'scons/spdlog.SConstruct',
+    'scons/godot-cpp.SConstruct',
 ]
 
 env['app_additionalCppHeaderIncludePaths'] = [] # where to look for #included files during build time
@@ -85,7 +77,7 @@ env['app_additionalLibraryPaths'] = [] # where to look for LIBs (aka the element
 env['app_additionalLibraryNames'] = [] 
 
 for sconsFilePath in additionalSconsFilePaths:
-    res = SConscript(sconsFilePath)
+    res = SConscript(sconsFilePath, exports={'env': env.Clone()})
     if res:
         utils.parseChildSconstructBuildResults(res, env, os)
 

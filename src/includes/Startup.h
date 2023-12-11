@@ -30,13 +30,12 @@ protected:
     std::shared_ptr< Hypodermic::Container > container;
 
 public:
-
-
     Startup();
     ~Startup();
 
     void _init(); // our initializer called by Godot
     void _enter_tree() override;
+    void _exit_tree() override;
     // virtual void _notification(int64_t what) override;
 
     void _ready() override;
@@ -45,7 +44,6 @@ public:
 
     void runTestsAndExit();
     void initGameNormally();
-
     std::shared_ptr< Hypodermic::Container > getContainer();
 };
 

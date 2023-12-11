@@ -2,13 +2,7 @@ import os
 import sys
 import utils
 
-env = Environment()
-
-# env.Append(CPPPATH = buildtimeIncludePaths) # where to look for #included files
-# env.Append(LIBPATH = buildtimeIncludePaths) # where to look for the LIBS
-# env.Append(LIBS = libraryNames)
-
-# env.Append( LINKFLAGS = Split('-z origin') )
+Import('env')
 
 libraryBasePath = '../lib/hypodermic'
 
@@ -24,15 +18,10 @@ for boostSubLibraryPath in Glob(boostLibsBasePath + '/libs/*'):
     if os.path.isdir('../' + path):
         headerfileIncludePaths.append('../' + path)
 
-# env.Append(CPPPATH=headerfileIncludePaths)
+env.Decider("content-timestamp")
 
-Decider("content-timestamp")
+env.Default(libraryBasePath)
 
-Default(libraryBasePath)
-
-utils.override_build_output_messages(sys, env) 
-
-# ret = env.StaticLibrary(target= libraryBasePath + '/googletest/build/gtest', source=[libraryBasePath + '/googletest/src/gtest-all.cc'])
 ret = {
     'builds': [], 
     'headerfileIncludePaths': list(map(Dir, headerfileIncludePaths))
