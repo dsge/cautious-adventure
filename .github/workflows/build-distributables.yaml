@@ -21,18 +21,13 @@ jobs:
       - run: sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
       - run: sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
       - run: echo "GODOT_EDITOR_DIR=/tmp/godot-editor" >> "$GITHUB_ENV"
-      - name: Cache Godot Editor and Export Templates
+      - name: Godot Editor and Export Templates Cache
         id: godoteditorcache
         uses: actions/cache@v3
-        with: 
+        with:
           key: ${{ runner.os }}-build-godot-editor-and-templates-${{ hashFiles('scons/appenvironment.py') }}
           path: |
             ${{ env.GODOT_EDITOR_DIR }}
-      - uses: actions/cache@v3
-        with:
-          key: python-hostedtoolcache
-          path: |
-            /opt/hostedtoolcache
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10' 
