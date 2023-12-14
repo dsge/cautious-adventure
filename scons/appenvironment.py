@@ -8,7 +8,7 @@ import json
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_godot_binaries(version='4.2', suffix='stable', override_godot_editor_path='./godot-editor'):
+def ensure_godot_binaries(version='4.2.1', suffix='stable', override_godot_editor_path='./godot-editor'):
     editorDirectory = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', override_godot_editor_path))
     if (not os.path.isdir(editorDirectory)):
         os.makedirs(editorDirectory)
