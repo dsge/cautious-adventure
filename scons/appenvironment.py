@@ -5,26 +5,27 @@ import zipfile
 import shutil
 import json
 
-editorDirectory = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), '..', 'godot-editor')
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_godot_binaries(version='4.2', suffix='stable'):
-    force = needs_fresh_download(version, suffix)
+def ensure_godot_binaries(version='4.2', suffix='stable', override_godot_editor_path='./godot-editor'):
+    editorDirectory = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', override_godot_editor_path))
+    if (not os.path.isdir(editorDirectory)):
+        os.makedirs(editorDirectory)
+    force = needs_fresh_download(version, suffix, editorDirectory)
     did_download = False
-    if (ensure_binary(version, suffix, 'linux.x86_64', force)):
+    if (ensure_binary(version, suffix, 'linux.x86_64', editorDirectory, force)):
         did_download = True
-    if (ensure_binary(version, suffix, 'win64.exe', force)):
+    if (ensure_binary(version, suffix, 'win64.exe', editorDirectory, force)):
         did_download = True
     if (did_download):
-        update_last_downloaded_version(version, suffix)
-    ensure_export_templates(version, suffix)
-    ensure_godot_selfcontained_mode()
-    ensure_godot_editor_project()
+        update_last_downloaded_version(version, suffix, editorDirectory)
+    ensure_export_templates(version, suffix, editorDirectory)
+    ensure_godot_selfcontained_mode(editorDirectory)
+    ensure_godot_editor_project(editorDirectory)
 
 
-def ensure_binary(version, suffix, platformBinaryName, force):
+def ensure_binary(version, suffix, platformBinaryName, editorDirectory, force):
     binaryName = "Godot_v{version}-{suffix}_{platformBinaryName}".format(
         version=version, suffix=suffix, platformBinaryName=platformBinaryName)
     targetBinaryName = "Godot_{platformBinaryName}".format(
@@ -49,7 +50,7 @@ def ensure_binary(version, suffix, platformBinaryName, force):
             return True
     return False
 
-def ensure_export_templates(version, suffix):
+def ensure_export_templates(version, suffix, editorDirectory):
     templatesFinalFolder=os.path.abspath(os.path.join(
         editorDirectory, 'editor_data', 'export_templates', "{}.{}".format(version, suffix)))
     if (not os.path.isdir(templatesFinalFolder)):
@@ -69,7 +70,7 @@ def ensure_export_templates(version, suffix):
 
 
 
-def needs_fresh_download(version, suffix):
+def needs_fresh_download(version, suffix, editorDirectory):
     filename=os.path.join(editorDirectory, last_version_filename)
     if not os.path.isfile(filename):
         return True
@@ -78,7 +79,7 @@ def needs_fresh_download(version, suffix):
         return data['version'] != version or data['suffix'] != suffix
 
 
-def update_last_downloaded_version(version, suffix):
+def update_last_downloaded_version(version, suffix, editorDirectory):
     filename=os.path.join(editorDirectory, last_version_filename)
     dict={
         'version': version,
@@ -88,13 +89,13 @@ def update_last_downloaded_version(version, suffix):
         json.dump(dict, outfile)
 
 
-def ensure_godot_selfcontained_mode():
+def ensure_godot_selfcontained_mode(editorDirectory):
     filename=os.path.join(editorDirectory, '._sc_')
     if not os.path.isfile(filename):
         open(filename, 'a').close()
 
 
-def ensure_godot_editor_project():
+def ensure_godot_editor_project(editorDirectory):
     filename=os.path.join(editorDirectory, 'editor_data', 'projects.cfg')
     if not os.path.isfile(filename):
         if (not os.path.isdir(os.path.dirname(filename))):

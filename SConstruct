@@ -7,8 +7,6 @@ from scons import appenvironment
 
 EnsureSConsVersion(4, 4)
 
-appenvironment.ensure_godot_binaries()
-
 # default values, adapt them to your setup
 default_library_name = "libapp"
 default_target_path = "bin/"
@@ -45,11 +43,14 @@ opts.Add(BoolVariable('include_testrunner', "include testrunner", 'no'))
 opts.Add(BoolVariable("show_include_paths", "Show an extended list of the used CPP include paths", "no"))
 opts.Add(BoolVariable('verbose', "Show more build time information", 'no'))
 
+opts.Add(PathVariable('godot_editor_dir', "The path where the godot-editor folder should be downloaded to, relative to the repo root folder", './godot-editor', PathVariable.PathAccept))
+
 # Updates the environment with the option variables.
 opts.Update(env)
 # Generates help for the -h scons option.
 Help(opts.GenerateHelpText(env))
 
+appenvironment.ensure_godot_binaries(override_godot_editor_path=env['godot_editor_dir'])
 utils.setupEnvForPlatform(env, env["platform"])
 # Process some arguments
 if env["use_llvm"]:

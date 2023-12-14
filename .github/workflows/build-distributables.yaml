@@ -6,8 +6,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-linux-dist:
-    name: Build linux distributable
+  build-all-dist:
+    name: Build distributables
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -20,25 +20,19 @@ jobs:
           sudo apt-get install -qqq build-essential tar mingw-w64
       - run: sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
       - run: sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+      - run: echo "GODOT_EDITOR_DIR=/tmp/godot-editor" >> "$GITHUB_ENV"
       - name: Cache Godot Editor and Export Templates
         id: godoteditorcache
         uses: actions/cache@v3
         with: 
           key: ${{ runner.os }}-build-godot-editor-and-templates-${{ hashFiles('scons/appenvironment.py') }}
           path: |
-            ./godot-editor/
+            ${{ env.GODOT_EDITOR_DIR }}
       - uses: actions/cache@v3
         with:
+          key: python-hostedtoolcache
           path: |
             /opt/hostedtoolcache
-      - if: ${{ steps.godoteditorcache.outputs.cache-hit != 'true' }}
-        name: Check cache miss
-        continue-on-error: true
-        run: echo 'Cache miss'
-      - if: ${{ steps.godoteditorcache.outputs.cache-hit == 'true' }}
-        name: Check cache hit
-        continue-on-error: true
-        run: echo 'Cache hit'
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10' 
@@ -50,19 +44,23 @@ jobs:
       - name: hello
         run: echo "$(git describe --always)"
       - name: build linux so
-        run: scons platform=linux -j$(nproc)
+        run: scons platform=linux -j$(nproc) godot_editor_dir=$GODOT_EDITOR_DIR
       - name: build windows dll
-        run: scons platform=windows -j$(nproc)
-      - run: mkdir /tmp/dist
+        run: scons platform=windows -j$(nproc) godot_editor_dir=$GODOT_EDITOR_DIR
+      - run: echo "LINUX_OUTPUT_DIRNAME=/tmp/dist/app-linux-demo" >> "$GITHUB_ENV"
+      - run: echo "WINDOWS_OUTPUT_DIRNAME=/tmp/dist/app-windows-demo" >> "$GITHUB_ENV"
+      - run: echo "TAG=$(git describe --tag --always)" >> "$GITHUB_ENV"
+      - run: mkdir -p $LINUX_OUTPUT_DIRNAME
+      - run: mkdir -p $WINDOWS_OUTPUT_DIRNAME
       - name: Export Linux Build
-        run: $GITHUB_WORKSPACE/godot-editor/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Linux/X11" /tmp/dist/app-linux-demo.zip
+        run: $GODOT_EDITOR_DIR/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Linux/X11" $LINUX_OUTPUT_DIRNAME/app-linux-demo.x86_64
       - name: Export Windows Build
-        run: $GITHUB_WORKSPACE/godot-editor/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Windows Desktop" /tmp/dist/app-windows-demo.zip
+        run: $GODOT_EDITOR_DIR/Godot_linux.x86_64 --headless --path $GITHUB_WORKSPACE --export-debug "Windows Desktop" $WINDOWS_OUTPUT_DIRNAME/app-windows-demo.exe
       - uses: actions/upload-artifact@v3
         with:
-          name: app-linux-demo
-          path: /tmp/dist/app-linux-demo.zip
+          name: app-linux-demo-${{ env.TAG }}.zip
+          path: ${{ env.LINUX_OUTPUT_DIRNAME }}
       - uses: actions/upload-artifact@v3
         with:
-          name: app-windows-demo
-          path: /tmp/dist/app-windows-demo.zip
+          name: app-windows-demo-${{ env.TAG }}.zip
+          path: ${{ env.WINDOWS_OUTPUT_DIRNAME }}
