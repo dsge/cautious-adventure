@@ -22,7 +22,6 @@ def ensure_godot_binaries(version='4.2.1', suffix='stable', override_godot_edito
         update_last_downloaded_version(version, suffix, editorDirectory)
     ensure_export_templates(version, suffix, editorDirectory)
     ensure_godot_selfcontained_mode(editorDirectory)
-    ensure_godot_editor_project(editorDirectory)
 
 
 def ensure_binary(version, suffix, platformBinaryName, editorDirectory, force):
@@ -92,16 +91,10 @@ def update_last_downloaded_version(version, suffix, editorDirectory):
 def ensure_godot_selfcontained_mode(editorDirectory):
     filename=os.path.join(editorDirectory, '._sc_')
     if not os.path.isfile(filename):
-        open(filename, 'a').close()
-
-
-def ensure_godot_editor_project(editorDirectory):
-    filename=os.path.join(editorDirectory, 'editor_data', 'projects.cfg')
-    if not os.path.isfile(filename):
-        if (not os.path.isdir(os.path.dirname(filename))):
-            os.makedirs(os.path.dirname(filename))
-        project_root=os.path.abspath(os.path.join(os.path.dirname(
-            os.path.realpath(__file__)), '..'))
-        with open(filename, "w") as outfile:
-            outfile.write("[{project_root}]\n\nfavorite=false\n\n".format(
-                project_root=project_root))
+        with open(filename, 'a') as f:
+            absolute_repo_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
+            relative_repo_root = os.path.relpath(absolute_repo_root, editorDirectory)
+            if (relative_repo_root == '..'):
+                repo_parent = os.path.join(absolute_repo_root, '..')
+                relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent))
+            f.write("[init_projects]\nlist=[\"{}\"]".format(relative_repo_root))
