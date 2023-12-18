@@ -258,6 +258,7 @@ def setWindowsEnv(env, os):
 
         env.Append(CPPDEFINES=["TYPED_METHOD_BIND", "NOMINMAX"])
         env.Append(CCFLAGS=["/utf-8"])
+        env.Append(CXXFLAGS=["/std:c++17", "/EHsc"])
         env.Append(LINKFLAGS=["/WX"])
 
         if env["use_clang_cl"]:
@@ -324,8 +325,8 @@ def parseChildSconstructBuildResults(res, env, os):
         for builtLibrary in res["builds"]:
             libraryPath = os.path.dirname(builtLibrary.path)
             libraryName = os.path.splitext(os.path.basename(builtLibrary.abspath))[0]
-            if libraryName.startswith('lib'):
-                libraryName = libraryName[len('lib'):]
+            #if libraryName.startswith('lib'):
+            #    libraryName = libraryName[len('lib'):]
             runtimeRelativeLibPath = os.path.basename(libraryPath)
 
             env['app_additionalLibraryPaths'].append(libraryPath)
