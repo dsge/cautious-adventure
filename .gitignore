@@ -60,6 +60,7 @@ lib/googletest/**
 *.gcda
 *.gcno
 *.info
+src/**/*.obj
 
 api.json
 
