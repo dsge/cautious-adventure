@@ -5,6 +5,7 @@ import zipfile
 import shutil
 import json
 import tarfile
+import configparser
 
 last_version_filename = "last_downloaded_version.json"
 
@@ -126,12 +127,19 @@ def update_last_downloaded_version(godot_version, godot_suffix, blender_version,
 
 def ensure_godot_selfcontained_mode(editorDirectory):
     filename=os.path.join(editorDirectory, '._sc_')
-    if not os.path.isfile(filename):
-        with open(filename, 'a') as f:
-            absolute_repo_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
-            relative_repo_root = os.path.relpath(absolute_repo_root, editorDirectory)
-            if (relative_repo_root == '..'):
-                repo_parent = os.path.join(absolute_repo_root, '..')
-                relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent), 'godot-project')
-            blender3_path = os.path.abspath(os.path.join(absolute_repo_root, 'blender-and-godot-editor', "blender_{}".format("windows" if os.name == 'nt' else "linux")))
-            f.write("[init_projects]\nlist=[\"{}\"]\n\n[presets]\nfilesystem/import/blender/blender3_path = \"{}\"".format(relative_repo_root, blender3_path))
+    if not os.path.isfile(filename) or True:
+        absolute_repo_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
+        relative_repo_root = os.path.relpath(absolute_repo_root, editorDirectory)
+        if (relative_repo_root == '..'):
+            repo_parent = os.path.join(absolute_repo_root, '..')
+            relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent), 'godot-project')
+        blender3_path = os.path.abspath(os.path.join(absolute_repo_root, 'blender-and-godot-editor', "blender_{}".format("windows" if os.name == 'nt' else "linux")))
+        
+        config = configparser.ConfigParser()
+        config['init_projects'] = {'list': "[\"{}\"]".format(relative_repo_root)}
+        config['presets'] = {
+            'filesystem/import/blender/blender3_path': "\"{}\"".format(blender3_path),
+            'filesystem/import/blender/rpc_port': 0
+        }
+        with open(filename, 'w') as f:
+            config.write(f)
