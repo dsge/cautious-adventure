@@ -34,9 +34,7 @@ obj/
 **/.history
 
 
-# we only want to commit godot native formats like tscn, we dont want the raw model files in the repo
 *.dae
-*.blend
 
 #Paket dependency manager
 .paket/**
@@ -51,7 +49,7 @@ lib/godot-cpp/**/*.import
 lib/googletest/**
 /demo/**
 /bin/**
-/godot-project/**
+/godot-project/bin/**
 !/godot-project/.gdignore
 /code_coverage_report
 /code_coverage_report/**
@@ -72,6 +70,7 @@ api.json
 .env
 
 /godot-editor/**
+/blender-and-godot-editor/**
 
 !.gdignore
 !/**/.gdignore

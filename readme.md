@@ -27,4 +27,4 @@ $ scons platform=windows
 --------------
 
 
-`./godot-editor/Godot_linux.x86_64` or `./godot-editor/Godot_win64.exe`
+`./blender-and-godot-editor/Godot_linux.x86_64` or `./blender-and-godot-editor/Godot_win64.exe`

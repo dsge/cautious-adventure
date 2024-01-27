@@ -5,12 +5,12 @@
             "name": "Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
+            "program": "${workspaceFolder}/blender-and-godot-editor/Godot_linux.x86_64",
             "args": [
                 "--audio-driver",
                 "Dummy",
                 "--path",
-                "${workspaceFolder}",
+                "${workspaceFolder}/godot-project",
                 "--verbose"
             ],
             "stopAtEntry": false,
@@ -31,12 +31,12 @@
             "name": "Launch in debug editor",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
+            "program": "${workspaceFolder}/blender-and-godot-editor/Godot_linux.x86_64",
             "args": [
                 "--audio-driver",
                 "Dummy",
                 "--path",
-                "${workspaceFolder}",
+                "${workspaceFolder}/godot-project",
                 "--verbose"
             ],
             "stopAtEntry": false,
@@ -57,11 +57,11 @@
             "name": "Open project in Godot Editor",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
+            "program": "${workspaceFolder}/blender-and-godot-editor/Godot_linux.x86_64",
             "args": [
                 "-e",
                 "--path",
-                "${workspaceFolder}"
+                "${workspaceFolder}/godot-project"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -81,12 +81,12 @@
             "name": "Launch tests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/godot-editor/Godot_linux.x86_64",
+            "program": "${workspaceFolder}/blender-and-godot-editor/Godot_linux.x86_64",
             "args": [
                 "--audio-driver",
                 "Dummy",
                 "--path",
-                "${workspaceFolder}"
+                "${workspaceFolder}/godot-project"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

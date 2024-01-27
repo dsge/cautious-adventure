@@ -4,27 +4,62 @@ import os
 import zipfile
 import shutil
 import json
+import tarfile
 
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_godot_binaries(version='4.2.1', suffix='stable', override_godot_editor_path='./godot-editor'):
-    editorDirectory = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', override_godot_editor_path))
+def ensure_blender_and_godot_binaries(godot_version='4.2.1', godot_suffix='stable', blender_version='4.0.2', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
+
+    editorDirectory = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', override_blender_and_godot_editor_path))
     if (not os.path.isdir(editorDirectory)):
         os.makedirs(editorDirectory)
-    force = needs_fresh_download(version, suffix, editorDirectory)
+    force = needs_fresh_download(godot_version, godot_suffix, blender_version, editorDirectory)
     did_download = False
-    if (ensure_binary(version, suffix, 'linux.x86_64', editorDirectory, force)):
+    if (ensure_godot_binary(godot_version, godot_suffix, 'linux.x86_64', editorDirectory, force)):
         did_download = True
-    if (ensure_binary(version, suffix, 'win64.exe', editorDirectory, force)):
+    if (ensure_godot_binary(godot_version, godot_suffix, 'win64.exe', editorDirectory, force)):
+        did_download = True
+    if (ensure_blender_folder(blender_version, 'windows', editorDirectory, force)):
+        did_download = True
+    if (ensure_blender_folder(blender_version, 'linux', editorDirectory, force)):
         did_download = True
     if (did_download):
-        update_last_downloaded_version(version, suffix, editorDirectory)
-    ensure_export_templates(version, suffix, editorDirectory)
+        update_last_downloaded_version(godot_version, godot_suffix, blender_version, editorDirectory)
+    ensure_export_templates(godot_version, godot_suffix, editorDirectory)
     ensure_godot_selfcontained_mode(editorDirectory)
 
+def ensure_blender_folder(blender_version, platformName, editorDirectory, force):
+    mirror = "https://mirrors.sahilister.in"
+    targetFolderName = "blender_{platformName}".format(version=blender_version, platformName=platformName)
+    finalFolderPath = os.path.abspath(os.path.join(editorDirectory, targetFolderName))
 
-def ensure_binary(version, suffix, platformBinaryName, editorDirectory, force):
+    isZip = platformName == "windows"
+    downloadFileName = "blender-{blender_version}-{platformName}-x64".format(blender_version=blender_version, platformName=platformName, extension=('zip' if isZip else 'tar.xz'))
+    downloadFileNameWithExtension = "{downloadFileName}.{extension}".format(downloadFileName=downloadFileName, extension=('zip' if isZip else 'tar.xz'))
+
+    if (not os.path.isdir(finalFolderPath) or force):
+        print("Downloading fresh {targetFolderName} to '<project_root>/blender-and-godot-editor'...".format(
+            targetFolderName=targetFolderName))
+        url = "{mirror}/blender/release/Blender4.0/{downloadFileNameWithExtension}".format(mirror=mirror, downloadFileNameWithExtension=downloadFileNameWithExtension)
+        local_tmp_filename, headers=urllib.request.urlretrieve(url)
+
+
+        extractDirectory=os.path.dirname(local_tmp_filename)
+        if (isZip):
+            with zipfile.ZipFile(local_tmp_filename, "r") as zip_ref:
+                zip_ref.extractall(extractDirectory)
+        else:
+            with tarfile.open(local_tmp_filename) as tar_ref:
+                tar_ref.extractall(extractDirectory)
+        shutil.move(os.path.join(extractDirectory, downloadFileName), finalFolderPath)
+        if not os.name == 'nt':
+            os.chmod(finalFolderPath, 0o744)
+        return True
+    return False
+
+
+def ensure_godot_binary(version, suffix, platformBinaryName, editorDirectory, force):
     binaryName = "Godot_v{version}-{suffix}_{platformBinaryName}".format(
         version=version, suffix=suffix, platformBinaryName=platformBinaryName)
     targetBinaryName = "Godot_{platformBinaryName}".format(
@@ -33,7 +68,7 @@ def ensure_binary(version, suffix, platformBinaryName, editorDirectory, force):
         os.path.join(editorDirectory, targetBinaryName))
 
     if (not os.path.isfile(finalEditorPath) or force):
-        print("Downloading fresh {platformBinaryName} Godot Editor binary to '<project_root>/godot-editor'...".format(
+        print("Downloading fresh {platformBinaryName} Godot Editor binary to '<project_root>/blender-and-godot-editor'...".format(
             platformBinaryName=platformBinaryName))
         url = "https://downloads.tuxfamily.org/godotengine/{version}/{binaryName}.zip".format(
             version=version, binaryName=binaryName)        
@@ -53,7 +88,7 @@ def ensure_export_templates(version, suffix, editorDirectory):
     templatesFinalFolder=os.path.abspath(os.path.join(
         editorDirectory, 'editor_data', 'export_templates', "{}.{}".format(version, suffix)))
     if (not os.path.isdir(templatesFinalFolder)):
-        print("Downloading fresh Export Templates to '<project_root>/godot-editor/editor_data/export-templates'...")
+        print("Downloading fresh Export Templates to '<project_root>/blender-and-godot-editor/editor_data/export-templates'...")
         url="https://downloads.tuxfamily.org/godotengine/{version}/Godot_v{version}-{suffix}_export_templates.tpz".format(
             version=version, suffix=suffix)
         local_tmp_filename, headers=urllib.request.urlretrieve(url)
@@ -69,20 +104,21 @@ def ensure_export_templates(version, suffix, editorDirectory):
 
 
 
-def needs_fresh_download(version, suffix, editorDirectory):
+def needs_fresh_download(version, suffix, blender_version, editorDirectory):
     filename=os.path.join(editorDirectory, last_version_filename)
     if not os.path.isfile(filename):
         return True
     with open(filename) as f:
         data=json.load(f)
-        return data['version'] != version or data['suffix'] != suffix
+        return data['godot_version'] != version or data['godot_suffix'] != suffix or data['blender_version'] != blender_version
 
 
-def update_last_downloaded_version(version, suffix, editorDirectory):
+def update_last_downloaded_version(godot_version, godot_suffix, blender_version, editorDirectory):
     filename=os.path.join(editorDirectory, last_version_filename)
     dict={
-        'version': version,
-        'suffix': suffix
+        'godot_version': godot_version,
+        'godot_suffix': godot_suffix,
+        'blender_version': blender_version
     }
     with open(filename, "w") as outfile:
         json.dump(dict, outfile)
@@ -97,4 +133,5 @@ def ensure_godot_selfcontained_mode(editorDirectory):
             if (relative_repo_root == '..'):
                 repo_parent = os.path.join(absolute_repo_root, '..')
                 relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent), 'godot-project')
-            f.write("[init_projects]\nlist=[\"{}\"]".format(relative_repo_root))
+            blender3_path = os.path.abspath(os.path.join(absolute_repo_root, 'blender-and-godot-editor', "blender_{}".format("windows" if os.name == 'nt' else "linux")))
+            f.write("[init_projects]\nlist=[\"{}\"]\n\n[presets]\nfilesystem/import/blender/blender3_path = \"{}\"".format(relative_repo_root, blender3_path))

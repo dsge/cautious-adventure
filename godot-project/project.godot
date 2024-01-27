@@ -19,10 +19,6 @@ config/icon="res://resources/icon.png"
 
 scene/scene_naming=1
 
-[filesystem]
-
-import/blender/enabled=false
-
 [input]
 
 ui_left={
