@@ -33,7 +33,6 @@ obj/
 # Ignore all local history of files
 **/.history
 
-
 *.dae
 
 #Paket dependency manager
@@ -42,18 +41,17 @@ obj/
 paket-files/
 *.blob
 
-
 lib/godot-cpp/
 lib/godot-cpp/godot_headers/
 lib/godot-cpp/**/*.import
 lib/googletest/**
 /demo/**
 /bin/**
+/dist/**
 /godot-project/bin/**
-!/godot-project/.gdignore
+!/godot-project/bin/.gdignore
 /code_coverage_report
 /code_coverage_report/**
-
 
 *.dblite
 *.os
@@ -75,4 +73,3 @@ api.json
 !.gdignore
 !/**/.gdignore
 !**/\.gitkeep
-/godot-project/bin/**
