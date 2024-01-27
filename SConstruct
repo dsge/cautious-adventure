@@ -9,7 +9,7 @@ EnsureSConsVersion(4, 4)
 
 # default values, adapt them to your setup
 default_library_name = "libapp"
-default_target_path = "bin/"
+default_target_path = "godot-project/bin/"
 
 
 host_platform = utils.autoDetectHostPlatform(sys)
@@ -105,10 +105,10 @@ utils.override_build_output_messages(sys, finalEnv)
 def globFolder(folderPath):
     return Glob(pattern = folderPath + '/*.cpp', exclude=None if env['include_testrunner'] else folderPath + '/*.test.cpp')
 
-sources = globFolder('src')
-sources += globFolder('src/PlayerControlledEntities')
-sources += globFolder('src/Enemies')
-sources += globFolder('src/UI')
+sources = globFolder('godot-project/src')
+sources += globFolder('godot-project/src/PlayerControlledEntities')
+sources += globFolder('godot-project/src/Enemies')
+sources += globFolder('godot-project/src/UI')
 
 target_name = "{}.{}.{}.{}".format(env["target_name"], env["platform"], env["target"], '64')
 library = finalEnv.SharedLibrary(target=env["target_path"] + target_name, source=sources)

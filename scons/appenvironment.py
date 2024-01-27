@@ -96,5 +96,5 @@ def ensure_godot_selfcontained_mode(editorDirectory):
             relative_repo_root = os.path.relpath(absolute_repo_root, editorDirectory)
             if (relative_repo_root == '..'):
                 repo_parent = os.path.join(absolute_repo_root, '..')
-                relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent))
+                relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent), 'godot-project')
             f.write("[init_projects]\nlist=[\"{}\"]".format(relative_repo_root))

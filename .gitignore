@@ -51,6 +51,8 @@ lib/godot-cpp/**/*.import
 lib/googletest/**
 /demo/**
 /bin/**
+/godot-project/**
+!/godot-project/.gdignore
 /code_coverage_report
 /code_coverage_report/**
 
@@ -61,6 +63,7 @@ lib/googletest/**
 *.gcno
 *.info
 src/**/*.obj
+godot-project/src/**/*.obj
 
 api.json
 
