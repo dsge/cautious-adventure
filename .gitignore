@@ -76,3 +76,4 @@ api.json
 !.gdignore
 !/**/.gdignore
 !**/\.gitkeep
+/godot-project/bin/**
