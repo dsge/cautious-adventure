@@ -133,7 +133,7 @@ def ensure_godot_selfcontained_mode(editorDirectory):
         if (relative_repo_root == '..'):
             repo_parent = os.path.join(absolute_repo_root, '..')
             relative_repo_root = os.path.join('..', '..', os.path.relpath(absolute_repo_root, repo_parent), 'godot-project')
-        blender3_path = os.path.abspath(os.path.join(absolute_repo_root, 'blender-and-godot-editor', "blender_{}".format("windows" if os.name == 'nt' else "linux")))
+        blender3_path = os.path.abspath(os.path.join(editorDirectory, "blender_{}".format("windows" if os.name == 'nt' else "linux")))
         
         config = configparser.ConfigParser()
         config['init_projects'] = {'list': "[\"{}\"]".format(relative_repo_root)}
