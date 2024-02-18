@@ -109,5 +109,6 @@
         "src/**/*.gcno": true,
         "src/**/*.os": true,
     },
+    "godot_tools.scene_file_config": "${workspaceFolder}/godot-project/src",
     // "C_Cpp.intelliSenseEngine": "Tag Parser"
 }

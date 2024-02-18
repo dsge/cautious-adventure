@@ -15,7 +15,7 @@ void PlayerCharacterBodyControls::model_enter_tree() {
     this->cameraContainer = this->model->get_node<godot::Node3D>("CameraContainer");
     this->cameraSpringArm = this->model->get_node<godot::SpringArm3D>("CameraContainer/SpringArm3D");
     this->navigationAgent = this->model->get_node<godot::NavigationAgent3D>("NavigationAgent3D");
-    this->animationPlayer = this->model->get_node<godot::AnimationPlayer>("Body/Witch/AnimationPlayer");
+    // this->animationPlayer = this->model->get_node<godot::AnimationPlayer>("Body/Witch/AnimationPlayer");
     this->body = this->model->get_node<godot::Node3D>("Body");
 
     this->enemySpawnLocation = this->model->get_node<godot::Node3D>("../EnemySpawner");
@@ -36,7 +36,9 @@ void PlayerCharacterBodyControls::model_on_agent_navigation_finished() {
 void PlayerCharacterBodyControls::animate(godot::String animationName) {
     if (this->currentAnimation != animationName) {
         this->currentAnimation = animationName;
-        this->animationPlayer->play(this->currentAnimation);
+        if (this->animationPlayer) {
+            this->animationPlayer->play(this->currentAnimation);
+        }
     }
 }
 
