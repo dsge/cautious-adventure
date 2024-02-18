@@ -11,7 +11,15 @@ last_version_filename = "last_downloaded_version.json"
 
 
 def ensure_blender_and_godot_binaries(godot_version='4.2.1', godot_suffix='stable', blender_version='4.0.2', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
+    """
+    (Re)downloads godot and blender with the correct versions and extracts them to `override_blender_and_godot_editor_path` if they aren't already there
 
+    Parameters:
+        godot_version (str): e.g. "4.2.1"
+        godot_suffix (str): e.g. "stable"
+        blender_version (str): e.g. "4.0.2"
+        override_blender_and_godot_editor_path (str): absolute path to a folder
+    """
     editorDirectory = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', override_blender_and_godot_editor_path))
     if (not os.path.isdir(editorDirectory)):
         os.makedirs(editorDirectory)
@@ -31,6 +39,21 @@ def ensure_blender_and_godot_binaries(godot_version='4.2.1', godot_suffix='stabl
     ensure_godot_selfcontained_mode(editorDirectory)
 
 def ensure_blender_folder(blender_version, platformName, editorDirectory, force):
+    """
+    Downloads blender and extracts it to `editorDirectory` if it isn't already there
+    e.g.
+        from: https://mirrors.sahilister.in/blender/release/Blender4.0/blender-4.0.2-linux-x64.tar.xz
+        to: <repo root>/blender-and-godot-editor/blender_linux/ (folder)
+ 
+    Parameters:
+        blender_version (str): e.g. "4.0.2"
+        platformName (str): "windows" or "linux"
+        editorDirectory (str): absolute path to a folder
+        force (bool): set it to true to re-download the folder even if it already exists
+ 
+    Returns:
+        bool: whether or not a download actually happened
+    """
     mirror = "https://mirrors.sahilister.in"
     targetFolderName = "blender_{platformName}".format(version=blender_version, platformName=platformName)
     finalFolderPath = os.path.abspath(os.path.join(editorDirectory, targetFolderName))
@@ -61,6 +84,22 @@ def ensure_blender_folder(blender_version, platformName, editorDirectory, force)
 
 
 def ensure_godot_binary(version, suffix, platformBinaryName, editorDirectory, force):
+    """
+    Downloads Godot and extracts it to `editorDirectory` if it isn't already there
+    e.g.
+        from: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_linux.x86_64.zip
+        to: <repo root>/blender-and-godot-editor/Godot_linux.x86_64 (file)
+ 
+    Parameters:
+        version (str): e.g. "4.2.1"
+        suffix (str): e.g. "stable"
+        platformBinaryName (str): "win64.exe" or "linux.86_64"
+        editorDirectory (str): absolute path to a folder
+        force (bool): set it to true to re-download the folder even if it already exists
+ 
+    Returns:
+        bool: whether or not a download actually happened
+    """
     binaryName = "Godot_v{version}-{suffix}_{platformBinaryName}".format(
         version=version, suffix=suffix, platformBinaryName=platformBinaryName)
     targetBinaryName = "Godot_{platformBinaryName}".format(
@@ -86,6 +125,21 @@ def ensure_godot_binary(version, suffix, platformBinaryName, editorDirectory, fo
     return False
 
 def ensure_export_templates(version, suffix, editorDirectory):
+    """
+    Downloads all of Godot's "export templates" and extracts them to `editorDirectory`/editor_data/export_templates if they aren't already there
+    e.g.
+        from: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_export_templates.tpz
+        to: <repo root>/blender-and-godot-editor/editor_data/export_templates (folder)
+ 
+    Parameters:
+        version (str): e.g. "4.2.1"
+        suffix (str): e.g. "stable"
+        editorDirectory (str): absolute path to a folder
+        force (bool): set it to true to re-download the folder even if it already exists
+ 
+    Returns:
+        bool: whether or not a download actually happened
+    """
     templatesFinalFolder=os.path.abspath(os.path.join(
         editorDirectory, 'editor_data', 'export_templates', "{}.{}".format(version, suffix)))
     if (not os.path.isdir(templatesFinalFolder)):
@@ -106,6 +160,18 @@ def ensure_export_templates(version, suffix, editorDirectory):
 
 
 def needs_fresh_download(version, suffix, blender_version, editorDirectory):
+    """
+    Checks `editorDirectory`/last_downloaded_version.json to see if a forced fresh download for everything is necessary
+    It's necessary when the json file doesn't exist or contains different versions compared to what we need now.
+ 
+    Parameters:
+        version (str): e.g. "4.2.1"
+        suffix (str): e.g. "stable"
+        editorDirectory (str): absolute path to a folder
+ 
+    Returns:
+        bool: whether or not a complete fresh download is necessary
+    """
     filename=os.path.join(editorDirectory, last_version_filename)
     if not os.path.isfile(filename):
         return True
@@ -115,6 +181,9 @@ def needs_fresh_download(version, suffix, blender_version, editorDirectory):
 
 
 def update_last_downloaded_version(godot_version, godot_suffix, blender_version, editorDirectory):
+    """
+    Updates `editorDirectory`/last_downloaded_version.json to make sure it contains information about the newly downloaded versions
+    """
     filename=os.path.join(editorDirectory, last_version_filename)
     dict={
         'godot_version': godot_version,
@@ -126,6 +195,10 @@ def update_last_downloaded_version(godot_version, godot_suffix, blender_version,
 
 
 def ensure_godot_selfcontained_mode(editorDirectory):
+    """
+    (Re)creates the `editorDirectory`/._sc_ to set Godot into the "self-contained" mode
+    Also puts some default values in it that Godot will read upon it's first ever startup
+    """
     filename=os.path.join(editorDirectory, '._sc_')
     if not os.path.isfile(filename) or True:
         absolute_repo_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
