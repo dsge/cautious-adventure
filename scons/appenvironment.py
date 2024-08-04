@@ -10,7 +10,7 @@ import configparser
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_blender_and_godot_binaries(godot_version='4.2.1', godot_suffix='stable', blender_version='4.0.2', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
+def ensure_blender_and_godot_binaries(godot_version='4.2.2', godot_suffix='stable', blender_version='4.2.0', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
     """
     (Re)downloads godot and blender with the correct versions and extracts them to `override_blender_and_godot_editor_path` if they aren't already there
 
@@ -65,8 +65,9 @@ def ensure_blender_folder(blender_version, platformName, editorDirectory, force)
     if (not os.path.isdir(finalFolderPath) or force):
         print("Downloading fresh {targetFolderName} to '<project_root>/blender-and-godot-editor'...".format(
             targetFolderName=targetFolderName))
-        url = "{mirror}/blender/release/Blender4.0/{downloadFileNameWithExtension}".format(mirror=mirror, downloadFileNameWithExtension=downloadFileNameWithExtension)
-        local_tmp_filename, headers=urllib.request.urlretrieve(url)
+        majorMinorVersion = '.'.join([blender_version.split(".")[0], blender_version.split(".")[1]])
+        url = "{mirror}/blender/release/Blender{majorMinorVersion}/{downloadFileNameWithExtension}".format(mirror=mirror, downloadFileNameWithExtension=downloadFileNameWithExtension, majorMinorVersion=majorMinorVersion)
+        local_tmp_filename, headers=urllib.request.urlretrieve(url)      
 
 
         extractDirectory=os.path.dirname(local_tmp_filename)
@@ -76,6 +77,7 @@ def ensure_blender_folder(blender_version, platformName, editorDirectory, force)
         else:
             with tarfile.open(local_tmp_filename) as tar_ref:
                 tar_ref.extractall(extractDirectory)
+        os.remove(local_tmp_filename)
         shutil.move(os.path.join(extractDirectory, downloadFileName), finalFolderPath)
         if not os.name == 'nt':
             os.chmod(finalFolderPath, 0o744)
