@@ -10,7 +10,7 @@ import configparser
 last_version_filename = "last_downloaded_version.json"
 
 
-def ensure_blender_and_godot_binaries(godot_version='4.2.2', godot_suffix='stable', blender_version='4.2.0', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
+def ensure_blender_and_godot_binaries(godot_version='4.3', godot_suffix='stable', blender_version='4.2.0', override_blender_and_godot_editor_path='./blender-and-godot-editor'):
     """
     (Re)downloads godot and blender with the correct versions and extracts them to `override_blender_and_godot_editor_path` if they aren't already there
 
